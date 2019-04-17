@@ -1,0 +1,63 @@
+<!doctype html>
+<html id="load">
+
+<head>
+   <meta charset="utf-8">
+   <title>Welcome</title>
+   <link rel="stylesheet" href="asset/css/bootstrap.min.css">
+   <link rel="stylesheet" href="asset/css/style.css">
+</head>
+<script>
+   function ok() {
+      var formElement = document.querySelector("form");
+      var data1 = new FormData(formElement);
+      var request = new XMLHttpRequest();
+      request.open("POST", "controller/adminController.php", true);
+      request.onreadystatechange = function () {
+         if (request.readyState == 4)
+            if (request.status == 200)
+            {
+               var result = request.responseText;
+               if (result == "false") 
+               {
+                  document.getElementById("err").innerHTML = "tên đăng nhập hoặc mật khẩu không đúng";
+               }
+               else 
+               {
+                  window.location = result;
+               }
+            }
+            else alert("Err");
+      }
+      request.send(data1);
+   }
+   function Enter(){
+      var username = document.getElementById("inputUsername").value;
+      var password = document.getElementById("inputPassword").value;
+
+      if (event.keyCode === 13 && username !="" && password != "")
+      {
+         ok();
+      }
+   }
+</script>
+
+<body>
+   <div class="jumbotron bg-success">
+      <h1>Welcome! Admin page</h1>
+   </div>
+   <center>
+      <form id="form" class="mt-5 shadow p-2" style="width: 360px" action="controller/adminController.php"
+         method="POST">
+         <h1 class="bg-success mb-3">Login</h1>
+         <input id="inputUsername" onkeydown="Enter()" class="form-control mb-3" placeholder="Username" type="text" name="username" required>
+         <input id="inputPassword" onkeydown="Enter()" class="form-control mb-3" placeholder="Password" type="password" name="password" required>
+         <p id="err" class="text-danger"></p>
+         <button class="btn btn-success mb-4" type="button" onclick="ok()">Login</button>
+         <br>
+         <a href="register.html">Register</a>
+      </form>
+   </center>
+</body>
+
+</html>
