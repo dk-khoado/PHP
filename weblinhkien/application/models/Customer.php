@@ -18,6 +18,6 @@ class Customer extends CI_Model{
         }else{
             return false;
         }
-       // return $result->result();
+       //return $result->result();
     }
 }
