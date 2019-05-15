@@ -72,8 +72,8 @@ class Main extends CI_Controller
     public function Register()
     {
         $this->load->model('Customer');
-        $user = $this->input->post('USER');
-        $password = $this->input->post('PASSWORD');
+        $user = $this->input->post('username');
+        $password = $this->input->post('password');
         $this->Customer->Register($user, $password);
         redirect("admin/index");
     }    
@@ -90,8 +90,8 @@ class Main extends CI_Controller
     public function AddUser()
     {
         $this->load->model('Customer');
-        $username = $this->input->post('USER');
-        $password = $this->input->post('PASSWORD');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
 
         if ($this->Customer->Login($username, $password)) {
             redirect("admin/index");
