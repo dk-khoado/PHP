@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 
 <head>
@@ -8,18 +8,22 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables.min.css"> -->
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/gijgo.min.css"> -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/color/w3-colors-flat.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/color/w3-colors-flat.css">	
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/card.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/slick.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/nouislider.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/header.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/libs/css/style.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/slick-theme.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 
 	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 	<!-- <script src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script> -->
 	<script src="<?php echo base_url(); ?>assets/js/popper.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 	<!-- <script src="<?php echo base_url(); ?>assets/js/gijgo.min.js"></script> -->
-	<script src="<?php echo base_url(); ?>assets/css/js/slick.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/slick.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/nouislider.min.js"></script>
 
 
 
@@ -74,7 +78,10 @@
 		</header>
 		<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
 			<div class="container">
+
 				<a class="navbar-brand" href="<?php echo site_url(" main/index ") ?>" style="text-transform: uppercase;"> LINHKIEN9586.COM</a>
+				<a class="navbar-brand" href="<?php echo site_url("main/index") ?>" style="text-transform: uppercase;"> LINHKIEN9586.TK</a>
+
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -84,7 +91,7 @@
 					<ul class="navbar-nav ml-auto">
 
 						<li class="nav-item active">
-							<a class="nav-link" href="#">Home
+							<a class="nav-link" href="<?php echo site_url("main/index") ?>">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
@@ -103,11 +110,11 @@
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="#">Register</a>
+							<a class="nav-link" href="#" data-toggle="modal" data-target="#register">Register</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="#">Login</a>
+							<a class="nav-link" href="#" data-toggle="modal" data-target="#login">Login</a>
 						</li>
 					</ul>
 				</div>
@@ -166,6 +173,107 @@
 			</div>
 		</div>
 	</div>
+	<!-- phần dialog của login -->
+	<div class="modal fade" id="login">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header bg-primary">
+				<div class="d-inline">
+						<h3 class="mb-1">Login Form</h3>
+						<p>Please enter your user information.</p>
+					</div>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>					
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div>
+						<div class="card">
+							<div class="card-body">
+								<form action="<?php echo site_url('main/AddUser'); ?>" method="POST">
+									<div class="form-group">
+										<input class="form-control form-control-lg"  type="text" name="username"  placeholder="Username">
+									</div>
+									<div class="form-group">
+										<input class="form-control form-control-lg" type="password"  name="password"   placeholder="Password">
+									</div>
+									<div class="form-group">
+										<label class="custom-control custom-checkbox">
+											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
+										</label>
+									</div>
+									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+								</form>
+							</div>
+							<div class="card-footer bg-white p-0">
+								<div class="card-footer-item card-footer-item-bordered">
+									<a href="#" class="footer-link">Create An Account</a></div>
+								<div class="card-footer-item card-footer-item-bordered">
+									<a href="#" class="footer-link">Forgot Password</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Modal footer -->
+			</div>
+		</div>
+	</div>
+	<!-- end dialog -->
+	<!-- phần dialog của register -->
+	<div class="modal fade" id="register">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header bg-primary">
+					<div class="d-inline">
+						<h3 class="mb-1">Registrations Form</h3>
+						<p>Please enter your user information.</p>
+					</div>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<form class="splash-container" action="<?php echo site_url('main/Register'); ?>" method="POST">
+						<div class="card">
+							<div class="card-body">
+								<div class="form-group">
+									<input class="form-control form-control-lg"  type="text" name="username" required placeholder="Username" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<input class="form-control form-control-lg"  type="email" name="email" required placeholder="E-mail" autocomplete="off">
+								</div>
+								<div class="form-group">
+									<input class="form-control form-control-lg"  id="pass1" name="r_password" type="password" required placeholder="Password">
+								</div>
+								<div class="form-group">
+									<input class="form-control form-control-lg" type="password" placeholder="Confirm">
+								</div>
+								<div class="form-group pt-2">
+									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
+								</div>
+								<div class="form-group">
+									<label class="custom-control custom-checkbox">
+										<input class="custom-control-input" type="checkbox">
+										<span class="custom-control-label">By creating an account, you agree the <a href="#">terms and conditions</a></span> </label>
+								</div>
+							</div>
+							<div class="card-footer bg-white">
+								<p>Already member? <a href="#" class="text-secondary">Login Here.</a></p>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- phần viết js -->
+				<!-- end -->
+
+			</div>
+		</div>
+	</div>
+	<!-- end dialog -->
+	<!--  ===============================================-->
+	<!-- ============================================= -->
 	<div class="shadow">
 		<?php
 		echo $context;

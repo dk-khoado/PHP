@@ -69,16 +69,24 @@ class Main extends CI_Controller
 
         $this->load->view("layout_share", array('type' => $data, 'context' => $context));
     }
-	public function AddOrder()
-	{
-		$this->load->model('Order');
-		$ID_product = $this->input->post('ID_product');
-		$AmountProductSold = $this->input->post('AmountProductSold');
-		$OnSellDate = $this->input->post('OnSellDate');
-		$ID_User = $this->input->post('ID_User');
-		$this->Order->Insert($ID_product, $AmountProductSold, $OnSellDate, $ID_User);
-		
-	}
+    public function Register()
+    {
+        $this->load->model('Customer');
+        $user = $this->input->post('username');
+        $password = $this->input->post('r_password');
+        $this->Customer->Register($user, $password);
+        redirect("main/index");
+    }    
+    public function AddOrder()
+    {
+        $this->load->model('Order');
+        $ID_product = $this->input->post('ID_product');
+        $AmountProductSold = $this->input->post('AmountProductSold');
+        $OnSellDate = $this->input->post('OnSellDate');
+        $ID_User = $this->input->post('ID_User');
+        $this->Order->Insert($ID_product, $AmountProductSold, $OnSellDate, $ID_User);
+    }
+
 
 	public function AddUser(){
 		$this->load->model('User'); 
@@ -86,4 +94,23 @@ class Main extends CI_Controller
 		$password = $this->input->post('PASSWORD');
 		redirect("admin/index");
 	}
+
+    public function AddUser()
+    {
+        $this->load->model('Customer');
+        $username = $this->input->post('username');
+        // $password_1 = $this->input->post('password');
+        $password_1 = $_POST['password'];
+        echo $username .$password_1;
+        if ($this->Customer->Login($username, $password_1)) {            
+             redirect("main/index");
+        } else {              
+            $this->session->set_userdata("id", 1);                 
+            //redirect("admin/index");           
+            
+         }
+    }
+    public function login_Page(){
+        $this->load->view("login");
+    }
 }
