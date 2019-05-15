@@ -114,9 +114,12 @@
 						</li>
 						<?php
 						if (isset($_SESSION['id']) &&  isset($_SESSION['name'])) {
-							echo '<li class="nav-item">';
-							echo '<a class="nav-link" href="#">Hello ' . $_SESSION['name'] . '</a>';
-							echo '</li>';
+							echo '<li class="nav-item dropdown">';
+							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION['name'] . '</a>';
+							echo '<div class="dropdown-menu">';
+							echo '<a class="dropdown-item" href="' . site_url("main/signout") . '">Đăng Xuất</a>';
+							echo '</div>';
+							echo '</li>';							
 						} else {
 							echo '<li class="nav-item">';
 							echo '<a class="nav-link" href="#" data-toggle="modal" data-target="#register">Register</a>';
