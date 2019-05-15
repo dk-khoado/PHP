@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -5,73 +6,109 @@
 	<title>Trang chủ</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/gijgo.min.css">
+	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables.min.css"> -->
+	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/gijgo.min.css"> -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/color/w3-colors-flat.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/card.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/slick.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/header.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/libs/css/style.css">
 
 	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script>
+	<!-- <script src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script> -->
 	<script src="<?php echo base_url(); ?>assets/js/popper.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-	<script src="<?php echo base_url(); ?>assets/js/gijgo.min.js"></script>
+	<!-- <script src="<?php echo base_url(); ?>assets/js/gijgo.min.js"></script> -->
+	<script src="<?php echo base_url(); ?>assets/css/js/slick.min.js"></script>
+
+
 
 	<!-- <link rel="stylesheet" href="layoutside.css"> -->
 </head>
 <style>
-.bg_web{
-	background-attachment: fixed;
-	background-size: cover;	
-	overflow:scroll;
-}
+	.bg_web {
+		background-attachment: fixed;
+		background-size: cover;
+		overflow: scroll;
+	}
 </style>
+
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
 	<!-- phần header -->
 
 	<script>
-		$(document).scroll(function() {
-			var element = document.getElementById("listType");
-			if ($(document).scrollTop() > 295) {
-				element.classList.remove("disabled");
-				element.classList.add("btn-light");
+		// $(document).scroll(function() {
+		// 	var element = document.getElementById("listType");
+		// 	if ($(document).scrollTop() > 295) {
+		// 		element.classList.remove("disabled");
+		// 		element.classList.add("btn-light");
 
-			} else {
-				element.classList.add("disabled");
-				element.classList.remove("btn-light");
+		// 	} else {
+		// 		element.classList.add("disabled");
+		// 		element.classList.remove("btn-light");
 
-			}
-		});
-	
+		// 	}
+		// });
 	</script>
-	<nav class="navbar fixed-top shadow" style="background-color: white">
-		<a href="<?php echo site_url("main/index"); ?>" class="navbar-brand"><img src="<?php echo base_url(); ?>assets/image/default.png" height="50px" width="50px"></a>
-
-		<div class="nav-item dropdown">
-			<button id="listType" class="btn disabled" href="#" id="navbardrop" data-toggle="dropdown">
-				<h4 class="text-body">Danh Mục Sản Phẩm</h4>
-			</button>
-			<div class="dropdown-menu " style="height: 300px; overflow: auto;">
-				<?php
-				foreach ($type as $key => $value) {
-					echo '<a class="dropdown-item" href="' . site_url("main/product_list/$value->ID_type/1") . '"' . $value->ID_type . '">' . $value->name_type . '</a>';
-				}
-				?>
+	<div class="fixed-top">
+		<header class="topbar">
+			<div class="container">
+				<div class="row">
+					<!-- social icon-->
+					<div class="col-sm-12">
+						<ul class="social-network">
+							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-facebook"></i></a></li>
+							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-twitter"></i></a></li>
+							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-linkedin"></i></a></li>
+							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-pinterest"></i></a></li>
+							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-google-plus"></i></a></li>
+						</ul>
+					</div>
+				</div>
 			</div>
-		</div>
+		</header>
+		<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
+			<div class="container">
+				<a class="navbar-brand" href="<?php echo site_url("main/index") ?>" style="text-transform: uppercase;"> LINHKIEN9586.COM</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarResponsive">
 
-		<form method="get" action="#">
-			<input class="form-control form-control-lg" style="width:500px" type="text" name="search" placeholder="Tìm kiếm">
-		</form>
-		<div class="nav nav-item">
-			<a class="nav-link" href="cart.php">Giỏ Hàng</a>
-			<a class="nav-link" href="#">Đăng nhâp</a>
-			<a class="nav-link" href="#">Đăng Ký</a>
-		</div>
-	</nav>
+					<ul class="navbar-nav ml-auto">
 
-	<!-- thanh điều hướng và quản cáo -->
-	<div class="row" style="margin-top: 100px">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Home
+								<span class="sr-only">(current)</span>
+							</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="#">About</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="#">Danh Mục Sản Phẩm</a>
+						</li>
+						
+
+						<li class="nav-item">
+							<a class="nav-link" href="#">Cart</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="#">Register</a>
+						</li>
+
+						<li class="nav-item">
+							<a class="nav-link" href="#">Login</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<div class="row" style="margin-top: 110px">
 		<div class="col-3">
 			<!-- <h4 class="bg-light">Danh Mục Sản Phẩm</h4> -->
 			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
@@ -88,27 +125,24 @@
 		</div>
 		<div class="col-9">
 			<div id="demo" class="carousel slide" data-ride="carousel">
-
 				<!-- Indicators -->
 				<ul class="carousel-indicators">
 					<li data-target="#demo" data-slide-to="0" class="active"></li>
 					<li data-target="#demo" data-slide-to="1"></li>
 					<li data-target="#demo" data-slide-to="2"></li>
 				</ul>
-
 				<!-- The slideshow -->
 				<div class="carousel-inner">
 					<div class="carousel-item active">
 						<img src="<?php echo base_url(); ?>assets/image/default_banner1.jpg" height="300px" width="100%" alt="Los Angeles">
 					</div>
 					<div class="carousel-item">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner2.jpg"  height="300px" width="100%" alt="Chicago">
+						<img src="<?php echo base_url(); ?>assets/image/default_banner2.jpg" height="300px" width="100%" alt="Chicago">
 					</div>
 					<div class="carousel-item">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner3.jpg"  height="300px" width="100%" alt="New York">
+						<img src="<?php echo base_url(); ?>assets/image/default_banner3.jpg" height="300px" width="100%" alt="New York">
 					</div>
 				</div>
-
 				<!-- Left and right controls -->
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
@@ -120,17 +154,12 @@
 			</div>
 		</div>
 	</div>
-	<!-- end header -->
-	<!-- phần body -->
-	<!-- phần sản phẩm mới -->
 	<div class="shadow">
 		<?php
 		echo $context;
 		?>
 	</div>
 	<!-- end body -->
-
-
 	<!-- phần footer -->
 	<div>
 		<section class="clearfix hd1-policy border-top border-bottom-2 py-5">

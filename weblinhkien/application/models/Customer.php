@@ -13,6 +13,11 @@ class Customer extends CI_Model{
         $password_d = md5($password);
         $query = "SELECT * from custumers where USER = '$username' and PASSWORD = '$password_d'";
         $result = $this->db->get($query);
-        return $result->result();
+        if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+       //return $result->result();
     }
 }
