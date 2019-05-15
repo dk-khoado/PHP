@@ -90,13 +90,10 @@
 						<li class="nav-item">
 							<a class="nav-link" href="#">Danh Mục Sản Phẩm</a>
 						</li>
+						
 
 						<li class="nav-item">
-							<a class="nav-link" href="#">Sea food</a>
-						</li>
-
-						<li class="nav-item">
-							<a class="nav-link" href="#">Vegetables</a>
+							<a class="nav-link" href="#">Cart</a>
 						</li>
 
 						<li class="nav-item">
