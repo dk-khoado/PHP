@@ -69,14 +69,4 @@ class Main extends CI_Controller
 
         $this->load->view("layout_share", array('type' => $data, 'context' => $context));
     }
-	public function AddOrder()
-	{
-		$this->load->model('Order');
-		$ID_product = $this->input->post('ID_product');
-		$AmountProductSold = $this->input->post('AmountProductSold');
-		$OnSellDate = $this->input->post('OnSellDate');
-		$ID_User = $this->input->post('ID_User');
-		$this->Order->Insert($ID_product, $AmountProductSold, $OnSellDate, $ID_User);
-	}
-	
 }
