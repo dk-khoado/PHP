@@ -1,4 +1,3 @@
-
 <html>
 
 <head>
@@ -8,7 +7,7 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables.min.css"> -->
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/gijgo.min.css"> -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/color/w3-colors-flat.css">	
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/color/w3-colors-flat.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/card.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/slick.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
@@ -78,14 +77,11 @@
 		</header>
 		<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
 			<div class="container">
-
-				<a class="navbar-brand" href="<?php echo site_url(" main/index ") ?>" style="text-transform: uppercase;"> LINHKIEN9586.COM</a>
-				<a class="navbar-brand" href="<?php echo site_url("main/index") ?>" style="text-transform: uppercase;"> LINHKIEN9586.TK</a>
-
+				<a class="navbar-brand" href="<?php echo site_url("main/index") ?>" style="text-transform: uppercase;"> LINHKIEN9586.COM</a>			
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-			
+
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 
 					<ul class="navbar-nav ml-auto">
@@ -100,8 +96,16 @@
 							<a class="nav-link" href="#">About</a>
 						</li>
 
-						<li class="nav-item">
-							<a class="nav-link" href="#">Danh Mục Sản Phẩm</a>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Danh mục sản phẩm</a>
+							<div class="dropdown-menu">
+								<?php
+								foreach ($type as $key => $value) {
+									echo '<a class="dropdown-item" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
+									//kk
+								}
+								?>
+							</div>
 						</li>
 
 
@@ -126,17 +130,13 @@
 			<!-- <h4 class="bg-light">Danh Mục Sản Phẩm</h4> -->
 			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
 				<ul class="nav flex-column">
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Danh mục sản phẩm</a>
-						<div class="dropdown-menu">
-							<?php
-							foreach ( $type as $key => $value ) {
-								echo '<a class="dropdown-item" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
-								//kk
-							}
-							?>
-						</div>
-					</li>
+					<?php
+					foreach ($type as $key => $value) {
+						echo '<li class="nav-item">';
+						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
+						echo '</li>';
+					}
+					?>
 				</ul>
 			</div>
 		</div>
@@ -164,11 +164,11 @@
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
 				</a>
-			
+
 				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
-			
+
 
 			</div>
 		</div>
@@ -179,12 +179,12 @@
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header bg-primary">
-				<div class="d-inline">
+					<div class="d-inline">
 						<h3 class="mb-1">Login Form</h3>
 						<p>Please enter your user information.</p>
 					</div>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>					
+				</div>
 				<!-- Modal body -->
 				<div class="modal-body">
 					<div>
@@ -192,10 +192,10 @@
 							<div class="card-body">
 								<form action="<?php echo site_url('main/AddUser'); ?>" method="POST">
 									<div class="form-group">
-										<input class="form-control form-control-lg"  type="text" name="username"  placeholder="Username">
+										<input class="form-control form-control-lg" type="text" name="username" placeholder="Username">
 									</div>
 									<div class="form-group">
-										<input class="form-control form-control-lg" type="password"  name="password"   placeholder="Password">
+										<input class="form-control form-control-lg" type="password" name="password" placeholder="Password">
 									</div>
 									<div class="form-group">
 										<label class="custom-control custom-checkbox">
@@ -239,13 +239,13 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg"  type="text" name="username" required placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg" type="text" name="username" required placeholder="Username" autocomplete="off">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg"  type="email" name="email" required placeholder="E-mail" autocomplete="off">
+									<input class="form-control form-control-lg" type="email" name="email" required placeholder="E-mail" autocomplete="off">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg"  id="pass1" name="r_password" type="password" required placeholder="Password">
+									<input class="form-control form-control-lg" id="pass1" name="r_password" type="password" required placeholder="Password">
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="password" placeholder="Confirm">

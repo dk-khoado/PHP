@@ -86,14 +86,12 @@ class Main extends CI_Controller
         $ID_User = $this->input->post('ID_User');
         $this->Order->Insert($ID_product, $AmountProductSold, $OnSellDate, $ID_User);
     }
-
-
-	public function AddUser(){
-		$this->load->model('User'); 
-		$username = $this->input->post('USER');
-		$password = $this->input->post('PASSWORD');
-		redirect("admin/index");
-	}
+	// public function AddUser(){
+	// 	$this->load->model('User'); 
+	// 	$username = $this->input->post('USER');
+	// 	$password = $this->input->post('PASSWORD');
+	// 	redirect("admin/index");
+	// }
 
     public function AddUser()
     {
