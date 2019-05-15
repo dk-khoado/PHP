@@ -118,7 +118,7 @@
 						echo '<li class="nav-item">';
 						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
 						echo '</li>';
-					}
+					}				
 					?>
 				</ul>
 			</div>
