@@ -138,7 +138,7 @@ class Admin extends CI_Controller
 	{		
 		$header = "Danh Sách Đặt Hàng";
 		$context = $this->load->view('admin/order_page', array('header'=>$header), true);
-		$this->load->view('admin/share_layout', array('context' => $context));		
+		$this->load->view('admin/share_layout', array('context' => $context));
 	}
 
 	public function accout()
