@@ -44,82 +44,223 @@
 		});
 	
 	</script>
-	<nav class="navbar fixed-top shadow" style="background-color: white">
-		<a href="<?php echo site_url("main/index"); ?>" class="navbar-brand"><img src="<?php echo base_url(); ?>assets/image/default.png" height="50px" width="50px"></a>
-
-		<div class="nav-item dropdown">
-			<button id="listType" class="btn disabled" href="#" id="navbardrop" data-toggle="dropdown">
-				<h4 class="text-body">Danh Mục Sản Phẩm</h4>
-			</button>
-			<div class="dropdown-menu " style="height: 300px; overflow: auto;">
-				<?php
-				foreach ($type as $key => $value) {
-					echo '<a class="dropdown-item" href="' . site_url("main/product_list/$value->ID_type/1") . '"' . $value->ID_type . '">' . $value->name_type . '</a>';
-				}
-				?>
+	<header>
+			<!-- TOP HEADER -->
+			<div id="top-header">
+				<div class="container">
+					<ul class="header-links pull-left">
+						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+					</ul>
+					<ul class="header-links pull-right">
+						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
+						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+					</ul>
+				</div>
 			</div>
-		</div>
+			<!-- /TOP HEADER -->
 
-		<form method="get" action="#">
-			<input class="form-control form-control-lg" style="width:500px" type="text" name="search" placeholder="Tìm kiếm">
-		</form>
-		<div class="nav nav-item">
-			<a class="nav-link" href="cart.php">Giỏ Hàng</a>
-			<a class="nav-link" href="#">Đăng nhâp</a>
-			<a class="nav-link" href="#">Đăng Ký</a>
-		</div>
-	</nav>
+			<!-- MAIN HEADER -->
+			<div id="header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+									<img src="https://cdn.shopifycloud.com/hatchful-web/assets/2adcef6c1f7ab8a256ebdeba7fceb19f.png" style="width: 50px"  alt="">
+								</a>
+							</div>
+						</div>
+						<!-- /LOGO -->
 
-	<!-- thanh điều hướng và quản cáo -->
-	<div class="row" style="margin-top: 100px">
-		<div class="col-3">
-			<!-- <h4 class="bg-light">Danh Mục Sản Phẩm</h4> -->
-			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
-				<ul class="nav flex-column">
-					<?php
-					foreach ($type as $key => $value) {
-						echo '<li class="nav-item">';
-						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
-						echo '</li>';
-					}
-					?>
-				</ul>
+						<!-- SEARCH BAR -->
+						<div class="col-md-6">
+							<div class="header-search">
+								<form>
+									<select class="input-select" style="float: left">
+										<option value="0">All Categories</option>
+										<option value="1">Category 01</option>
+										<option value="1">Category 02</option>
+									</select>
+									<input class="input" placeholder="Search here" style="float: left">
+									<button class="search-btn">Search</button>
+								</form>
+							</div>
+						</div>
+						<!-- /SEARCH BAR -->
+
+						<!-- ACCOUNT -->
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								<!-- Wishlist -->
+								<div>
+									<a href="#">
+										<i class="fa fa-heart-o"></i>
+										<span>Your Wishlist</span>
+										<div class="qty">2</div>
+									</a>
+								</div>
+								<!-- /Wishlist -->
+
+								<!-- Cart -->
+								<div class="dropdown">
+									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span>Your Cart</span>
+										<div class="qty">3</div>
+									</a>
+									<div class="cart-dropdown">
+										<div class="cart-list">
+											<div class="product-widget">
+												<div class="product-img">
+													<img src="./img/product01.png" alt="">
+												</div>
+												<div class="product-body">
+													<h3 class="product-name"><a href="#">product name goes here</a></h3>
+													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+												</div>
+												<button class="delete"><i class="fa fa-close"></i></button>
+											</div>
+
+											<div class="product-widget">
+												<div class="product-img">
+													<img src="./img/product02.png" alt="">
+												</div>
+												<div class="product-body">
+													<h3 class="product-name"><a href="#">product name goes here</a></h3>
+													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+												</div>
+												<button class="delete"><i class="fa fa-close"></i></button>
+											</div>
+										</div>
+										<div class="cart-summary">
+											<small>3 Item(s) selected</small>
+											<h5>SUBTOTAL: $2940.00</h5>
+										</div>
+										<div class="cart-btns">
+											<a href="#">View Cart</a>
+											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<!-- /Cart -->
+
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
 			</div>
-		</div>
-		<div class="col-9">
-			<div id="demo" class="carousel slide" data-ride="carousel">
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
 
-				<!-- Indicators -->
-				<ul class="carousel-indicators">
-					<li data-target="#demo" data-slide-to="0" class="active"></li>
-					<li data-target="#demo" data-slide-to="1"></li>
-					<li data-target="#demo" data-slide-to="2"></li>
-				</ul>
+		<!-- NAVIGATION -->
+		<nav id="navigation" >
+			<!-- container -->
+			<div class="container ">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav nav-item">
+						<li class=" active"><a href="#">Home</a></li>
+						<li><a  href="#">Hot Deals</a></li>
+						<li ><a  href="#">Categories</a></li>
+						<li><a  href="#">Laptops</a></li>
+						<li><a href="#">Smartphones</a></li>
+						<li><a  href="#">Cameras</a></li>
+						<li><a href="#">Accessories</a></li>
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
 
-				<!-- The slideshow -->
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner1.jpg" height="300px" width="100%" alt="Los Angeles">
-					</div>
-					<div class="carousel-item">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner2.jpg"  height="300px" width="100%" alt="Chicago">
-					</div>
-					<div class="carousel-item">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner3.jpg"  height="300px" width="100%" alt="New York">
+		<!-- BREADCRUMB -->
+		<div id="breadcrumb" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="breadcrumb-header">Regular Page</h3>
+						<ul class="breadcrumb-tree">
+							<li><a href="#">Home</a></li>
+							<li class="active">Blank</li>
+						</ul>
 					</div>
 				</div>
-
-				<!-- Left and right controls -->
-				<a class="carousel-control-prev" href="#demo" data-slide="prev">
-					<span class="carousel-control-prev-icon"></span>
-				</a>
-				<a class="carousel-control-next" href="#demo" data-slide="next">
-					<span class="carousel-control-next-icon"></span>
-				</a>
-
+				<!-- /row -->
 			</div>
+			<!-- /container -->
 		</div>
-	</div>
+		<!-- /BREADCRUMB -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- NEWSLETTER -->
+		<div id="newsletter" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="newsletter">
+							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
+							<form>
+								<input class="input" style="float: left" type="email" placeholder="Enter Your Email">
+								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+							</form>
+							<ul class="newsletter-follow">
+								<li>
+									<a href="#"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-instagram"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-pinterest"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /NEWSLETTER -->
 	<!-- end header -->
 	<!-- phần body -->
 	<!-- phần sản phẩm mới -->
