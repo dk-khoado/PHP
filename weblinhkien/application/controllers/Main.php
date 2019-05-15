@@ -69,6 +69,7 @@ class Main extends CI_Controller
 
         $this->load->view("layout_share", array('type' => $data, 'context' => $context));
     }
+
 	public function AddUser(){
 		$this->load->model('User'); 
 		$username = $this->input->post('USER');
