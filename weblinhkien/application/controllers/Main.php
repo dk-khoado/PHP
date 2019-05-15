@@ -69,4 +69,5 @@ class Main extends CI_Controller
 
         $this->load->view("layout_share", array('type' => $data, 'context' => $context));
     }
+    
 }
