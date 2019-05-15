@@ -93,7 +93,7 @@
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="#">About</a>
+							<a class="nav-link" href="<?php echo site_url("main/about") ?>">About</a>
 						</li>
 
 						<li class="nav-item dropdown">
@@ -217,11 +217,11 @@
 								</form>
 							</div>
 							<div class="card-footer bg-white p-0">
-								<div class="card-footer-item card-footer-item-bordered">
+								<!-- <div class="card-footer-item card-footer-item-bordered">
 									<a href="#" class="footer-link">Create An Account</a></div>
 								<div class="card-footer-item card-footer-item-bordered">
 									<a href="#" class="footer-link">Forgot Password</a>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -264,14 +264,14 @@
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
 								</div>
-								<div class="form-group">
+								<!-- <div class="form-group">
 									<label class="custom-control custom-checkbox">
 										<input class="custom-control-input" type="checkbox">
 										<span class="custom-control-label">By creating an account, you agree the <a href="#">terms and conditions</a></span> </label>
-								</div>
+								</div> -->
 							</div>
 							<div class="card-footer bg-white">
-								<p>Already member? <a href="#" class="text-secondary">Login Here.</a></p>
+								<!-- <p>Already member? <a href="#" class="text-secondary">Login Here.</a></p> -->
 							</div>
 						</div>
 					</form>

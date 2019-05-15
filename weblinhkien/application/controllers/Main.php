@@ -88,8 +88,8 @@ class Main extends CI_Controller
     }
     public function Signout()
     {
-    	session_destroy();
-    	redirect("main/index");
+        session_destroy();
+        redirect("main/index");
     }
 
     public function AddUser()
@@ -100,7 +100,7 @@ class Main extends CI_Controller
         $password_1 = $_POST['password'];
         if ($this->Customer->Login($username, $password_1)) {
             $data = $this->Customer->getID($username, $password_1);
-            $arrayName = array('id' => $data->ID_User, 'name'=>$data->USER);
+            $arrayName = array('id' => $data->ID_User, 'name' => $data->USER);
             $this->session->set_userdata($arrayName);
             redirect("main/index");
         } else {
@@ -108,8 +108,15 @@ class Main extends CI_Controller
             redirect("admin/index");
         }
     }
-    public function login_Page()
+    public function CheckOut()
     {
-        $this->load->view("login");
+        $data = $this->Type->getAll();
+        $context = $this->load->view('cart', '', true);
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context));
+    }
+    public function about(){
+        $data = $this->Type->getAll();
+        $context = $this->load->view('about', '', true);
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context));
     }
 }

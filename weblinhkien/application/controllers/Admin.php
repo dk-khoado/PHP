@@ -83,7 +83,9 @@ class Admin extends CI_Controller
 		$this->load->model('Products');
 		$data = $this->Products->getByID($id);
 		$this->Products->Delete($id);
-		unlink("upload/" . $data->Image);
+		if($data->Image != ""){
+			unlink("upload/" . $data->Image);
+		}		
 		redirect("admin/product");
 	}
 
@@ -122,8 +124,7 @@ class Admin extends CI_Controller
 		$manufacturer = $this->input->post('manufacturer');
 		$type = $this->input->post('type');
 
-		$product = $this->Products->getByID($id);
-		$nav = $this->load->view('admin/LoadNav', '', true);
+		$product = $this->Products->getByID($id);		
 		if ($Image == null) {
 			$Image = $product->Image;
 		} else {
