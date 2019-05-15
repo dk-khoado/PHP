@@ -120,13 +120,12 @@
 			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
 				<ul class="nav flex-column">
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Dropdown</a>
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Danh mục sản phẩm</a>
 						<div class="dropdown-menu">
 							<?php
 							foreach ( $type as $key => $value ) {
-
 								echo '<a class="dropdown-item" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
-
+								//kk
 							}
 							?>
 						</div>
