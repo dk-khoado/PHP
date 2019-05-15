@@ -163,8 +163,6 @@
 		?>
 	</div>
 	<!-- end body -->
-
-
 	<!-- phần footer -->
 	<div>
 		<section class="clearfix hd1-policy border-top border-bottom-2 py-5">
