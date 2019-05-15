@@ -23,7 +23,7 @@ class Main extends CI_Controller
         $this->load->view("layout_share", array('type' => $data, 'context' => $context));
     }
 
-    public function product_list($type, $page)
+    public function product_list($type, $page)	
     {
         $data = $this->Type->getAll();
         $dataProduct = $this->Products->getByIDType($type);
@@ -80,4 +80,10 @@ class Main extends CI_Controller
 		
 	}
 
+	public function AddUser(){
+		$this->load->model('User'); 
+		$username = $this->input->post('USER');
+		$password = $this->input->post('PASSWORD');
+		redirect("admin/index");
+	}
 }
