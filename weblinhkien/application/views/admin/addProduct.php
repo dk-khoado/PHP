@@ -59,9 +59,9 @@
 						<div class="mt-1">
 							<label class="btn btn-primary hover" for="upload">Upload</label>
 							<input onchange="btnUpload()" id="upload" type="file" name="image" value="<?php echo base_url(); ?>assets/image/default_product.jpg" style="display:none">
-							<label class="btn btn-primary hover" for="btnChosse">Chọn Ảnh</label>
+							<!-- <label class="btn btn-primary hover" for="btnChosse">Chọn Ảnh</label>
 							<input type="text" id="choseImage" style="display:none">
-							<button id="btnChosse" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#myModal">Chọn Ảnh</button>
+							<button id="btnChosse" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#myModal">Chọn Ảnh</button> -->
 							<!-- The Modal -->
 							<!-- com cu be bé -->
 							<div class="modal fade" id="myModal">

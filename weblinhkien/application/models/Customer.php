@@ -20,5 +20,5 @@ class Customer extends CI_Model{
             return false;
         }
        //return $result->result();
-    }
+    }    
 }
