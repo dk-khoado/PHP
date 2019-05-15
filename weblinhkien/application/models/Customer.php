@@ -5,19 +5,21 @@ class Customer extends CI_Model{
         $password_d = md5($password);
         $data = array(           
             "USER"=>$username,
-            "PASSWORD"=>md5($password_d)
+            "PASSWORD"=>$password_d
         );
         $this->db->insert("custumers", $data);
     }
-    function Login($username, $password){
+    function Login($username, $password){        
         $password_d = md5($password);
-        $query = "SELECT * from custumers where USER = '$username' and PASSWORD = '$password_d'";
+        // $query = "custumers where 'USER' = '$username' and PASSWORD = $password";
+        $query = "custumers where  USER = '$username' and PASSWORD = '$password_d'";
         $result = $this->db->get($query);
+        print_r($result);
         if($result->num_rows() > 0){
             return true;
         }else{
             return false;
         }
        //return $result->result();
-    }
+    }    
 }

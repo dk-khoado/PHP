@@ -1,17 +1,17 @@
 <div class="row">
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-        <div class="page-header">
-            <h2 class="pageheader-title"><?php echo $header ?> </h2>
-            <div class="page-breadcrumb">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">E-Commerce Dashboard Template</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    </div>
+	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+		<div class="page-header">
+			<h2 class="pageheader-title"><?php echo $header ?> </h2>
+			<div class="page-breadcrumb">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+						<li class="breadcrumb-item active" aria-current="page">E-Commerce Dashboard Template</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="row">
 	<div class="col-12 ">
@@ -72,9 +72,9 @@
 						<div class="mt-1">
 							<label class="btn btn-primary hover" for="upload">Upload</label>
 							<input onchange="btnUpload()" id="upload" type="file" name="image" value="<?php echo $product->Image ?>" style="display:none">
-							<label class="btn btn-primary hover" for="btnChosse">Chọn Ảnh</label>
+							<!-- <label class="btn btn-primary hover" for="btnChosse">Chọn Ảnh</label>
 							<input type="text" id="choseImage" style="display:none">
-							<button id="btnChosse" type="button" class="btn btn-primary hide" data-toggle="modal" data-target="#myModal">Chọn Ảnh</button>
+							<button id="btnChosse" type="button" class="btn btn-primary" style="display: none" data-toggle="modal" data-target="#myModal">Chọn Ảnh</button> -->
 							<!-- The Modal -->
 							<!-- com cu be bé -->
 							<div class="modal fade" id="myModal">

@@ -1,6 +1,6 @@
 <?php
 ?>
-<!doctype html>
+
 <html>
 <meta charset="utf-8">
 
@@ -8,10 +8,10 @@
     <title>Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/bootstrap-4.3.1-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/style.css">
+    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/style.css"> -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/libs/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
-    <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendor/fonts/circular-std/style.css">
+    <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendor/fonts/circular-std/style.css"> -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/datatables.min.css">
     <link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/gijgo.min.css">
     <script src="<?php echo base_url(); ?>/assets/js/datatables.min.js"></script>
@@ -19,7 +19,7 @@
     <!-- <script src="<?php echo base_url(); ?>/assets/js/jquery.min.js"></script> -->
     <script src="<?php echo base_url(); ?>/assets/js/popper.min.js"></script>    
     <script src="<?php echo base_url(); ?>/assets/css/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>/assets/css/bootstrap-4.3.1-dist/js/bootstrap.bundle.min"></script>
+    <script src="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/js/bootstrap.bundle.min"></script>
 </head>
 
 <body>

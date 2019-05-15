@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 
 <head>
@@ -8,18 +8,22 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables.min.css"> -->
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/gijgo.min.css"> -->
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/color/w3-colors-flat.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/color/w3-colors-flat.css">	
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/card.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/slick.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/nouislider.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/header.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/libs/css/style.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/slick-theme.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 
 	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 	<!-- <script src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script> -->
 	<script src="<?php echo base_url(); ?>assets/js/popper.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/js/bootstrap.min.js"></script>
 	<!-- <script src="<?php echo base_url(); ?>assets/js/gijgo.min.js"></script> -->
-	<script src="<?php echo base_url(); ?>assets/css/js/slick.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/slick.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/js/nouislider.min.js"></script>
 
 
 
@@ -165,19 +169,18 @@
 						<p>Please enter your user information.</p>
 					</div>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-
+				</div>					
 				<!-- Modal body -->
 				<div class="modal-body">
-					<div class="splash-container">
-						<div class="card ">
+					<div>
+						<div class="card">
 							<div class="card-body">
-								<form>
+								<form action="<?php echo site_url('main/AddUser'); ?>" method="POST">
 									<div class="form-group">
-										<input class="form-control form-control-lg" id="username" type="text" required placeholder="Username" autocomplete="off">
+										<input class="form-control form-control-lg"  type="text" name="username"  placeholder="Username">
 									</div>
 									<div class="form-group">
-										<input class="form-control form-control-lg" id="password" required type="password" placeholder="Password">
+										<input class="form-control form-control-lg" type="password"  name="password"   placeholder="Password">
 									</div>
 									<div class="form-group">
 										<label class="custom-control custom-checkbox">
@@ -187,7 +190,7 @@
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 								</form>
 							</div>
-							<div class="card-footer bg-white p-0  ">
+							<div class="card-footer bg-white p-0">
 								<div class="card-footer-item card-footer-item-bordered">
 									<a href="#" class="footer-link">Create An Account</a></div>
 								<div class="card-footer-item card-footer-item-bordered">
@@ -217,20 +220,20 @@
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form class="splash-container">
+					<form class="splash-container" action="<?php echo site_url('main/Register'); ?>" method="POST">
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" required type="text" name="username" required="" placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg"  type="text" name="username" required placeholder="Username" autocomplete="off">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" required type="email" name="email" required="" placeholder="E-mail" autocomplete="off">
+									<input class="form-control form-control-lg"  type="email" name="email" required placeholder="E-mail" autocomplete="off">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" required id="pass1" type="password" required="" placeholder="Password">
+									<input class="form-control form-control-lg"  id="pass1" name="r_password" type="password" required placeholder="Password">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" required type="password" placeholder="Confirm">
+									<input class="form-control form-control-lg" type="password" placeholder="Confirm">
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
