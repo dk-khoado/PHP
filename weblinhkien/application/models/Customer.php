@@ -10,9 +10,10 @@ class Customer extends CI_Model{
         $this->db->insert("custumers", $data);
     }
     function Login($username, $password){
+        echo $username;
         $password_d = md5($password);
-        $query = "SELECT * from custumers where USER = '$username' and PASSWORD = '$password_d'";
-        $result = $this->db->get($query);
+        $query = "SELECT * FROM custumers where 'USER' = '$username' and 'PASSWORD' = '$password_d'";
+        $result = $this->db->query($query);
         if($result->num_rows() > 0){
             return true;
         }else{

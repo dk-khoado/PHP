@@ -166,18 +166,18 @@
 					</div>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-
+					
 				<!-- Modal body -->
 				<div class="modal-body">
 					<div class="splash-container">
 						<div class="card ">
 							<div class="card-body">
-								<form>
+								<form action="<?php echo site_url('main/AddUser'); ?>" method="POST">
 									<div class="form-group">
-										<input class="form-control form-control-lg" id="username" type="text" required placeholder="Username" autocomplete="off">
+										<input class="form-control form-control-lg" id="username" type="text" name="username" required placeholder="Username" autocomplete="off">
 									</div>
 									<div class="form-group">
-										<input class="form-control form-control-lg" id="password" required type="password" placeholder="Password">
+										<input class="form-control form-control-lg" id="password" name="password" required type="password" placeholder="Password">
 									</div>
 									<div class="form-group">
 										<label class="custom-control custom-checkbox">
@@ -217,7 +217,7 @@
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form class="splash-container">
+					<form class="splash-container" action="<?php echo site_url('main/Register'); ?>" method="POST">
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">

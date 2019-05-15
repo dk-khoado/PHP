@@ -75,7 +75,7 @@ class Main extends CI_Controller
         $user = $this->input->post('username');
         $password = $this->input->post('password');
         $this->Customer->Register($user, $password);
-        redirect("admin/index");
+        redirect("main/index");
     }    
     public function AddOrder()
     {
@@ -94,9 +94,9 @@ class Main extends CI_Controller
         $password = $this->input->post('password');
 
         if ($this->Customer->Login($username, $password)) {
+            redirect("main/index");
+        } else {                     
             redirect("admin/index");
-        } else {
-            redirect("admin/login");
          }
     }
 }
