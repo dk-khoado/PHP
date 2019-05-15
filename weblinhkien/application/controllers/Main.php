@@ -69,4 +69,11 @@ class Main extends CI_Controller
 
         $this->load->view("layout_share", array('type' => $data, 'context' => $context));
     }
+    public function Register()
+    {
+        $this->load->model('Customer');
+        $user = $this->input->post('USER');
+        $password = $this->input->post('PASSWORD');
+        $this->Customer->Register($user,$password);
+    }
 }
