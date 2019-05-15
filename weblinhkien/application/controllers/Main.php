@@ -73,7 +73,7 @@ class Main extends CI_Controller
     {
         $this->load->model('Customer');
         $user = $this->input->post('username');
-        $password = $this->input->post('password');
+        $password = $this->input->post('r_password');
         $this->Customer->Register($user, $password);
         redirect("main/index");
     }    
@@ -91,12 +91,18 @@ class Main extends CI_Controller
     {
         $this->load->model('Customer');
         $username = $this->input->post('username');
-        $password = $this->input->post('password');
-
-        if ($this->Customer->Login($username, $password)) {
-            redirect("main/index");
-        } else {                     
-            redirect("admin/index");
+        // $password_1 = $this->input->post('password');
+        $password_1 = $_POST['password'];
+        echo $username .$password_1;
+        if ($this->Customer->Login($username, $password_1)) {            
+             redirect("main/index");
+        } else {              
+            $this->session->set_userdata("id", 1);                 
+            //redirect("admin/index");           
+            
          }
+    }
+    public function login_Page(){
+        $this->load->view("login");
     }
 }
