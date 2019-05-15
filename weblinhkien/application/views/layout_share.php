@@ -61,11 +61,16 @@
 					<!-- social icon-->
 					<div class="col-sm-12">
 						<ul class="social-network">
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-linkedin"></i></a></li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-pinterest"></i></a></li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-google-plus"></i></a></li>
+							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-facebook"></i></a>
+							</li>
+							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-twitter"></i></a>
+							</li>
+							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-linkedin"></i></a>
+							</li>
+							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-pinterest"></i></a>
+							</li>
+							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-google-plus"></i></a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -73,10 +78,14 @@
 		</header>
 		<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
 			<div class="container">
+
+				<a class="navbar-brand" href="<?php echo site_url(" main/index ") ?>" style="text-transform: uppercase;"> LINHKIEN9586.COM</a>
 				<a class="navbar-brand" href="<?php echo site_url("main/index") ?>" style="text-transform: uppercase;"> LINHKIEN9586.TK</a>
+
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+			
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 
 					<ul class="navbar-nav ml-auto">
@@ -117,13 +126,17 @@
 			<!-- <h4 class="bg-light">Danh Mục Sản Phẩm</h4> -->
 			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
 				<ul class="nav flex-column">
-					<?php
-					foreach ($type as $key => $value) {
-						echo '<li class="nav-item">';
-						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
-						echo '</li>';
-					}
-					?>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Danh mục sản phẩm</a>
+						<div class="dropdown-menu">
+							<?php
+							foreach ( $type as $key => $value ) {
+								echo '<a class="dropdown-item" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
+								//kk
+							}
+							?>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -151,9 +164,11 @@
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
 				</a>
+			
 				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
+			
 
 			</div>
 		</div>
@@ -270,14 +285,10 @@
 		<section class="clearfix hd1-policy border-top border-bottom-2 py-5">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-3"> Chất lượng hàng đầu
-						Cam kết tất cả sản phẩm chính hãng 100% </div>
-					<div class="col-md-3"> Chất lượng hàng đầu
-						Cam kết tất cả sản phẩm chính hãng 100% </div>
-					<div class="col-md-3"> Chất lượng hàng đầu
-						Cam kết tất cả sản phẩm chính hãng 100% </div>
-					<div class="col-md-3"> Chất lượng hàng đầu
-						Cam kết tất cả sản phẩm chính hãng 100% </div>
+					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
+					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
+					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
+					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
 				</div>
 			</div>
 		</section>
@@ -287,7 +298,8 @@
 					<div class="col-md-2">
 						<ul class="list-menu">
 							<h6><b> VỀ 9586 </b></h6>
-							<li> <a href="#">Trang chủ </a></li>
+							<li> <a href="#">Trang chủ </a>
+							</li>
 							<li> Sản phẩm </li>
 							<li> Giới thiệu </li>
 							<li> Liên hệ </li>
@@ -305,19 +317,27 @@
 					<div class="col-md-3">
 						<ul class="list-menu">
 							<h6><span><b>CHÍNH SÁCH CỦA 9586</b></span></h6>
-							<li> <a href="#">Chính sách ưu đãi </a></li>
-							<li> <a href="#">Chính sách đổi trả </a></li>
-							<li> <a hr ef="#">Chính sách vận chuyển</a></li>
-							<li> <a href="#">Chính sách bảo hành </a></li>
+							<li> <a href="#">Chính sách ưu đãi </a>
+							</li>
+							<li> <a href="#">Chính sách đổi trả </a>
+							</li>
+							<li> <a hr ef="#">Chính sách vận chuyển</a>
+							</li>
+							<li> <a href="#">Chính sách bảo hành </a>
+							</li>
 						</ul>
 					</div>
 					<div class="col-md-3">
 						<ul class="list-menu">
 							<h6><span><b>KẾT NỐI VỚI CHÚNG TÔI</b></span></h6>
-							<li> <a target="_blank" href="https://www.facebook.com/profile.php?id=100016526086092">Đỗ Kim Đăng Khoa</a></li>
-							<li> <a target="_blank" href="https://www.facebook.com/duy.ngo.589583">Ngô Quốc Duy</a></li>
-							<li> <a target="_blank" href="https://www.facebook.com/TuKent00">Nguyễn Thanh Tú </a></li>
-							<li> <a target="_blank" href="https://www.facebook.com/tuan.ho.02">Hồ Anh Tuấn </a></li>
+							<li> <a target="_blank" href="https://www.facebook.com/profile.php?id=100016526086092">Đỗ Kim Đăng Khoa</a>
+							</li>
+							<li> <a target="_blank" href="https://www.facebook.com/duy.ngo.589583">Ngô Quốc Duy</a>
+							</li>
+							<li> <a target="_blank" href="https://www.facebook.com/TuKent00">Nguyễn Thanh Tú </a>
+							</li>
+							<li> <a target="_blank" href="https://www.facebook.com/tuan.ho.02">Hồ Anh Tuấn </a>
+							</li>
 						</ul>
 					</div>
 				</div>
