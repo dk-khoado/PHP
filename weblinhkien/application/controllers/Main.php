@@ -89,7 +89,7 @@ public function Register()
 	}
 
 	public function AddUser(){
-		$this->load->model('User'); 
+		$this->load->model('Customer'); 
 		$username = $this->input->post('USER');
 		$password = $this->input->post('PASSWORD');
 		redirect("admin/index");
