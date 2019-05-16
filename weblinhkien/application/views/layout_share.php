@@ -2,7 +2,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Trang chủ</title>
+	<title><?php echo $tittel ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables.min.css"> -->

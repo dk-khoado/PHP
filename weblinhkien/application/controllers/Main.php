@@ -8,6 +8,7 @@ class Main extends CI_Controller
     {
         $data = $this->Type->getAll();
         $products = $this->Products->getAll();
+        $tittel = "Trang Chủ";
         $count = 0;
         $newProducts = array();
         for ($i = $this->Products->getNumRow() - 1; $i >= 0; $i--) {
@@ -18,9 +19,8 @@ class Main extends CI_Controller
                 break;
             }
         }
-
         $context = $this->load->view('trangchu', array('newProducts' => $newProducts), true);
-        $this->load->view("layout_share", array('type' => $data, 'context' => $context));
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context, 'tittel'=> $tittel));
     }
 
     public function product_list($type, $page)
@@ -48,8 +48,9 @@ class Main extends CI_Controller
                 }
             }
         }
+        $tittel = "Sản phẩm";
         $context = $this->load->view('listProducts', array('numPage' => $numpage, 'products' => $arrayProduct), true);
-        $this->load->view("layout_share", array('type' => $data, 'context' => $context));
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
     }
 
     public function ChiTiet()
@@ -67,7 +68,7 @@ class Main extends CI_Controller
             $context = "<h1>Sản phẩm không tồn tại</h1>";
         }
 
-        $this->load->view("layout_share", array('type' => $data, 'context' => $context));
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
     }
     public function Register()
     {
@@ -122,11 +123,13 @@ class Main extends CI_Controller
     {
         $data = $this->Type->getAll();
         $context = $this->load->view('cart', '', true);
-        $this->load->view("layout_share", array('type' => $data, 'context' => $context));
+        $tittel = "Thanh Toán";
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
     }
     public function about(){
         $data = $this->Type->getAll();
         $context = $this->load->view('about', '', true);
-        $this->load->view("layout_share", array('type' => $data, 'context' => $context));
+        $tittel = "Thông Tin";
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
     }
 }
