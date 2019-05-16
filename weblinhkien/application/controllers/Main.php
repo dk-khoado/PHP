@@ -75,7 +75,8 @@ class Main extends CI_Controller
         $user = $this->input->post('username');
         $password = $this->input->post('r_password');
         $this->Customer->Register($user, $password);
-        redirect("main/index");
+        $this->onLogin($user,$password);
+        //redirect("main/index");
     }
     public function AddOrder()
     {
@@ -91,7 +92,17 @@ class Main extends CI_Controller
         session_destroy();
         redirect("main/index");
     }
-
+    function onLogin($username, $password){
+        $this->load->model('Customer');
+        if ($this->Customer->Login($username, $password)){
+            $data = $this->Customer->getID($username, $password);
+            $arrayName = array('id' => $data->ID_User, 'name' => $data->USER);
+            $this->session->set_userdata($arrayName);
+            redirect("main/index");
+        }else{
+            redirect("admin/index");
+        }
+    }
     public function AddUser()
     {
         $this->load->model('Customer');
@@ -104,7 +115,6 @@ class Main extends CI_Controller
             $this->session->set_userdata($arrayName);
             redirect("main/index");
         } else {
-
             redirect("admin/index");
         }
     }

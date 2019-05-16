@@ -16,7 +16,17 @@ span
     <div class="col-12">
         <p>
             <center>
-                <b>Linh kiện 9586</b> được biết đến như một địa chỉ bán lẻ các hệ thống máy tính chơi game cao cấp, gaming gear, tư vấn xây dựng cấu hình uy tín tin cậy trong cộng đồng game thủ tại miền Nam. Tự tin đội ngũ nhân viên là những người trẻ đam mê và yêu thích về công nghệ, đặc biệt hơn là kiến thức về IT tốt kèm với sự dày dặn kinh nghiệm. Chúng tôi sẵn sàng có thể giải đáp bất cứ thắc mắc của các khách hàng một cách nhanh nhất có thể. Cho dù bạn không mua nhưng nhiệm vụ của chúng tôi là giúp bạn. Đây được coi là cơ sở để chúng tôi được phát triển cốt lõi ngay từ lúc thành lập
+                <b>Linh kiện 9586</b> Hiện vẫn còn trong giai đoạn phát triển. 1 số chức năng đã hoàn thiện gồm: đăng nhập,  đăng ký, xem chi tiết sản phẩm,
+                Trang Admin gồm: quản lý sản phẩm, thêm, sửa, xóa. upload hình ảnh.
+                1 số chức năng vẫn còn trong giai đoạn phát triển. giỏ hàng, thanh toán, quản lý đơn hàng, quản lý khách hàng.
+                            
+            </center>
+        </p>
+    </div>
+    <div class="col-12">
+        <p>
+            <center>
+               Trang admin: http://www.linhkien9586.tk/admin;                            
             </center>
         </p>
     </div>
@@ -41,8 +51,8 @@ span
                 </tr>
                 <tr>
                     <td>Đỗ Kim Đăng Khoa </td>
-                    <td align="center"> </td>
-                    <td align="center"></td>
+                    <td align="center">1706020040</td>
+                    <td align="center">Full: trang Admin, tạo models, controller</td>
                 </tr>
                 <tr>
                     <td>Ngô Quốc Duy </td>
@@ -50,15 +60,15 @@ span
                     <td align="center">Front-end: Sản phẩm (hiển thị sản phẩm, hình ảnh, nội dung), quản lý Database</td>
                 </tr>
                 <tr>
-                    <td>Nguyễn Thanh Tú </td>
-                    <td align="center">1706020095</td>
-                    <td align="center">Front-end: Homepage, Sign in, sign up, thao tác và chỉnh sửa các phần liên quan đến Bootstrap Back-end: sign in, sign up, thao tác với jquery</td>
-                </tr>
-                <tr>
-                    <td>Hồ Anh Tuấn </td>
-                    <td align="center">1706020096</td>
-                    <td align="center">Bootstrap cart ,giỏ hàng và các thẻ sản phẩm </td>
-                </tr>
+							<td>Nguyễn Thanh Tú </td>
+							<td align="center">1706020095</td>
+							<td align="center">Front-end: Homepage, Sign in, sign up, thao tác và chỉnh sửa các phần liên quan đến Bootstrap</td>
+						</tr>
+						<tr>
+							<td>Hồ Anh Tuấn </td>
+							<td align="center">1706020096</td>
+							<td align="center">Front-end: Homepage, giỏ hàng và thêm sản phẩm.   </td>
+						</tr>
             </table>
         </center>
     </div>

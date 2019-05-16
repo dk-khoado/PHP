@@ -124,12 +124,14 @@ class Admin extends CI_Controller
 		$manufacturer = $this->input->post('manufacturer');
 		$type = $this->input->post('type');
 
-		$product = $this->Products->getByID($id);		
+		$product = $this->Products->getByID($id);	
 		if ($Image == null) {
 			$Image = $product->Image;
-		} else {
+		} else {			
 			if(file_exists("upload/" . $product->Image)){
-				unlink("upload/" . $product->Image);
+				if($product->Image != null){									
+					unlink("upload/" . $product->Image);
+				}				
 			}
 		}
 		$this->Products->Update($id, $CodeProduct, $NameProduct, $AmountProduct, $Descrip, $PriceProduct, $Image, $manufacturer, $type);
