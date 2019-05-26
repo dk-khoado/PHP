@@ -67,7 +67,7 @@ class Main extends CI_Controller
         } else {
             $context = "<h1>Sản phẩm không tồn tại</h1>";
         }
-
+        $tittel = "Chi Tiết Sản phẩm";
         $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
     }
     public function Register()
@@ -131,5 +131,8 @@ class Main extends CI_Controller
         $context = $this->load->view('about', '', true);
         $tittel = "Thông Tin";
         $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
+    }
+    public function Search(){
+        
     }
 }
