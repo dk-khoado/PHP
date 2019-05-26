@@ -8,6 +8,7 @@ class Main extends CI_Controller
     {
         $data = $this->Type->getAll();
         $products = $this->Products->getAll();
+        $tittel = "Trang Chủ";
         $count = 0;
         $newProducts = array();
         for ($i = $this->Products->getNumRow() - 1; $i >= 0; $i--) {
@@ -18,12 +19,11 @@ class Main extends CI_Controller
                 break;
             }
         }
-
         $context = $this->load->view('trangchu', array('newProducts' => $newProducts), true);
-        $this->load->view("layout_share", array('type' => $data, 'context' => $context));
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context, 'tittel'=> $tittel));
     }
 
-    public function product_list($type, $page)	
+    public function product_list($type, $page)
     {
         $data = $this->Type->getAll();
         $dataProduct = $this->Products->getByIDType($type);
@@ -48,8 +48,9 @@ class Main extends CI_Controller
                 }
             }
         }
+        $tittel = "Sản phẩm";
         $context = $this->load->view('listProducts', array('numPage' => $numpage, 'products' => $arrayProduct), true);
-        $this->load->view("layout_share", array('type' => $data, 'context' => $context));
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
     }
 
     public function ChiTiet()
@@ -66,8 +67,8 @@ class Main extends CI_Controller
         } else {
             $context = "<h1>Sản phẩm không tồn tại</h1>";
         }
-
-        $this->load->view("layout_share", array('type' => $data, 'context' => $context));
+        $tittel = "Chi Tiết Sản phẩm";
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
     }
     public function Register()
     {
@@ -75,8 +76,9 @@ class Main extends CI_Controller
         $user = $this->input->post('username');
         $password = $this->input->post('r_password');
         $this->Customer->Register($user, $password);
-        redirect("main/index");
-    }    
+        $this->onLogin($user,$password);
+        //redirect("main/index");
+    }
     public function AddOrder()
     {
         $this->load->model('Order');
@@ -86,30 +88,51 @@ class Main extends CI_Controller
         $ID_User = $this->input->post('ID_User');
         $this->Order->Insert($ID_product, $AmountProductSold, $OnSellDate, $ID_User);
     }
-
-
-	public function AddUser(){
-		$this->load->model('User'); 
-		$username = $this->input->post('USER');
-		$password = $this->input->post('PASSWORD');
-		redirect("admin/index");
-	}
-
+    public function Signout()
+    {
+        session_destroy();
+        redirect("main/index");
+    }
+    function onLogin($username, $password){
+        $this->load->model('Customer');
+        if ($this->Customer->Login($username, $password)){
+            $data = $this->Customer->getID($username, $password);
+            $arrayName = array('id' => $data->ID_User, 'name' => $data->USER);
+            $this->session->set_userdata($arrayName);
+            redirect("main/index");
+        }else{
+            redirect("admin/index");
+        }
+    }
     public function AddUser()
     {
         $this->load->model('Customer');
         $username = $this->input->post('username');
         // $password_1 = $this->input->post('password');
-        $password_1 = $_POST['password'];   
-        if ($this->Customer->Login($username, $password_1)) {            
-             redirect("main/index");
-        } else {              
-            $this->session->set_userdata("id", 1);                 
-            redirect("admin/index");           
-            
-         }
+        $password_1 = $_POST['password'];
+        if ($this->Customer->Login($username, $password_1)) {
+            $data = $this->Customer->getID($username, $password_1);
+            $arrayName = array('id' => $data->ID_User, 'name' => $data->USER);
+            $this->session->set_userdata($arrayName);
+            redirect("main/index");
+        } else {
+            redirect("admin/index");
+        }
     }
-    public function login_Page(){
-        $this->load->view("login");
+    public function CheckOut()
+    {
+        $data = $this->Type->getAll();
+        $context = $this->load->view('cart', '', true);
+        $tittel = "Thanh Toán";
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
+    }
+    public function about(){
+        $data = $this->Type->getAll();
+        $context = $this->load->view('about', '', true);
+        $tittel = "Thông Tin";
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
+    }
+    public function Search(){
+        
     }
 }
