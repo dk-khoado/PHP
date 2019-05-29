@@ -277,7 +277,7 @@
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
-									<p id="K">hjhjh</p>
+									<p id="K"></p>
 								</div>
 								<!-- <div class="form-group">
 									<label class="custom-control custom-checkbox">
@@ -312,14 +312,19 @@
 						
 							check = callback;
 						});
-						document.getElementById("K").innerHTML = "quan";
-						if ( check == "ok" ) {
-	
-							return false;
-						} else {
+						
+						if(check == "ok"){
+							return true;
+						}
+						else if(check == "email"){
+							document.getElementById("K").innerHTML ="Email da co";
 							return false;
 						}
-						
+						else if(check == "username"){
+							document.getElementById("K").innerHTML ="User da co";
+							return false;
+						}
+						return false;
 					}
 				</script>
 				<!-- phần viết js -->
