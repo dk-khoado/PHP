@@ -7,6 +7,7 @@ class ApiAjax  extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Customer');
+        $this->load->model('Products');
     }
     public function checkLogin()
     {
@@ -19,10 +20,20 @@ class ApiAjax  extends CI_Controller
         }
     }
     public function Search()
-    { }
+    {
+        header("Content-type: application/json");        
+        $name  = $this->input->post("tim_kiem");    
+        $data = $this->Products->Search($name);
+        
+        if(isset($_POST['tim_kiem'])){ 
+            echo json_encode($data);
+        }else{
+            echo "Server bị lỗi, vui lòng thông báo lại cho ADMIN !!";
+        }
+       
+     }
     public function checkRegister()
     {
-
         $username = $this->input->post("username");
         $email = $this->input->post("email");
 
