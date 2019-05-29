@@ -174,7 +174,7 @@
 								?>
 							</div>
 						</li>
-						
+
 						<?php
 						if (isset($_SESSION['id']) &&  isset($_SESSION['name'])) {
 							echo '<li class="nav-item dropdown">';
@@ -354,72 +354,85 @@
 		?>
 	</div>
 	<!-- end body -->
-	<!-- phần footer -->
-	<div>
-		<section class="clearfix hd1-policy border-top border-bottom-2 py-5">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
-					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
-					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
-					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
-				</div>
-			</div>
-		</section>
-		<section class="clearfix hd1-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-2">
-						<ul class="list-menu">
-							<h6><b> VỀ 9586 </b></h6>
-							<li> <a href="#">Trang chủ </a>
-							</li>
-							<li> Sản phẩm </li>
-							<li> Giới thiệu </li>
-							<li> Liên hệ </li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<ul class="list-menu">
-							<h6><span><b> HƯỚNG DẪN KHÁCH HÀNG </b></span></h6>
-							<li> Hướng dẫn mua online </li>
-							<li> Hướng dẫn mua trả góp </li>
-							<li> Hướng dẫn giao nhận</li>
-							<li> Hướng dẫn thanh toán </li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<ul class="list-menu">
-							<h6><span><b>CHÍNH SÁCH CỦA 9586</b></span></h6>
-							<li> <a href="#">Chính sách ưu đãi </a>
-							</li>
-							<li> <a href="#">Chính sách đổi trả </a>
-							</li>
-							<li> <a hr ef="#">Chính sách vận chuyển</a>
-							</li>
-							<li> <a href="#">Chính sách bảo hành </a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<ul class="list-menu">
-							<h6><span><b>KẾT NỐI VỚI CHÚNG TÔI</b></span></h6>
-							<li> <a target="_blank" href="https://www.facebook.com/profile.php?id=100016526086092">Đỗ Kim Đăng Khoa</a>
-							</li>
-							<li> <a target="_blank" href="https://www.facebook.com/duy.ngo.589583">Ngô Quốc Duy</a>
-							</li>
-							<li> <a target="_blank" href="https://www.facebook.com/TuKent00">Nguyễn Thanh Tú </a>
-							</li>
-							<li> <a target="_blank" href="https://www.facebook.com/tuan.ho.02">Hồ Anh Tuấn </a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="clearfix hd1-copyright"> </section>
-	</div>
-	<!-- end footer -->
 </body>
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+	<!-- Footer Links -->
+	<div class="container-fluid text-center text-md-left">
+
+		<!-- Grid row -->
+		<div class="row">
+
+			<!-- Grid column -->
+			<div class="col-md-6 mt-md-0 mt-3">
+
+				<!-- Content -->
+				<h5 class="text-uppercase">Footer Content</h5>
+				<p>Here you can use rows and columns to organize your footer content.</p>
+
+			</div>
+			<!-- Grid column -->
+
+			<hr class="clearfix w-100 d-md-none pb-3">
+
+			<!-- Grid column -->
+			<div class="col-md-3 mb-md-0 mb-3">
+
+				<!-- Links -->
+				<h5 class="text-uppercase">Links</h5>
+
+				<ul class="list-unstyled">
+					<li>
+						<a href="#!">Link 1</a>
+					</li>
+					<li>
+						<a href="#!">Link 2</a>
+					</li>
+					<li>
+						<a href="#!">Link 3</a>
+					</li>
+					<li>
+						<a href="#!">Link 4</a>
+					</li>
+				</ul>
+
+			</div>
+			<!-- Grid column -->
+
+			<!-- Grid column -->
+			<div class="col-md-3 mb-md-0 mb-3">
+
+				<!-- Links -->
+				<h5 class="text-uppercase">KẾT NỐI VỚI CHÚNG TÔI</h5>
+
+				<ul class="list-unstyled">
+					<li> <a target="_blank" href="https://www.facebook.com/profile.php?id=100016526086092">Đỗ Kim Đăng Khoa</a>
+					</li>
+					<li> <a target="_blank" href="https://www.facebook.com/duy.ngo.589583">Ngô Quốc Duy</a>
+					</li>
+					<li> <a target="_blank" href="https://www.facebook.com/TuKent00">Nguyễn Thanh Tú </a>
+					</li>
+					<li> <a target="_blank" href="https://www.facebook.com/tuan.ho.02">Hồ Anh Tuấn </a>
+					</li>
+				</ul>
+
+			</div>
+			<!-- Grid column -->
+
+		</div>
+		<!-- Grid row -->
+
+	</div>
+	<!-- Footer Links -->
+
+	<!-- Copyright -->
+	<div class="footer-copyright text-center py-3">© 2019 Copyright:
+		<a href="http://www.linhkien9586.tk/"> linhkien9586.tk</a>
+	</div>
+	<!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
 </html>
