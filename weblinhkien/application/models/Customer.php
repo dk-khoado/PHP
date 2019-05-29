@@ -32,4 +32,22 @@ class Customer extends CI_Model
         $result = $this->db->get($query);
         return $result->row();
     }
+    function checkEmail($email){
+        $query="custumers WHERE EMAIL = '$email'";
+        $result = $this->db->get($query);
+        if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function checkName($username){
+        $query="custumers WHERE USER = '$username'";
+        $result = $this->db->get($query);
+        if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

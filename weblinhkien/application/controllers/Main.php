@@ -132,7 +132,5 @@ class Main extends CI_Controller
         $tittel = "Thông Tin";
         $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
     }
-    public function Search(){
-        
-    }
+   
 }
