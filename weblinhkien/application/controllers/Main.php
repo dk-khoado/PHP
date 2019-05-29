@@ -104,7 +104,7 @@ class Main extends CI_Controller
             redirect("admin/index");
         }
     }
-    public function AddUser()
+    public function Login()
     {
         $this->load->model('Customer');
         $username = $this->input->post('username');
@@ -132,7 +132,5 @@ class Main extends CI_Controller
         $tittel = "Thông Tin";
         $this->load->view("layout_share", array('type' => $data, 'context' => $context,'tittel'=> $tittel));
     }
-    public function Search(){
-        
-    }
+   
 }
