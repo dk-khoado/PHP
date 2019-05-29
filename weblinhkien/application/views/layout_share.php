@@ -2,7 +2,9 @@
 
 <head>
 	<meta charset="utf-8">
-	<title><?php echo $tittel ?></title>
+	<title>
+		<?php echo $tittel ?>
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables.min.css"> -->
@@ -77,31 +79,32 @@
 		</header>
 		<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
 			<div class="container">
-				<a class="navbar-brand" href="<?php echo site_url("main/index") ?>" style="text-transform: uppercase;"> LINHKIEN9586.COM</a>
+				<a class="navbar-brand" href="<?php echo site_url(" main/index ") ?>" style="text-transform: uppercase;"> LINHKIEN9586.COM</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+			
 
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 
 					<ul class="navbar-nav ml-auto">
 
 						<li class="nav-item active">
-							<a class="nav-link" href="<?php echo site_url("main/index") ?>">Home
+							<a class="nav-link" href="<?php echo site_url(" main/index ") ?>">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo site_url("main/about") ?>">About</a>
+							<a class="nav-link" href="<?php echo site_url(" main/about ") ?>">About</a>
 						</li>
 
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Danh mục sản phẩm</a>
 							<div class="dropdown-menu">
 								<?php
-								foreach ($type as $key => $value) {
-									echo '<a class="dropdown-item" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
+								foreach ( $type as $key => $value ) {
+									echo '<a class="dropdown-item" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
 									//kk
 								}
 								?>
@@ -113,13 +116,13 @@
 							<a class="nav-link" href="#">Cart</a>
 						</li>
 						<?php
-						if (isset($_SESSION['id']) &&  isset($_SESSION['name'])) {
+						if ( isset( $_SESSION[ 'id' ] ) && isset( $_SESSION[ 'name' ] ) ) {
 							echo '<li class="nav-item dropdown">';
-							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION['name'] . '</a>';
+							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION[ 'name' ] . '</a>';
 							echo '<div class="dropdown-menu">';
-							echo '<a class="dropdown-item" href="' . site_url("main/signout") . '">Đăng Xuất</a>';
+							echo '<a class="dropdown-item" href="' . site_url( "main/signout" ) . '">Đăng Xuất</a>';
 							echo '</div>';
-							echo '</li>';							
+							echo '</li>';
 						} else {
 							echo '<li class="nav-item">';
 							echo '<a class="nav-link" href="#" data-toggle="modal" data-target="#register">Register</a>';
@@ -142,9 +145,9 @@
 			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
 				<ul class="nav flex-column">
 					<?php
-					foreach ($type as $key => $value) {
+					foreach ( $type as $key => $value ) {
 						echo '<li class="nav-item">';
-						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
+						echo '<a class="nav-link" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
 						echo '</li>';
 					}
 					?>
@@ -175,10 +178,12 @@
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
 				</a>
+			
 
 				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
+			
 
 
 			</div>
@@ -212,6 +217,7 @@
 										<label class="custom-control custom-checkbox">
 											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
 										</label>
+									
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 								</form>
@@ -246,20 +252,20 @@
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form class="splash-container" action="<?php echo site_url('main/Register'); ?>" method="POST">
+					<form class="splash-container" action="<?php echo site_url('main/Register'); ?>" method="POST" onSubmit="return Click()">
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" name="username" required placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="email" name="email" required placeholder="E-mail" autocomplete="off">
+									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" id="pass1" name="r_password" type="password" required placeholder="Password">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="password" placeholder="Confirm">
+									<input class="form-control form-control-lg" type="password" placeholder="Confirm" name="re_pass" id="pass2">
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
@@ -276,6 +282,18 @@
 						</div>
 					</form>
 				</div>
+				<script>
+					base_url = "<?php echo base_url(); ?>";
+					var username = $( '#username' ).val();
+					var email = $( '#email' ).val();
+					var r_password = $( '#pass1' ).val();
+					var re_pass = $( 'pass2' ).val();
+					function Click() {
+							url = "http://26.60.150.44/github/PHP/weblinhkien/";
+							
+					return true;
+					}
+				</script>
 				<!-- phần viết js -->
 				<!-- end -->
 
