@@ -85,6 +85,8 @@
 				</button>
 			
 
+
+
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 
 					<ul class="navbar-nav ml-auto">
@@ -180,10 +182,14 @@
 				</a>
 			
 
+
+
 				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
 			
+
+
 
 
 			</div>
@@ -218,6 +224,8 @@
 											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
 										</label>
 									
+
+
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 								</form>
@@ -269,6 +277,7 @@
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
+									<p id="K">hjhjh</p>
 								</div>
 								<!-- <div class="form-group">
 									<label class="custom-control custom-checkbox">
@@ -283,15 +292,32 @@
 					</form>
 				</div>
 				<script>
-					base_url = "<?php echo base_url(); ?>";
-					var username = $( '#username' ).val();
-					var email = $( '#email' ).val();
-					var r_password = $( '#pass1' ).val();
-					var re_pass = $( 'pass2' ).val();
 					function Click() {
-							url = "http://26.60.150.44/github/PHP/weblinhkien/";
+							var username = $( '#username' ).val();
+								var email = $( '#email' ).val();
+								var r_password = $( '#pass1' ).val();
+								var re_pass = $( 'pass2' ).val();
+						url = "http://localhost:81/Index/PHP/weblinhkien/ApiAjax/checkRegister";
+						var check = '';
+						$.ajax( {
+							url: "http://localhost:81/Index/PHP/weblinhkien/ApiAjax/checkRegister",
+							method: "POST",
+							data: {
+								'username': username,
+								'email': email
+							},
+							async:false,
 							
-					return true;
+						} ).done(function(callback){
+						
+							check = callback;
+						});
+						alert( check );
+						if ( check == "ok" ) {
+							return true;
+						} else {
+							return false;
+						}
 					}
 				</script>
 				<!-- phần viết js -->
