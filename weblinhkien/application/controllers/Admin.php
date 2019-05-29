@@ -30,11 +30,13 @@ class Admin extends CI_Controller
 	}
 	public function product()
 	{
-		$this->load->model('Products');		
+		$this->load->model('Products');	
+		$this->load->model('Type');	
 		$data = $this->Products->getAll();
-
+		$datatype = $this->Type->getAll();
+		//print_r($datatype);
 		$header = "Products list";
-		$context = $this->load->view('admin/products_list', array('header'=>$header,"list" => $data), true);
+		$context = $this->load->view('admin/products_list', array('header'=>$header,'list' => $data,'type'=>$datatype), true);
 		$this->load->view('admin/share_layout', array('context' => $context));
 	}
 	public function addProduct()
