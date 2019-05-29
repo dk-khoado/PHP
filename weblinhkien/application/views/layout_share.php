@@ -60,15 +60,82 @@
 					<!-- social icon-->
 					<div class="col-sm-12">
 						<ul class="social-network">
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-pinterest"></i></a>
-							</li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-google-plus"></i></a>
+							<li class="dropdown">
+								<!--								class="table table-bordered table-striped mb-0"-->
+								<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" onClick="Load()">Card</button>
+
+								<div class="dropdown-menu" style="width: 420px">
+									<div>
+										<a href="#">
+											<table class="table">
+												<thead>
+													<tr>
+														<th class="col-xs-4">Card</th>
+														<th colspan="5" style="text-align: right">Tổng: 20000</th>
+
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td rowspan="2"></td>
+														<td class="col-xs-4" colspan="5">Tên</td>
+													</tr>
+													<tr>
+														<td style="width: 50px"><input class="form-control text-center" value="1" min="1" max="50" type="number" style="width: 60px; height: 30px;">
+														</td>
+
+														<td colspan="3">Giá:10000000000</td>
+
+														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
+														</td>
+
+													</tr>
+
+													<tr>
+														<td rowspan="2"></td>
+														<td class="col-xs-4" colspan="5">Tên</td>
+													</tr>
+													<tr>
+														<td style="width: 50px"><input class="form-control text-center" value="1" min="1" type="number" style="width: 60px; height: 30px;">
+														</td>
+
+														<td colspan="3">Giá:10000000000</td>
+
+														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
+														</td>
+
+													</tr>
+
+													<tr>
+														<td rowspan="2"></td>
+														<td class="col-xs-4" colspan="5">Tên</td>
+													</tr>
+													<tr>
+														<td style="width: 50px"><input class="form-control text-center" value="1" min="1" type="number" style="width: 60px; height: 30px;">
+														</td>
+
+														<td colspan="3">Giá:10000000000</td>
+
+														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
+														</td>
+
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td style="text-align: center"><button type="button" class="btn btn-primary" style="width: 100%"><strong>Cart</strong></button>
+														</td>
+
+														<td class="col-xs-4" colspan="5" rowspan="2" style="text-align: center"><button type="button" class="btn btn-success" style="width: 100%"><strong>Check Out</strong></button>
+														</td>
+													</tr>
+
+												</tfoot>
+											</table>
+										</a>
+									</div>
+								</div>
+
 							</li>
 						</ul>
 					</div>
@@ -107,11 +174,7 @@
 								?>
 							</div>
 						</li>
-
-
-						<li class="nav-item">
-							<a class="nav-link" href="#">Cart</a>
-						</li>
+						
 						<?php
 						if (isset($_SESSION['id']) &&  isset($_SESSION['name'])) {
 							echo '<li class="nav-item dropdown">';
@@ -119,7 +182,7 @@
 							echo '<div class="dropdown-menu">';
 							echo '<a class="dropdown-item" href="' . site_url("main/signout") . '">Đăng Xuất</a>';
 							echo '</div>';
-							echo '</li>';							
+							echo '</li>';
 						} else {
 							echo '<li class="nav-item">';
 							echo '<a class="nav-link" href="#" data-toggle="modal" data-target="#register">Register</a>';
