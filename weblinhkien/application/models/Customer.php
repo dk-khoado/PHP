@@ -2,12 +2,13 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Customer extends CI_Model
 {
-    function Register($username, $password)
+    function Register($username, $password, $email)
     {
         $password_d = md5($password);
         $data = array(
             "USER" => $username,
-            "PASSWORD" => $password_d
+            "PASSWORD" => $password_d,
+            "EMAIL"=>$email
         );
         $this->db->insert("custumers", $data);
     }
