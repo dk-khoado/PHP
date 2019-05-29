@@ -104,7 +104,7 @@ class Main extends CI_Controller
             redirect("admin/index");
         }
     }
-    public function AddUser()
+    public function Login()
     {
         $this->load->model('Customer');
         $username = $this->input->post('username');
