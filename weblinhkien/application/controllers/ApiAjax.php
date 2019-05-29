@@ -10,8 +10,13 @@ class ApiAjax  extends CI_Controller
     }
     public function checkLogin()
     {
-
-        $this->Customer->Login();
+        $username = $this->input->post("username");
+        $password = $this->input->post("password");
+        if($this->Customer->Login($username, $password)){
+            echo "ok";
+        }else{
+            echo "loading......";
+        }
     }
     public function Search()
     { }
