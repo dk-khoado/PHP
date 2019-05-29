@@ -1,5 +1,5 @@
+<!doctype html>
 <html>
-
 <head>
 	<meta charset="utf-8">
 	<title>
@@ -312,12 +312,14 @@
 						
 							check = callback;
 						});
-						alert( check );
+						document.getElementById("K").innerHTML = "quan";
 						if ( check == "ok" ) {
-							return true;
+	
+							return false;
 						} else {
 							return false;
 						}
+						
 					}
 				</script>
 				<!-- phần viết js -->
