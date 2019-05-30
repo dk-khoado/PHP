@@ -1,8 +1,11 @@
+<!doctype html>
 <html>
 
 <head>
 	<meta charset="utf-8">
-	<title><?php echo $tittel ?></title>
+	<title>
+		<?php echo $tittel ?>
+	</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables.min.css"> -->
@@ -40,18 +43,30 @@
 	<!-- phần header -->
 
 	<script>
-		// $(document).scroll(function() {
-		// 	var element = document.getElementById("listType");
-		// 	if ($(document).scrollTop() > 295) {
-		// 		element.classList.remove("disabled");
-		// 		element.classList.add("btn-light");
+		function LoadCart() {
+			base_url = "<?php echo base_url()?>";
+			url = "<?php echo base_url().'apiajax/Cart';?>"
+			$.ajax( {
+				async: false,
+				method: 'POST',
+				dataType: 'json',
+				url: url,
 
-		// 	} else {
-		// 		element.classList.add("disabled");
-		// 		element.classList.remove("btn-light");
+				success: function ( LoadCart ) {
+					$.each( LoadCart, function ( k, v ) {
 
-		// 	}
-		// });
+						data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image "' width='80px' height='80px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
+
+						value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' max='50' type='number' style='width: 60px; height: 30px;'>" + v.amount + "</input></td><td colspan='3'>Giá:" + v.Price + "</td><td><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
+
+						$( "#loadcart" ).append( data + value );
+
+					} );
+				}
+			} ).done( function ( callback ) {
+				check = callback;
+			} );
+		};
 	</script>
 	<div class="fixed-top">
 		<header class="topbar">
@@ -60,15 +75,55 @@
 					<!-- social icon-->
 					<div class="col-sm-12">
 						<ul class="social-network">
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-facebook"></i></a>
-							</li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-twitter"></i></a>
-							</li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-linkedin"></i></a>
-							</li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-pinterest"></i></a>
-							</li>
-							<li><a class="waves-effect waves-dark" href="#"><i class="fa fa-google-plus"></i></a>
+							<li class="dropdown">
+								<!--class="table table-bordered table-striped mb-0"-->
+								<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" onClick="Load()">Card</button>
+
+								<div class="dropdown-menu" style="width: 420px">
+									<div>
+										<a href="#">
+											<table class="table">
+												<thead>
+													<tr>
+														<th class="col-xs-4">Card</th>
+														<th colspan="5" style="text-align: right">Tổng: 20000</th>
+
+													</tr>
+												</thead>
+												<tbody id="loadcart">
+													<tr>
+														<td rowspan="2">
+															<img src="#" width="60px" height="60px">
+														</td>
+														<td class="col-xs-4" colspan="5">
+															<!--Tên-->
+														</td>
+													</tr>
+													<tr>
+														<td style="width: 50px"><input class="form-control text-center" min="1" max="50" type="number" style="width: 60px; height: 25px;"></input>
+														</td>
+
+														<td colspan="3">Giá:100000000000</td>
+
+														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
+														</td>
+													</tr>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td style="text-align: center"><button type="button" class="btn btn-primary" style="width: 100%"><strong>Cart</strong></button>
+														</td>
+
+														<td class="col-xs-4" colspan="5" rowspan="2" style="text-align: center"><button type="button" class="btn btn-success" style="width: 100%"><strong>Check Out</strong></button>
+														</td>
+													</tr>
+
+												</tfoot>
+											</table>
+										</a>
+									</div>
+								</div>
+
 							</li>
 						</ul>
 					</div>
@@ -77,49 +132,54 @@
 		</header>
 		<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
 			<div class="container">
-				<a class="navbar-brand" href="<?php echo site_url("main/index") ?>" style="text-transform: uppercase;"> LINHKIEN9586.COM</a>
+				<a class="navbar-brand" href="<?php echo site_url(" main/index ") ?>" style="text-transform: uppercase;"> LINHKIEN9586.TK</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+			
+
+
+
+
+
+
+
+
 
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 
 					<ul class="navbar-nav ml-auto">
 
 						<li class="nav-item active">
-							<a class="nav-link" href="<?php echo site_url("main/index") ?>">Home
+							<a class="nav-link" href="<?php echo site_url(" main/index ") ?>">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo site_url("main/about") ?>">About</a>
+							<a class="nav-link" href="<?php echo site_url(" main/about ") ?>">About</a>
 						</li>
 
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Danh mục sản phẩm</a>
 							<div class="dropdown-menu">
 								<?php
-								foreach ($type as $key => $value) {
-									echo '<a class="dropdown-item" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
+								foreach ( $type as $key => $value ) {
+									echo '<a class="dropdown-item" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
 									//kk
 								}
 								?>
 							</div>
 						</li>
 
-
-						<li class="nav-item">
-							<a class="nav-link" href="#">Cart</a>
-						</li>
 						<?php
-						if (isset($_SESSION['id']) &&  isset($_SESSION['name'])) {
+						if ( isset( $_SESSION[ 'id' ] ) && isset( $_SESSION[ 'name' ] ) ) {
 							echo '<li class="nav-item dropdown">';
-							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION['name'] . '</a>';
+							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION[ 'name' ] . '</a>';
 							echo '<div class="dropdown-menu">';
-							echo '<a class="dropdown-item" href="' . site_url("main/signout") . '">Đăng Xuất</a>';
+							echo '<a class="dropdown-item" href="' . site_url( "main/signout" ) . '">Đăng Xuất</a>';
 							echo '</div>';
-							echo '</li>';							
+							echo '</li>';
 						} else {
 							echo '<li class="nav-item">';
 							echo '<a class="nav-link" href="#" data-toggle="modal" data-target="#register">Register</a>';
@@ -142,9 +202,9 @@
 			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
 				<ul class="nav flex-column">
 					<?php
-					foreach ($type as $key => $value) {
+					foreach ( $type as $key => $value ) {
 						echo '<li class="nav-item">';
-						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
+						echo '<a class="nav-link" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
 						echo '</li>';
 					}
 					?>
@@ -175,10 +235,28 @@
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
 				</a>
+			
+
+
+
+
+
+
+
+
 
 				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
+			
+
+
+
+
+
+
+
+
 
 
 			</div>
@@ -212,6 +290,15 @@
 										<label class="custom-control custom-checkbox">
 											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
 										</label>
+									
+
+
+
+
+
+
+
+
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 								</form>
@@ -246,23 +333,24 @@
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form class="splash-container" action="<?php echo site_url('main/Register'); ?>" method="POST">
+					<form class="splash-container" action="<?php echo site_url('main/Register'); ?>" method="POST" onSubmit="return Click()">
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" name="username" required placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="email" name="email" required placeholder="E-mail" autocomplete="off">
+									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" id="pass1" name="r_password" type="password" required placeholder="Password">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="password" placeholder="Confirm">
+									<input class="form-control form-control-lg" type="password" placeholder="Confirm" name="re_pass" id="pass2">
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
+									<p id="K"></p>
 								</div>
 								<!-- <div class="form-group">
 									<label class="custom-control custom-checkbox">
@@ -276,6 +364,40 @@
 						</div>
 					</form>
 				</div>
+				<script>
+					function Click() {
+						var username = $( '#username' ).val();
+						var email = $( '#email' ).val();
+						var r_password = $( '#pass1' ).val();
+						var re_pass = $( 'pass2' ).val();
+						url = "<?php echo base_url().'apiajax/checkregister'?>";
+						var check = '';
+						$.ajax( {
+							url: url,
+							method: "POST",
+							data: {
+								'username': username,
+								'email': email
+							},
+							async: false,
+
+						} ).done( function ( callback ) {
+							check = callback;
+						} );
+						alert( check );
+						if ( check == "ok" ) {
+							return true;
+						} else if ( check == "email" ) {
+							document.getElementById( "K" ).innerHTML = "Email đã tồn tại";
+							return false;
+						} else if ( check == "username" ) {
+							document.getElementById( "K" ).innerHTML = "User đã tồn tại";
+							return false;
+						}
+						alert( "lỗi" + check );
+						return false;
+					}
+				</script>
 				<!-- phần viết js -->
 				<!-- end -->
 
@@ -291,72 +413,85 @@
 		?>
 	</div>
 	<!-- end body -->
-	<!-- phần footer -->
-	<div>
-		<section class="clearfix hd1-policy border-top border-bottom-2 py-5">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
-					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
-					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
-					<div class="col-md-3"> Chất lượng hàng đầu Cam kết tất cả sản phẩm chính hãng 100% </div>
-				</div>
-			</div>
-		</section>
-		<section class="clearfix hd1-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-2">
-						<ul class="list-menu">
-							<h6><b> VỀ 9586 </b></h6>
-							<li> <a href="#">Trang chủ </a>
-							</li>
-							<li> Sản phẩm </li>
-							<li> Giới thiệu </li>
-							<li> Liên hệ </li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<ul class="list-menu">
-							<h6><span><b> HƯỚNG DẪN KHÁCH HÀNG </b></span></h6>
-							<li> Hướng dẫn mua online </li>
-							<li> Hướng dẫn mua trả góp </li>
-							<li> Hướng dẫn giao nhận</li>
-							<li> Hướng dẫn thanh toán </li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<ul class="list-menu">
-							<h6><span><b>CHÍNH SÁCH CỦA 9586</b></span></h6>
-							<li> <a href="#">Chính sách ưu đãi </a>
-							</li>
-							<li> <a href="#">Chính sách đổi trả </a>
-							</li>
-							<li> <a hr ef="#">Chính sách vận chuyển</a>
-							</li>
-							<li> <a href="#">Chính sách bảo hành </a>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-3">
-						<ul class="list-menu">
-							<h6><span><b>KẾT NỐI VỚI CHÚNG TÔI</b></span></h6>
-							<li> <a target="_blank" href="https://www.facebook.com/profile.php?id=100016526086092">Đỗ Kim Đăng Khoa</a>
-							</li>
-							<li> <a target="_blank" href="https://www.facebook.com/duy.ngo.589583">Ngô Quốc Duy</a>
-							</li>
-							<li> <a target="_blank" href="https://www.facebook.com/TuKent00">Nguyễn Thanh Tú </a>
-							</li>
-							<li> <a target="_blank" href="https://www.facebook.com/tuan.ho.02">Hồ Anh Tuấn </a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
-		<section class="clearfix hd1-copyright"> </section>
-	</div>
-	<!-- end footer -->
 </body>
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+	<!-- Footer Links -->
+	<div class="container-fluid text-center text-md-left">
+
+		<!-- Grid row -->
+		<div class="row">
+
+			<!-- Grid column -->
+			<div class="col-md-6 mt-md-0 mt-3">
+
+				<!-- Content -->
+				<h5 class="text-uppercase">Footer Content</h5>
+				<p>Here you can use rows and columns to organize your footer content.</p>
+
+			</div>
+			<!-- Grid column -->
+
+			<hr class="clearfix w-100 d-md-none pb-3">
+
+			<!-- Grid column -->
+			<div class="col-md-3 mb-md-0 mb-3">
+
+				<!-- Links -->
+				<h5 class="text-uppercase">Links</h5>
+
+				<ul class="list-unstyled">
+					<li>
+						<a href="#!">Link 1</a>
+					</li>
+					<li>
+						<a href="#!">Link 2</a>
+					</li>
+					<li>
+						<a href="#!">Link 3</a>
+					</li>
+					<li>
+						<a href="#!">Link 4</a>
+					</li>
+				</ul>
+
+			</div>
+			<!-- Grid column -->
+
+			<!-- Grid column -->
+			<div class="col-md-3 mb-md-0 mb-3">
+
+				<!-- Links -->
+				<h5 class="text-uppercase">KẾT NỐI VỚI CHÚNG TÔI</h5>
+
+				<ul class="list-unstyled">
+					<li> <a target="_blank" href="https://www.facebook.com/profile.php?id=100016526086092">Đỗ Kim Đăng Khoa</a>
+					</li>
+					<li> <a target="_blank" href="https://www.facebook.com/duy.ngo.589583">Ngô Quốc Duy</a>
+					</li>
+					<li> <a target="_blank" href="https://www.facebook.com/TuKent00">Nguyễn Thanh Tú </a>
+					</li>
+					<li> <a target="_blank" href="https://www.facebook.com/tuan.ho.02">Hồ Anh Tuấn </a>
+					</li>
+				</ul>
+
+			</div>
+			<!-- Grid column -->
+
+		</div>
+		<!-- Grid row -->
+
+	</div>
+	<!-- Footer Links -->
+
+	<!-- Copyright -->
+	<div class="footer-copyright text-center py-3">© 2019 Copyright:
+		<a href="http://www.linhkien9586.tk/"> linhkien9586.tk</a>
+	</div>
+	<!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
 </html>
