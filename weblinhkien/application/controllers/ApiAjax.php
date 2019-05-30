@@ -50,7 +50,7 @@ class ApiAjax  extends CI_Controller
     {
         if (isset($_POST['id_user'])) {
             $id = $this->input->post('id_user');
-            $data = $this->Cart->getAllByIDUser($id);                                 
+            $data = $this->Cart->getAllByIDUser($id);                          
             echo json_encode($data);
         } else {
             echo "────────▓▓▓▓▓▓▓────────────▒▒▒▒▒▒<br>";
