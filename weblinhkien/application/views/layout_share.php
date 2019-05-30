@@ -26,10 +26,29 @@
 	<!-- <script src="<?php echo base_url(); ?>assets/js/gijgo.min.js"></script> -->
 	<script src="<?php echo base_url(); ?>assets/js/slick.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/js/nouislider.min.js"></script>
-
-
-
 	<!-- <link rel="stylesheet" href="layoutside.css"> -->
+	<script>
+		function LoadCart() {		
+			base_url = "<?php echo base_url(); ?>";
+			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
+			$.ajax({
+				async: false,
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					"id_user": <?php echo $_SESSION['id']?>
+				},
+				url: url
+			}).done(function(callback) {
+				$.each(callback, function(k, v) {
+					data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image + "' width='60px' height='60px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
+
+					value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;' value='"+v.amount+"'></td><td colspan='3'>Giá:" + v.PriceProduct + "</td><td><button type='button'  class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
+					$("#loadcart").append(data + value);
+				});
+			});			
+		}
+	</script>
 </head>
 <style>
 	.bg_web {
@@ -41,33 +60,6 @@
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
 	<!-- phần header -->
-
-	<script>
-		function LoadCart() {
-			base_url = "<?php echo base_url()?>";
-			url = "<?php echo base_url().'apiajax/Cart';?>"
-			$.ajax( {
-				async: false,
-				method: 'POST',
-				dataType: 'json',
-				url: url,
-
-				success: function ( LoadCart ) {
-					$.each( LoadCart, function ( k, v ) {
-
-						data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image "' width='80px' height='80px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
-
-						value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' max='50' type='number' style='width: 60px; height: 30px;'>" + v.amount + "</input></td><td colspan='3'>Giá:" + v.Price + "</td><td><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
-
-						$( "#loadcart" ).append( data + value );
-
-					} );
-				}
-			} ).done( function ( callback ) {
-				check = callback;
-			} );
-		};
-	</script>
 	<div class="fixed-top">
 		<header class="topbar">
 			<div class="container">
@@ -76,7 +68,7 @@
 					<div class="col-sm-12">
 						<ul class="social-network">
 							<li class="dropdown">
-								<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" onClick="Load()">Card</button>
+								<button class="btn btn-secondary dropdown-toggle" onclick="LoadCart()" data-toggle="dropdown" id="btn_cart">Card</button>
 
 								<div class="dropdown-menu" style="width: 420px">
 									<div>
@@ -86,20 +78,19 @@
 													<tr>
 														<th class="col-xs-4">Card</th>
 														<th colspan="5" style="text-align: right">Tổng: 20000</th>
-
 													</tr>
 												</thead>
 												<tbody id="loadcart">
-													<tr>
+													<!-- <tr>
 														<td rowspan="2">
 															<img src="#" width="60px" height="60px">
 														</td>
 														<td class="col-xs-4" colspan="5">
-															<!--Tên-->
+															
 														</td>
 													</tr>
 													<tr>
-														<td style="width: 50px"><input class="form-control text-center" min="1" max="50" type="number" style="width: 60px; height: 25px;"></input>
+														<td style="width: 50px"><input class="form-control text-center" min="1" max="50" type="number" style="width: 60px; height: 25px;" value="12">
 														</td>
 
 														<td colspan="3">Giá:100000000000</td>
@@ -107,7 +98,7 @@
 														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
 														</td>
 
-													</tr>
+													</tr> -->
 												</tbody>
 												<tfoot>
 													<tr>
@@ -155,8 +146,8 @@
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Danh mục sản phẩm</a>
 							<div class="dropdown-menu">
 								<?php
-								foreach ( $type as $key => $value ) {
-									echo '<a class="dropdown-item" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
+								foreach ($type as $key => $value) {
+									echo '<a class="dropdown-item" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
 									//kk
 								}
 								?>
@@ -167,9 +158,9 @@
 						if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
 
 							echo '<li class="nav-item dropdown">';
-							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION[ 'name' ] . '</a>';
+							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION['name'] . '</a>';
 							echo '<div class="dropdown-menu">';
-							echo '<a class="dropdown-item" href="' . site_url( "main/signout" ) . '">Đăng Xuất</a>';
+							echo '<a class="dropdown-item" href="' . site_url("main/signout") . '">Đăng Xuất</a>';
 							echo '</div>';
 							echo '</li>';
 						} else {
@@ -194,9 +185,9 @@
 			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
 				<ul class="nav flex-column">
 					<?php
-					foreach ( $type as $key => $value ) {
+					foreach ($type as $key => $value) {
 						echo '<li class="nav-item">';
-						echo '<a class="nav-link" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
+						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
 						echo '</li>';
 					}
 					?>
@@ -227,7 +218,7 @@
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
 				</a>
-			
+
 				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
@@ -334,8 +325,8 @@
 						var email = $('#email').val();
 						var r_password = $('#pass1').val();
 						var re_pass = $('pass2').val();
-						url = "<?php echo base_url().'apiajax/checkregister'?>";
-						var check = '';						
+						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
+						var check = '';
 						$.ajax({
 
 							url: url,
@@ -343,13 +334,13 @@
 							data: {
 								'username': username,
 								'email': email
-							},	
+							},
 							async: false,
 
 						}).done(function(callback) {
 							check = callback;
-						});			
-						alert(check);		
+						});
+						alert(check);
 						if (check == "ok") {
 							return true;
 						} else if (check == "email") {
@@ -359,7 +350,7 @@
 							document.getElementById("K").innerHTML = "User đã tồn tại";
 							return false;
 						}
-						alert("lỗi"+ check);
+						alert("lỗi" + check);
 						return false;
 					}
 				</script>
