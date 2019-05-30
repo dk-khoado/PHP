@@ -87,9 +87,9 @@ class ApiAjax  extends CI_Controller
         $id_user = $this->input->post("id_user");
         $id_product = $this->input->post("id_product");
         $amount = $this->input->post("amount");
-        $product = $this->Products->getByID($id_product);
+        $product = $this->Products->getByID($id_product);      
         $this->Cart->Insert($id_product, $id_user, $amount, $product->NameProduct, $product->Image, $product->PriceProduct);
-        
+
     }
     public function removeOncart(){
         $id_cart = $this->input->post("id_cart");

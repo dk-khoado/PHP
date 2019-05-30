@@ -28,7 +28,8 @@
 	<script src="<?php echo base_url(); ?>assets/js/nouislider.min.js"></script>
 	<!-- <link rel="stylesheet" href="layoutside.css"> -->
 	<script>
-		function LoadCart() {		
+		function LoadCart() {
+			$("#loadcart").children().remove();
 			base_url = "<?php echo base_url(); ?>";
 			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
 			$.ajax({
@@ -36,17 +37,18 @@
 				method: 'POST',
 				dataType: 'json',
 				data: {
-					"id_user": <?php echo $_SESSION['id']?>
+					"id_user": <?php echo $_SESSION['id'] ?>
 				},
 				url: url
 			}).done(function(callback) {
+
 				$.each(callback, function(k, v) {
 					data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image + "' width='60px' height='60px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
 
-					value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;' value='"+v.amount+"'></td><td colspan='3'>Giá:" + v.PriceProduct + "</td><td><button type='button'  class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
+					value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;' value='" + v.amount + "'></td><td colspan='3'>Giá:" + v.PriceProduct + "</td><td><button type='button'  class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
 					$("#loadcart").append(data + value);
 				});
-			});			
+			});
 		}
 	</script>
 </head>
@@ -56,6 +58,7 @@
 		background-size: cover;
 		overflow: scroll;
 	}
+
 </style>
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
@@ -72,21 +75,19 @@
 
 								<div class="dropdown-menu" style="width: 420px">
 									<div>
-										<a href="#">
-											<table class="table">
-												<thead>
-													<tr>
-														<th class="col-xs-4">Card</th>
-														<th colspan="5" style="text-align: right">Tổng: 20000</th>
-													</tr>
-												</thead>
-												<tbody id="loadcart">
-													<!-- <tr>
+										<table class="table">
+											<thead>
+												<tr>
+													<th class="col-xs-4">Card</th>
+													<th colspan="5" style="text-align: right">Tổng: 20000</th>
+												</tr>
+											</thead>
+											<tbody id="loadcart">
+												<!-- <tr>
 														<td rowspan="2">
 															<img src="#" width="60px" height="60px">
 														</td>
 														<td class="col-xs-4" colspan="5">
-															
 														</td>
 													</tr>
 													<tr>
@@ -97,21 +98,19 @@
 
 														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
 														</td>
-
 													</tr> -->
-												</tbody>
-												<tfoot>
-													<tr>
-														<td style="text-align: center"><button type="button" class="btn btn-primary" style="width: 100%"><strong>Cart</strong></button>
-														</td>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td style="text-align: center"><button type="button" class="btn btn-primary" style="width: 100%"><strong>Cart</strong></button>
+													</td>
 
-														<td class="col-xs-4" colspan="5" rowspan="2" style="text-align: center"><button type="button" class="btn btn-success" style="width: 100%"><strong>Check Out</strong></button>
-														</td>
-													</tr>
+													<td class="col-xs-4" colspan="5" rowspan="2" style="text-align: center"><button type="button" class="btn btn-success" style="width: 100%"><strong>Check Out</strong></button>
+													</td>
+												</tr>
 
-												</tfoot>
-											</table>
-										</a>
+											</tfoot>
+										</table>
 									</div>
 								</div>
 
@@ -242,7 +241,7 @@
 					<div>
 						<div class="card">
 							<div class="card-body">
-								<form action="<?php echo site_url('main/AddUser'); ?>" method="POST">
+								<form action="<?php echo site_url('main/Login'); ?>" method="POST">
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" name="username" placeholder="Username">
 									</div>

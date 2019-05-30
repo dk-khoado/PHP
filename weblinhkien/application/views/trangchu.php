@@ -2,17 +2,16 @@
 <script>
  	function AddCart(id_pro)
 	{
-		url = "<?php echo base_url().'apiajx/addToCart';?>";
+		url = "<?php echo base_url().'apiajax/addToCart';?>";
+		alert(id_pro);
 		$.ajax({
 			url:url,
-			method:'POST',
-			dataType:'json',
+			method:'POST',		
 			async:false,
 			data:{
-				'id_user': <?php echo SESSION['id'] ?>,
-				'id_product': id_pro,
-				'amound': 1
-				
+				"id_user": <?php echo $_SESSION['id'] ?>,
+				"id_product": id_pro,
+				"amount": 1
 			}
 		});
 	}

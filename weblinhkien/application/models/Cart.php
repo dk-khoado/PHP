@@ -25,10 +25,9 @@ class Cart extends CI_Model
             "ID_User" => $id_user, 
             "amount" => $amount,
             "NameProduct"=>$NameProduct,
-            "Image"=> $Image,
             "PriceProduct"=>$PriceProduct
         );
-        $this->db->Insert($data);
+        $this->db->Insert("cart",$data);
     }
     public function Update($id_cart, $amount)
     {
