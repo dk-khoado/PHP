@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 class Cart extends CI_Model{
-   public function getAll(){
-       return $this->db->get("cart")->result();
+   public function getAllByIDUser($id){
+       $query = "cart where ID_User = '$id'";
+       return $this->db->get($query)->result();
    }
-
    public function deleteByID($id){
        $query = "DELETE from cart where id_cart = $id";
        $this->db->query($query);
