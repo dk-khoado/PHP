@@ -35,4 +35,8 @@ class Cart extends CI_Model
         $query = "UPDATE cart set amount = $amount where id_cart = $id_cart";
         $this->db->query($query);
     }
+    public function getAmountByID($id){
+        $query = "SELECT amount from cart where id_cart = $id";
+        return $this->db->query($query)->row();
+    }
 }
