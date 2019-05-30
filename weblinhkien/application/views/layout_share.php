@@ -265,12 +265,15 @@
 							<div class="card-body">
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
+									<p id="T"></p>
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
+									<p id="K"></p>
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" id="pass1" name="r_password" type="password" required placeholder="Password">
+									<p id="L"></p>
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="password" placeholder="Confirm" name="re_pass" id="pass2">
@@ -295,10 +298,14 @@
 					function Click() {
 							var username = $( '#username' ).val();
 								var email = $( '#email' ).val();
-								var r_password = $( '#pass1' ).val();
-								var re_pass = $( 'pass2' ).val();
-						url = "http://localhost:81/Index/PHP/weblinhkien/ApiAjax/checkRegister";
+						var r_password = $('#pass1').val();
+						var re_pass = $('#pass2').val();
 						var check = '';
+						
+						if(r_password != re_pass){
+							document.getElementById("L").innerHTML = Error("Khong trung khop");
+							return false;
+						}
 						$.ajax( {
 							url: "http://localhost:81/Index/PHP/weblinhkien/ApiAjax/checkRegister",
 							method: "POST",
@@ -321,7 +328,7 @@
 							return false;
 						}
 						else if(check == "username"){
-							document.getElementById("K").innerHTML ="User da co";
+							document.getElementById("T").innerHTML ="User da co";
 							return false;
 						}
 						return false;

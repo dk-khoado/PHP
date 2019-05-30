@@ -20,7 +20,7 @@ class ApiAjax  extends CI_Controller
 
         $username = $this->input->post("username");
         $email = $this->input->post("email");
-
+			
         if ($this->Customer->checkName($username)) {
             echo "username";
         } else if ($this->Customer->checkEmail($email)) {
