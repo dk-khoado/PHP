@@ -55,7 +55,7 @@
 				success: function ( LoadCart ) {
 					$.each( LoadCart, function ( k, v ) {
 
-						data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image "' width='80px' height='80px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
+						data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image + "' width='80px' height='80px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
 
 						value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' max='50' type='number' style='width: 60px; height: 30px;'>" + v.amount + "</input></td><td colspan='3'>Giá:" + v.Price + "</td><td><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
 
