@@ -1,5 +1,24 @@
 <!-- end header -->
+<script>
+ 	function AddCart(id_pro)
+	{
+		url = "<?php echo base_url().'apiajx/addToCart';?>";
+		$.ajax({
+			url:url,
+			method:'POST',
+			dataType:'json',
+			async:false,
+			data:{
+				'id_user': <?php echo SESSION['id'] ?>,
+				'id_product': id_pro,
+				'amound': 1
+				
+			}
+		});
+	}
 
+
+</script>
 
 <!-- phần body -->
 <!-- phần sản phẩm mới -->
@@ -37,7 +56,7 @@
 					echo '<h3 class="product-name"><a href="' . site_url("main/chitiet") . '?id=' . $value->ID_PRODUCT . '">' . $value->NameProduct . '</a></h3>';
 					echo '<h4 class="product-price">' . number_format($value->PriceProduct) . ' <del class="product-old-price">$990.00</del></h4>';
 					echo '<a href="' . site_url("main/chitiet") . '?id=' . $value->ID_PRODUCT . '" class="btn btn-primary">Chi tiết</a>';
-					echo '<button type="button" class="btn btn-outline-danger"><i class="fa fa-shopping-cart"></i> add to cart</button>';
+					echo '<button onclick="AddCart('.$value->ID_PRODUCT.')" type="button" class="btn btn-outline-danger"><i class="fa fa-shopping-cart"></i> add to cart</button>';
 					echo '</div>';
 					//end			
 					echo '</div>';
