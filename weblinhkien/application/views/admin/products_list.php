@@ -166,7 +166,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td><input class="btn btn-success w-100" type="sub%2!!!!!!!!!!!!!!!mit" value="Thêm"></td>
+										<td><input class="btn btn-success w-100" type="submit" value="Thêm"></td>
 										<td><a href="<?php echo site_url('admin/product'); ?>"><button type="button" class="btn btn-danger">Hủy</button> </a></td>
 									</tr>
 								</table>

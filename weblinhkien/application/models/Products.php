@@ -53,4 +53,9 @@ class Products extends CI_Model{
         
         $this->db->query($query);    
     }
+    public function Search($name){
+        $query = "SELECT ID_PRODUCT from product where NameProduct like '%$name%'";
+        $result = $this->db->query($query);
+        return $result->result_array();
+    }
 }

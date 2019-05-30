@@ -76,7 +76,6 @@
 					<div class="col-sm-12">
 						<ul class="social-network">
 							<li class="dropdown">
-								<!--class="table table-bordered table-striped mb-0"-->
 								<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" onClick="Load()">Card</button>
 
 								<div class="dropdown-menu" style="width: 420px">
@@ -107,6 +106,7 @@
 
 														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
 														</td>
+
 													</tr>
 												</tbody>
 												<tfoot>
@@ -132,11 +132,15 @@
 		</header>
 		<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
 			<div class="container">
+
 				<a class="navbar-brand" href="<?php echo site_url(" main/index ") ?>" style="text-transform: uppercase;"> LINHKIEN9586.TK</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 			
+
+
+
 
 
 
@@ -173,7 +177,8 @@
 						</li>
 
 						<?php
-						if ( isset( $_SESSION[ 'id' ] ) && isset( $_SESSION[ 'name' ] ) ) {
+						if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
+
 							echo '<li class="nav-item dropdown">';
 							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION[ 'name' ] . '</a>';
 							echo '<div class="dropdown-menu">';
@@ -245,10 +250,16 @@
 
 
 
+
+
+
 				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
 			
+
+
+
 
 
 
@@ -290,14 +301,6 @@
 										<label class="custom-control custom-checkbox">
 											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
 										</label>
-									
-
-
-
-
-
-
-
 
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
@@ -366,35 +369,36 @@
 				</div>
 				<script>
 					function Click() {
-						var username = $( '#username' ).val();
-						var email = $( '#email' ).val();
-						var r_password = $( '#pass1' ).val();
-						var re_pass = $( 'pass2' ).val();
+						var username = $('#username').val();
+						var email = $('#email').val();
+						var r_password = $('#pass1').val();
+						var re_pass = $('pass2').val();
 						url = "<?php echo base_url().'apiajax/checkregister'?>";
-						var check = '';
-						$.ajax( {
+						var check = '';						
+						$.ajax({
+
 							url: url,
 							method: "POST",
 							data: {
 								'username': username,
 								'email': email
-							},
+							},	
 							async: false,
 
-						} ).done( function ( callback ) {
+						}).done(function(callback) {
 							check = callback;
-						} );
-						alert( check );
-						if ( check == "ok" ) {
+						});			
+						alert(check);		
+						if (check == "ok") {
 							return true;
-						} else if ( check == "email" ) {
-							document.getElementById( "K" ).innerHTML = "Email đã tồn tại";
+						} else if (check == "email") {
+							document.getElementById("K").innerHTML = "Email đã tồn tại";
 							return false;
-						} else if ( check == "username" ) {
-							document.getElementById( "K" ).innerHTML = "User đã tồn tại";
+						} else if (check == "username") {
+							document.getElementById("K").innerHTML = "User đã tồn tại";
 							return false;
 						}
-						alert( "lỗi" + check );
+						alert("lỗi"+ check);
 						return false;
 					}
 				</script>
