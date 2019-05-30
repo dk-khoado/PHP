@@ -43,18 +43,30 @@
 	<!-- phần header -->
 
 	<script>
-		// $(document).scroll(function() {
-		// 	var element = document.getElementById("listType");
-		// 	if ($(document).scrollTop() > 295) {
-		// 		element.classList.remove("disabled");
-		// 		element.classList.add("btn-light");
+		function LoadCart() {
+			base_url = "<?php echo base_url()?>";
+			url = "<?php echo base_url().'apiajax/Cart';?>"
+			$.ajax( {
+				async: false,
+				method: 'POST',
+				dataType: 'json',
+				url: url,
 
-		// 	} else {
-		// 		element.classList.add("disabled");
-		// 		element.classList.remove("btn-light");
+				success: function ( LoadCart ) {
+					$.each( LoadCart, function ( k, v ) {
 
-		// 	}
-		// });
+						data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image "' width='80px' height='80px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
+
+						value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' max='50' type='number' style='width: 60px; height: 30px;'>" + v.amount + "</input></td><td colspan='3'>Giá:" + v.Price + "</td><td><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
+
+						$( "#loadcart" ).append( data + value );
+
+					} );
+				}
+			} ).done( function ( callback ) {
+				check = callback;
+			} );
+		};
 	</script>
 	<div class="fixed-top">
 		<header class="topbar">
@@ -64,7 +76,6 @@
 					<div class="col-sm-12">
 						<ul class="social-network">
 							<li class="dropdown">
-								<!--								class="table table-bordered table-striped mb-0"-->
 								<button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" href="#" onClick="Load()">Card</button>
 
 								<div class="dropdown-menu" style="width: 420px">
@@ -78,46 +89,20 @@
 
 													</tr>
 												</thead>
-												<tbody>
+												<tbody id="loadcart">
 													<tr>
-														<td rowspan="2"></td>
-														<td class="col-xs-4" colspan="5">Tên</td>
+														<td rowspan="2">
+															<img src="#" width="60px" height="60px">
+														</td>
+														<td class="col-xs-4" colspan="5">
+															<!--Tên-->
+														</td>
 													</tr>
 													<tr>
-														<td style="width: 50px"><input class="form-control text-center" value="1" min="1" max="50" type="number" style="width: 60px; height: 30px;">
+														<td style="width: 50px"><input class="form-control text-center" min="1" max="50" type="number" style="width: 60px; height: 25px;"></input>
 														</td>
 
-														<td colspan="3">Giá:10000000000</td>
-
-														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
-														</td>
-
-													</tr>
-
-													<tr>
-														<td rowspan="2"></td>
-														<td class="col-xs-4" colspan="5">Tên</td>
-													</tr>
-													<tr>
-														<td style="width: 50px"><input class="form-control text-center" value="1" min="1" type="number" style="width: 60px; height: 30px;">
-														</td>
-
-														<td colspan="3">Giá:10000000000</td>
-
-														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
-														</td>
-
-													</tr>
-
-													<tr>
-														<td rowspan="2"></td>
-														<td class="col-xs-4" colspan="5">Tên</td>
-													</tr>
-													<tr>
-														<td style="width: 50px"><input class="form-control text-center" value="1" min="1" type="number" style="width: 60px; height: 30px;">
-														</td>
-
-														<td colspan="3">Giá:10000000000</td>
+														<td colspan="3">Giá:100000000000</td>
 
 														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
 														</td>
@@ -147,10 +132,20 @@
 		</header>
 		<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
 			<div class="container">
-				<a class="navbar-brand" href="<?php echo site_url("main/index") ?>" style="text-transform: uppercase;"> LINHKIEN9586.TK</a>
+
+				<a class="navbar-brand" href="<?php echo site_url(" main/index ") ?>" style="text-transform: uppercase;"> LINHKIEN9586.TK</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+			
+
+
+
+
+
+
+
+
 
 
 
@@ -160,21 +155,21 @@
 					<ul class="navbar-nav ml-auto">
 
 						<li class="nav-item active">
-							<a class="nav-link" href="<?php echo site_url("main/index") ?>">Home
+							<a class="nav-link" href="<?php echo site_url(" main/index ") ?>">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo site_url("main/about") ?>">About</a>
+							<a class="nav-link" href="<?php echo site_url(" main/about ") ?>">About</a>
 						</li>
 
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Danh mục sản phẩm</a>
 							<div class="dropdown-menu">
 								<?php
-								foreach ($type as $key => $value) {
-									echo '<a class="dropdown-item" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
+								foreach ( $type as $key => $value ) {
+									echo '<a class="dropdown-item" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
 									//kk
 								}
 								?>
@@ -183,10 +178,11 @@
 
 						<?php
 						if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
+
 							echo '<li class="nav-item dropdown">';
-							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION['name'] . '</a>';
+							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION[ 'name' ] . '</a>';
 							echo '<div class="dropdown-menu">';
-							echo '<a class="dropdown-item" href="' . site_url("main/signout") . '">Đăng Xuất</a>';
+							echo '<a class="dropdown-item" href="' . site_url( "main/signout" ) . '">Đăng Xuất</a>';
 							echo '</div>';
 							echo '</li>';
 						} else {
@@ -211,9 +207,9 @@
 			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
 				<ul class="nav flex-column">
 					<?php
-					foreach ($type as $key => $value) {
+					foreach ( $type as $key => $value ) {
 						echo '<li class="nav-item">';
-						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
+						echo '<a class="nav-link" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
 						echo '</li>';
 					}
 					?>
@@ -244,6 +240,15 @@
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
 				</a>
+			
+
+
+
+
+
+
+
+
 
 
 
@@ -251,6 +256,15 @@
 				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
+			
+
+
+
+
+
+
+
+
 
 
 
@@ -287,8 +301,6 @@
 										<label class="custom-control custom-checkbox">
 											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
 										</label>
-
-
 
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
@@ -364,6 +376,7 @@
 						url = "<?php echo base_url().'apiajax/checkregister'?>";
 						var check = '';						
 						$.ajax({
+
 							url: url,
 							method: "POST",
 							data: {
