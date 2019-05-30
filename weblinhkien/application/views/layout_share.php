@@ -133,35 +133,22 @@
 		<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
 			<div class="container">
 
-				<a class="navbar-brand" href="<?php echo site_url(" main/index ") ?>" style="text-transform: uppercase;"> LINHKIEN9586.TK</a>
+				<a class="navbar-brand" href="<?php echo site_url("main/index") ?>" style="text-transform: uppercase;"> LINHKIEN9586.TK</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-			
-
-
-
-
-
-
-
-
-
-
-
-
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 
 					<ul class="navbar-nav ml-auto">
 
 						<li class="nav-item active">
-							<a class="nav-link" href="<?php echo site_url(" main/index ") ?>">Home
+							<a class="nav-link" href="<?php echo site_url("main/index") ?>">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo site_url(" main/about ") ?>">About</a>
+							<a class="nav-link" href="<?php echo site_url("main/about") ?>">About</a>
 						</li>
 
 						<li class="nav-item dropdown">
@@ -241,35 +228,9 @@
 					<span class="carousel-control-prev-icon"></span>
 				</a>
 			
-
-
-
-
-
-
-
-
-
-
-
-
 				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
-			
-
-
-
-
-
-
-
-
-
-
-
-
-
 			</div>
 		</div>
 	</div>
