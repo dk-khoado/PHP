@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>
@@ -146,11 +147,11 @@
 		</header>
 		<nav class="navbar navbar-expand-lg navbar-dark mx-background-top-linear">
 			<div class="container">
-				<a class="navbar-brand" href="<?php echo site_url(" main/index ") ?>" style="text-transform: uppercase;"> LINHKIEN9586.COM</a>
+				<a class="navbar-brand" href="<?php echo site_url("main/index") ?>" style="text-transform: uppercase;"> LINHKIEN9586.TK</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-			
+
 
 
 
@@ -159,21 +160,21 @@
 					<ul class="navbar-nav ml-auto">
 
 						<li class="nav-item active">
-							<a class="nav-link" href="<?php echo site_url(" main/index ") ?>">Home
+							<a class="nav-link" href="<?php echo site_url("main/index") ?>">Home
 								<span class="sr-only">(current)</span>
 							</a>
 						</li>
 
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo site_url(" main/about ") ?>">About</a>
+							<a class="nav-link" href="<?php echo site_url("main/about") ?>">About</a>
 						</li>
 
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Danh mục sản phẩm</a>
 							<div class="dropdown-menu">
 								<?php
-								foreach ( $type as $key => $value ) {
-									echo '<a class="dropdown-item" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
+								foreach ($type as $key => $value) {
+									echo '<a class="dropdown-item" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
 									//kk
 								}
 								?>
@@ -181,11 +182,11 @@
 						</li>
 
 						<?php
-						if ( isset( $_SESSION[ 'id' ] ) && isset( $_SESSION[ 'name' ] ) ) {
+						if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
 							echo '<li class="nav-item dropdown">';
-							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION[ 'name' ] . '</a>';
+							echo '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Hello ' . $_SESSION['name'] . '</a>';
 							echo '<div class="dropdown-menu">';
-							echo '<a class="dropdown-item" href="' . site_url( "main/signout" ) . '">Đăng Xuất</a>';
+							echo '<a class="dropdown-item" href="' . site_url("main/signout") . '">Đăng Xuất</a>';
 							echo '</div>';
 							echo '</li>';
 						} else {
@@ -210,9 +211,9 @@
 			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
 				<ul class="nav flex-column">
 					<?php
-					foreach ( $type as $key => $value ) {
+					foreach ($type as $key => $value) {
 						echo '<li class="nav-item">';
-						echo '<a class="nav-link" href="' . site_url( "main/product_list/$value->ID_type/1" ) . '">' . $value->name_type . '</a>';
+						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
 						echo '</li>';
 					}
 					?>
@@ -243,14 +244,14 @@
 				<a class="carousel-control-prev" href="#demo" data-slide="prev">
 					<span class="carousel-control-prev-icon"></span>
 				</a>
-			
+
 
 
 
 				<a class="carousel-control-next" href="#demo" data-slide="next">
 					<span class="carousel-control-next-icon"></span>
 				</a>
-			
+
 
 
 
@@ -286,7 +287,7 @@
 										<label class="custom-control custom-checkbox">
 											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
 										</label>
-									
+
 
 
 									</div>
@@ -356,37 +357,35 @@
 				</div>
 				<script>
 					function Click() {
-							var username = $( '#username' ).val();
-								var email = $( '#email' ).val();
-								var r_password = $( '#pass1' ).val();
-								var re_pass = $( 'pass2' ).val();
-						url = "http://localhost:81/Index/PHP/weblinhkien/ApiAjax/checkRegister";
-						var check = '';
-						$.ajax( {
-							url: "http://localhost:81/Index/PHP/weblinhkien/ApiAjax/checkRegister",
+						var username = $('#username').val();
+						var email = $('#email').val();
+						var r_password = $('#pass1').val();
+						var re_pass = $('pass2').val();
+						url = "<?php echo base_url().'apiajax/checkregister'?>";
+						var check = '';						
+						$.ajax({
+							url: url,
 							method: "POST",
 							data: {
 								'username': username,
 								'email': email
-							},
-							async:false,
-							
-						} ).done(function(callback){
-						
+							},	
+							async: false,
+
+						}).done(function(callback) {
 							check = callback;
-						});
-						
-						if(check == "ok"){
+						});			
+						alert(check);		
+						if (check == "ok") {
 							return true;
-						}
-						else if(check == "email"){
-							document.getElementById("K").innerHTML ="Email da co";
+						} else if (check == "email") {
+							document.getElementById("K").innerHTML = "Email đã tồn tại";
+							return false;
+						} else if (check == "username") {
+							document.getElementById("K").innerHTML = "User đã tồn tại";
 							return false;
 						}
-						else if(check == "username"){
-							document.getElementById("K").innerHTML ="User da co";
-							return false;
-						}
+						alert("lỗi"+ check);
 						return false;
 					}
 				</script>
