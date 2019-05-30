@@ -50,18 +50,8 @@ class ApiAjax  extends CI_Controller
     {
         if (isset($_POST['id_user'])) {
             $id = $this->input->post('id_user');
-            $data = $this->Cart->getAllByIDUser($id);            
-            $product = $this->Products->getByID($data[0]->ID_PRODUCT);
-            $array = array(
-                "id_cart" => $data[0]->id_cart, 
-                "ID_PRODUCT" => $data[0]->ID_PRODUCT, 
-                "ID_User" => $data[0]->ID_User,
-                "amount"=> $data[0]->amount,
-                "NameProduct"=> $product->NameProduct,
-                "Image"=> $product->Image,
-                "PriceProduct"=> $product->PriceProduct
-            );
-            echo json_encode($array);
+            $data = $this->Cart->getAllByIDUser($id);                                 
+            echo json_encode($data);
         } else {
             echo "────────▓▓▓▓▓▓▓────────────▒▒▒▒▒▒<br>";
             echo "──────▓▓▒▒▒▒▒▒▒▓▓────────▒▒░░░░░░▒▒<br>";
@@ -92,5 +82,17 @@ class ApiAjax  extends CI_Controller
             echo "───────────────────▓▒░▒<br>";
             echo "────────────────────▓▒<br>";
         }
+    }
+    public function addToCart(){
+        $id_user = $this->input->post("id_user");
+        $id_product = $this->input->post("id_product");
+        $amount = $this->input->post("amount");
+        $product = $this->Products->getByID($id_product);
+        $this->Cart->Insert($id_product, $id_user, $amount, $product->NameProduct, $product->Image, $product->PriceProduct);
+
+    }
+    public function removeOncart(){
+        $id_cart = $this->input->post("id_cart");
+        $this->Cart->deleteByID($id_cart);
     }
 }
