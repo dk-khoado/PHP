@@ -93,7 +93,13 @@ class ApiAjax  extends CI_Controller
 
     }
     public function removeOncart(){
-        $id_cart = $this->input->post("id_cart");
-        $this->Cart->deleteByID($id_cart);
+        if(isset($_POST['id_cart'])){
+            $id_cart = $this->input->post("id_cart");
+            $this->Cart->deleteByID($id_cart);
+            echo "ok";
+        }else{
+            echo "ko ok";
+        }
+        
     }
 }
