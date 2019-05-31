@@ -61,33 +61,7 @@
 </style>
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
-	<!-- phần header -->
-	<script>
-		function LoadCart() {
-			base_url = "<?php echo base_url()?>";
-			url = "<?php echo base_url().'apiajax/Cart';?>"
-			$.ajax( {
-				async: false,
-				method: 'POST',
-				dataType: 'json',
-				url: url,
-
-				success: function ( LoadCart ) {
-					$.each( LoadCart, function ( k, v ) {
-
-						data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image + "' width='80px' height='80px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
-
-						value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' max='50' type='number' style='width: 60px; height: 30px;'>" + v.amount + "</input></td><td colspan='3'>Giá:" + v.Price + "</td><td><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
-
-						$( "#loadcart" ).append( data + value );
-
-					} );
-				}
-			} ).done( function ( callback ) {
-				check = callback;
-			} );
-		};
-	</script>
+	<!-- phần header -->	
 	<div class="fixed-top">
 		<header class="topbar">
 			<div class="container">
@@ -266,7 +240,7 @@
 					<div>
 						<div class="card">
 							<div class="card-body">
-								<form action="<?php echo site_url('main/Login'); ?>" method="POST">
+								<form action="<?php echo site_url('main/Login'); ?>" method="POST" onSubmit="return Click2()">
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" name="username" id="username" placeholder="Username">
 									</div>
@@ -293,14 +267,14 @@
 					</div>
 				</div>
 				<script>
-					function Click2() {
+					function Click2() {						
 						var username = $('#username').val();
 						var password = $('#password').val();
 						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
+						alert(url);
 						var check = '';
 						$.ajax({
-
-							url: "http://localhost:81/weblinhkien/ApiAjax/checkLogin",
+							url: url,
 							method: "POST",
 							data: {
 								'username': username,
@@ -311,10 +285,9 @@
 						}).done(function(callback) {
 							check = callback;
 						});
-						if (check != "ok") {
+						if (check == "ok") {
 							return true;
-						}
-						alert("lỗi" + check);
+						}						
 						return false;
 					}
 				</script>
@@ -344,6 +317,7 @@
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
 									<p id="K"></p>
+
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
@@ -374,12 +348,12 @@
 				</div>
 				<script>
 					function Click() {
-						var username = $('#username').val();
+						var username = $('#username_r').val();
 						var email = $('#email').val();
 						var r_password = $('#pass1').val();
 						var re_pass = $('#pass2').val();
-						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
-						var check = '';
+						url = "<?php echo base_url() . 'apiajax/checkRegister' ?>";
+						var check = '';						
 						$.ajax({
 
 							url: url,
@@ -407,6 +381,7 @@
 						else if(check == "ok"){
 							return true;
 						}
+
 						return false;
 					}
 				</script>
