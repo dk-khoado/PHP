@@ -28,7 +28,8 @@
 	<script src="<?php echo base_url(); ?>assets/js/nouislider.min.js"></script>
 	<!-- <link rel="stylesheet" href="layoutside.css"> -->
 	<script>
-		function LoadCart() {		
+		function LoadCart() {
+			$("#loadcart").children().remove();
 			base_url = "<?php echo base_url(); ?>";
 			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
 			$.ajax({
@@ -36,17 +37,18 @@
 				method: 'POST',
 				dataType: 'json',
 				data: {
-					"id_user": <?php echo $_SESSION['id']?>
+					"id_user": <?php echo $_SESSION['id'] ?>
 				},
 				url: url
 			}).done(function(callback) {
+
 				$.each(callback, function(k, v) {
 					data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image + "' width='60px' height='60px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
 
-					value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;' value='"+v.amount+"'></td><td colspan='3'>Giá:" + v.PriceProduct + "</td><td><button type='button'  class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
+					value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;' value='" + v.amount + "'></td><td colspan='3'>Giá:" + v.PriceProduct + "</td><td><button type='button'  class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
 					$("#loadcart").append(data + value);
 				});
-			});			
+			});
 		}
 	</script>
 </head>
@@ -59,7 +61,7 @@
 </style>
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
-	<!-- phần header -->
+	<!-- phần header -->	
 	<div class="fixed-top">
 		<header class="topbar">
 			<div class="container">
@@ -72,21 +74,19 @@
 
 								<div class="dropdown-menu" style="width: 420px">
 									<div>
-										<a href="#">
-											<table class="table">
-												<thead>
-													<tr>
-														<th class="col-xs-4">Card</th>
-														<th colspan="5" style="text-align: right">Tổng: 20000</th>
-													</tr>
-												</thead>
-												<tbody id="loadcart">
-													<!-- <tr>
+										<table class="table">
+											<thead>
+												<tr>
+													<th class="col-xs-4">Card</th>
+													<th colspan="5" style="text-align: right">Tổng: 20000</th>
+												</tr>
+											</thead>
+											<tbody id="loadcart">
+												<!-- <tr>
 														<td rowspan="2">
 															<img src="#" width="60px" height="60px">
 														</td>
 														<td class="col-xs-4" colspan="5">
-															
 														</td>
 													</tr>
 													<tr>
@@ -97,21 +97,19 @@
 
 														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
 														</td>
-
 													</tr> -->
-												</tbody>
-												<tfoot>
-													<tr>
-														<td style="text-align: center"><button type="button" class="btn btn-primary" style="width: 100%"><strong>Cart</strong></button>
-														</td>
+											</tbody>
+											<tfoot>
+												<tr>
+													<td style="text-align: center"><button type="button" class="btn btn-primary" style="width: 100%"><strong>Cart</strong></button>
+													</td>
 
-														<td class="col-xs-4" colspan="5" rowspan="2" style="text-align: center"><button type="button" class="btn btn-success" style="width: 100%"><strong>Check Out</strong></button>
-														</td>
-													</tr>
+													<td class="col-xs-4" colspan="5" rowspan="2" style="text-align: center"><button type="button" class="btn btn-success" style="width: 100%"><strong>Check Out</strong></button>
+													</td>
+												</tr>
 
-												</tfoot>
-											</table>
-										</a>
+											</tfoot>
+										</table>
 									</div>
 								</div>
 
@@ -269,14 +267,14 @@
 					</div>
 				</div>
 				<script>
-					function Click2() {
+					function Click2() {						
 						var username = $('#username').val();
 						var password = $('#password').val();
 						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
+						alert(url);
 						var check = '';
 						$.ajax({
-
-							url:"http://localhost:81/weblinhkien/ApiAjax/checkLogin",
+							url: url,
 							method: "POST",
 							data: {
 								'username': username,
@@ -287,13 +285,13 @@
 						}).done(function(callback) {
 							check = callback;
 						});
-						if (check != "ok") {
+						if (check == "ok") {
 							return true;
-						}
-						alert("lỗi" + check);
+						}						
 						return false;
 					}
 				</script>
+				<!-- Modal footer -->
 			</div>
 		</div>
 	</div>
@@ -318,19 +316,22 @@
 							<div class="card-body">
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
+									<p id="NoteUser"></p>
+
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
+									<p id="NoteEmail"></p>
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg"  name="password" type="password" id="pass1" required placeholder="Password">
+									<input class="form-control form-control-lg"  type="password" name="r_password" id="pass1" required placeholder="Password">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" name="re_password" type="password"  id="pass2" placeholder="Confirm">
+									<input class="form-control form-control-lg" type="password" name="r2_password" id="pass2" placeholder="Confirm">
+									<p id="NotePass"></p>
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
-									<p id="K"></p>
 								</div>
 								<!-- <div class="form-group">
 									<label class="custom-control custom-checkbox">
@@ -344,18 +345,17 @@
 						</div>
 					</form>
 				</div>
-				<!-- phần viết js -->
 				<script>
 					function Click() {
-						var username = $('#username').val();
+						var username = $('#username_r').val();
 						var email = $('#email').val();
-						var password = $('#pass1').val();
-						var re_password = $('#pass2').val();
-						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
-						var check = '';
+						var r_password = $('#pass1').val();
+						var r2_password = $('#pass2').val();
+						url = "<?php echo base_url() . 'apiajax/checkRegister' ?>";
+						var check = '';						
 						$.ajax({
 
-							url:"http://localhost:81/weblinhkien/ApiAjax/checkRegister",
+							url: url,
 							method: "POST",
 							data: {
 								'username': username,
@@ -367,21 +367,22 @@
 							check = callback;
 						});
 						if (check == "username") {
-							document.getElementById("K").innerHTML ="<p style ='color:red';> User đã tồn tại </p>";
+							document.getElementById("NoteUser").innerHTML = "<p style ='color:red';> Username đã tồn tại </p>";
 							return false;
 						} else if (check == "email") {
-							document.getElementById("K").innerHTML ="<p style ='color:red';> Email đã tồn tại </p>";
+							document.getElementById("NoteEmail").innerHTML = "<p style ='color:red';> Email  đã tồn tại</p>";
 							return false;
-						} else if(password != re_password){
-							document.getElementById("Q").innerHTML ="<p style ='color:red';> Nhập lại mật khẩu không đúng </p>";
+						} else if (r_password != r2_password) {
+							document.getElementById("NotePass").innerHTML = "<p style ='color:red';> Mật khẩu nhập lại không đúng</p>";
 							return false;
-						} else if (check == "ok") {
+						}
+						else if(check == "ok"){
 							return true;
 						}
-						alert("lỗi" + check);
 						return false;
 					}
 				</script>
+				<!-- phần viết js -->
 				<!-- end -->
 
 			</div>
