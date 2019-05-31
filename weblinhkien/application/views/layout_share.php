@@ -42,11 +42,9 @@
 				url: url
 			}).done(function(callback) {
 
-				$.each(callback, function(k, v) {
-					data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image + "' width='60px' height='60px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
-
-					value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;' value='" + v.amount + "'></td><td colspan='3'>Giá:" + v.PriceProduct + "</td><td><button type='button'  class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
-					$("#loadcart").append(data + value);
+				$.each(callback, function(k, v) {					
+					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image +"' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='"+ v.amount +"' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button> </div> </div> </div> </div>";
+					$("#loadcart").append(data);
 				});
 			});
 		}
@@ -62,7 +60,7 @@
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
 
-	<!-- phần header -->	
+	<!-- phần header -->
 	<div class="fixed-top">
 		<header class="topbar">
 			<div class="container">
@@ -261,7 +259,7 @@
 					</div>
 				</div>
 				<script>
-					function Click2() {						
+					function Click2() {
 						var username = $('#username').val();
 						var password = $('#password').val();
 						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
@@ -281,7 +279,7 @@
 						});
 						if (check == "ok") {
 							return true;
-						}						
+						}
 						return false;
 					}
 				</script>
@@ -347,7 +345,7 @@
 						var r_password = $('#pass1').val();
 						var re_pass = $('#pass2').val();
 						url = "<?php echo base_url() . 'apiajax/checkRegister' ?>";
-						var check = '';						
+						var check = '';
 						$.ajax({
 
 							url: url,
@@ -369,10 +367,9 @@
 							return false;
 						} else if (r_password != re_pass) {
 							document.getElementById("Q").innerHTML = "<p style ='color:red';> Pass khong dung</p>";
-							document.getElementById("R").innerHTML ="<p style ='color:red';> repass khong dung</p>";
+							document.getElementById("R").innerHTML = "<p style ='color:red';> repass khong dung</p>";
 							return false;
-						}
-						else if(check == "ok"){
+						} else if (check == "ok") {
 							return true;
 						}
 
