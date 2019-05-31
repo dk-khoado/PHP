@@ -262,8 +262,7 @@
 					function Click2() {
 						var username = $('#username').val();
 						var password = $('#password').val();
-						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
-						alert(url);
+						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";						
 						var check = '';
 						$.ajax({
 							url: url,
