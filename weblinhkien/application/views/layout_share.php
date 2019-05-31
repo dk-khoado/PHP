@@ -61,31 +61,8 @@
 </style>
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
-	<!-- phần header -->
-	<script>
-		function LoadCart() {
-			base_url = "<?php echo base_url()?>";
-			url = "<?php echo base_url().'apiajax/Cart';?>"
-			$.ajax( {
-				async: false,
-				method: 'POST',
-				dataType: 'json',
-				url: url,
 
-				success: function ( LoadCart ) {
-					$.each( LoadCart, function ( k, v ) {
-
-						data = "<div class='row p-3'> <div class='col-2'><img src=" + base_url + "upload/" + v.Image " width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;'>" + v.amount + "</input> </div> <div class='col-7'>" + v.Price + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button> </div> </div> </div> </div>";
-						
-						$( "#loadcart" ).append(data);
-
-					} );
-				}
-			} ).done( function ( callback ) {
-				check = callback;
-			} );
-		};
-	</script>
+	<!-- phần header -->	
 	<div class="fixed-top">
 		<header class="topbar">
 			<div class="container">
@@ -257,7 +234,7 @@
 					<div>
 						<div class="card">
 							<div class="card-body">
-								<form action="<?php echo site_url('main/Login'); ?>" method="POST">
+								<form action="<?php echo site_url('main/Login'); ?>" method="POST" onSubmit="return Click2()">
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" name="username" id="username" placeholder="Username">
 									</div>
@@ -284,14 +261,14 @@
 					</div>
 				</div>
 				<script>
-					function Click2() {
+					function Click2() {						
 						var username = $('#username').val();
 						var password = $('#password').val();
 						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
+						alert(url);
 						var check = '';
 						$.ajax({
-
-							url: "http://localhost:81/weblinhkien/ApiAjax/checkLogin",
+							url: url,
 							method: "POST",
 							data: {
 								'username': username,
@@ -302,10 +279,9 @@
 						}).done(function(callback) {
 							check = callback;
 						});
-						if (check != "ok") {
+						if (check == "ok") {
 							return true;
-						}
-						alert("lỗi" + check);
+						}						
 						return false;
 					}
 				</script>
@@ -334,19 +310,23 @@
 							<div class="card-body">
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
+									<p id="K"></p>
+
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
+									<p id="L"></p>
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" id="pass1" name="r_password" type="password" required placeholder="Password">
+									<p id="Q"> </p>
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="password" placeholder="Confirm" name="re_pass" id="pass2">
+									<p id="R"></p>
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
-									<p id="K"></p>
 								</div>
 								<!-- <div class="form-group">
 									<label class="custom-control custom-checkbox">
@@ -362,12 +342,12 @@
 				</div>
 				<script>
 					function Click() {
-						var username = $('#username').val();
+						var username = $('#username_r').val();
 						var email = $('#email').val();
 						var r_password = $('#pass1').val();
 						var re_pass = $('#pass2').val();
-						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
-						var check = '';
+						url = "<?php echo base_url() . 'apiajax/checkRegister' ?>";
+						var check = '';						
 						$.ajax({
 
 							url: url,
@@ -382,14 +362,20 @@
 							check = callback;
 						});
 						if (check == "email") {
-							document.getElementById("K").innerHTML = "Email đã tồn tại";
+							document.getElementById("L").innerHTML = "<p style ='color:red';> Email da co</p>";
 							return false;
 						} else if (check == "username") {
-							document.getElementById("K").innerHTML = "User đã tồn tại";
+							document.getElementById("K").innerHTML = "<p style ='color:red';> User da co</p>";
 							return false;
 						} else if (r_password != re_pass) {
-							document.getElementById("K").innerHTML = "User đã tồn tại";
+							document.getElementById("Q").innerHTML = "<p style ='color:red';> Pass khong dung</p>";
+							document.getElementById("R").innerHTML ="<p style ='color:red';> repass khong dung</p>";
+							return false;
 						}
+						else if(check == "ok"){
+							return true;
+						}
+
 						return false;
 					}
 				</script>
