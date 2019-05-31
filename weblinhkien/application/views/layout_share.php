@@ -58,7 +58,6 @@
 		background-size: cover;
 		overflow: scroll;
 	}
-
 </style>
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
@@ -267,6 +266,32 @@
 						</div>
 					</div>
 				</div>
+				<script>
+					function Click2() {
+						var username = $('#username').val();
+						var password = $('#password').val();
+						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
+						var check = '';
+						$.ajax({
+
+							url: "http://localhost:81/weblinhkien/ApiAjax/checkLogin",
+							method: "POST",
+							data: {
+								'username': username,
+								'password': password
+							},
+							async: false,
+
+						}).done(function(callback) {
+							check = callback;
+						});
+						if (check != "ok") {
+							return true;
+						}
+						alert("lỗi" + check);
+						return false;
+					}
+				</script>
 				<!-- Modal footer -->
 			</div>
 		</div>
@@ -338,16 +363,16 @@
 
 						}).done(function(callback) {
 							check = callback;
-						});											
+						});
 						if (check == "email") {
 							document.getElementById("K").innerHTML = "Email đã tồn tại";
 							return false;
 						} else if (check == "username") {
 							document.getElementById("K").innerHTML = "User đã tồn tại";
 							return false;
-						}else if(r_password != re_pass){
+						} else if (r_password != re_pass) {
 							document.getElementById("K").innerHTML = "User đã tồn tại";
-						}		
+						}
 						return false;
 					}
 				</script>
