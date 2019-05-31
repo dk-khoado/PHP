@@ -323,7 +323,7 @@
 						var username = $('#username').val();
 						var email = $('#email').val();
 						var r_password = $('#pass1').val();
-						var re_pass = $('pass2').val();
+						var re_pass = $('#pass2').val();
 						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
 						var check = '';
 						$.ajax({
@@ -338,18 +338,16 @@
 
 						}).done(function(callback) {
 							check = callback;
-						});
-						alert(check);
-						if (check == "ok") {
-							return true;
-						} else if (check == "email") {
+						});											
+						if (check == "email") {
 							document.getElementById("K").innerHTML = "Email đã tồn tại";
 							return false;
 						} else if (check == "username") {
 							document.getElementById("K").innerHTML = "User đã tồn tại";
 							return false;
-						}
-						alert("lỗi" + check);
+						}else if(r_password != re_pass){
+							document.getElementById("K").innerHTML = "User đã tồn tại";
+						}		
 						return false;
 					}
 				</script>
