@@ -266,7 +266,7 @@
 					<div>
 						<div class="card">
 							<div class="card-body">
-								<form action="<?php echo site_url('main/Login'); ?>" method="POST">
+								<form action="<?php echo site_url('main/Login'); ?>" method="POST" onSubmit="return Click2()">
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" name="username" id="username" placeholder="Username">
 									</div>
@@ -293,14 +293,14 @@
 					</div>
 				</div>
 				<script>
-					function Click2() {
+					function Click2() {						
 						var username = $('#username').val();
 						var password = $('#password').val();
 						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
+						alert(url);
 						var check = '';
 						$.ajax({
-
-							url: "http://localhost:81/weblinhkien/ApiAjax/checkLogin",
+							url: url,
 							method: "POST",
 							data: {
 								'username': username,
@@ -311,10 +311,9 @@
 						}).done(function(callback) {
 							check = callback;
 						});
-						if (check != "ok") {
+						if (check == "ok") {
 							return true;
-						}
-						alert("lỗi" + check);
+						}						
 						return false;
 					}
 				</script>
@@ -342,7 +341,7 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg" type="text" id="username_r" name="username" required placeholder="Username" autocomplete="off">
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
@@ -371,12 +370,12 @@
 				</div>
 				<script>
 					function Click() {
-						var username = $('#username').val();
+						var username = $('#username_r').val();
 						var email = $('#email').val();
 						var r_password = $('#pass1').val();
 						var re_pass = $('#pass2').val();
-						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
-						var check = '';
+						url = "<?php echo base_url() . 'apiajax/checkRegister' ?>";
+						var check = '';						
 						$.ajax({
 
 							url: url,
@@ -389,16 +388,19 @@
 
 						}).done(function(callback) {
 							check = callback;
-						});
-						if (check == "email") {
-							document.getElementById("K").innerHTML = "Email đã tồn tại";
+						});					
+						if (check == "username") {
+							document.getElementById("K").innerHTML = "user đã tồn tại";
 							return false;
-						} else if (check == "username") {
-							document.getElementById("K").innerHTML = "User đã tồn tại";
+						} else if (check == "email") {
+							document.getElementById("K").innerHTML = "email đã tồn tại";
 							return false;
 						} else if (r_password != re_pass) {
 							document.getElementById("K").innerHTML = "User đã tồn tại";
-						}
+						}else if(check == "ok"){
+							return true;
+						}		
+									
 						return false;
 					}
 				</script>
