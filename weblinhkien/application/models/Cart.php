@@ -39,4 +39,5 @@ class Cart extends CI_Model
         $query = "SELECT amount from cart where id_cart = $id";
         return $this->db->query($query)->row();
     }
+    
 }
