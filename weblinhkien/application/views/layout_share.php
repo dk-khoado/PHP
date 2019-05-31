@@ -315,20 +315,24 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" id="username_r" name="username" required placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
+									<p id="K"></p>
+
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
+									<p id="L"></p>
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" id="pass1" name="r_password" type="password" required placeholder="Password">
+									<p id="Q"> </p>
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg" type="password" placeholder="Confirm" name="re_pass" id="pass2">
+									<p id="R"></p>
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
-									<p id="K"></p>
 								</div>
 								<!-- <div class="form-group">
 									<label class="custom-control custom-checkbox">
@@ -362,19 +366,22 @@
 
 						}).done(function(callback) {
 							check = callback;
-						});					
-						if (check == "username") {
-							document.getElementById("K").innerHTML = "user đã tồn tại";
+						});
+						if (check == "email") {
+							document.getElementById("L").innerHTML = "<p style ='color:red';> Email da co</p>";
 							return false;
-						} else if (check == "email") {
-							document.getElementById("K").innerHTML = "email đã tồn tại";
+						} else if (check == "username") {
+							document.getElementById("K").innerHTML = "<p style ='color:red';> User da co</p>";
 							return false;
 						} else if (r_password != re_pass) {
-							document.getElementById("K").innerHTML = "User đã tồn tại";
-						}else if(check == "ok"){
+							document.getElementById("Q").innerHTML = "<p style ='color:red';> Pass khong dung</p>";
+							document.getElementById("R").innerHTML ="<p style ='color:red';> repass khong dung</p>";
+							return false;
+						}
+						else if(check == "ok"){
 							return true;
-						}		
-									
+						}
+
 						return false;
 					}
 				</script>
