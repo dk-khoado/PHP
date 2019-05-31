@@ -25,14 +25,17 @@ class Cart extends CI_Model
             "ID_User" => $id_user, 
             "amount" => $amount,
             "NameProduct"=>$NameProduct,
-            "Image"=> $Image,
             "PriceProduct"=>$PriceProduct
         );
-        $this->db->Insert($data);
+        $this->db->Insert("cart",$data);
     }
     public function Update($id_cart, $amount)
     {
         $query = "UPDATE cart set amount = $amount where id_cart = $id_cart";
         $this->db->query($query);
+    }
+    public function getAmountByID($id){
+        $query = "SELECT amount from cart where id_cart = $id";
+        return $this->db->query($query)->row();
     }
 }

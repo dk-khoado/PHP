@@ -28,8 +28,7 @@
 	<script src="<?php echo base_url(); ?>assets/js/nouislider.min.js"></script>
 	<!-- <link rel="stylesheet" href="layoutside.css"> -->
 	<script>
-		function LoadCart() {
-			$("#loadcart").children().remove();
+		function LoadCart() {		
 			base_url = "<?php echo base_url(); ?>";
 			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
 			$.ajax({
@@ -37,18 +36,17 @@
 				method: 'POST',
 				dataType: 'json',
 				data: {
-					"id_user": <?php echo $_SESSION['id'] ?>
+					"id_user": <?php echo $_SESSION['id']?>
 				},
 				url: url
 			}).done(function(callback) {
-
 				$.each(callback, function(k, v) {
 					data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image + "' width='60px' height='60px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
 
-					value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;' value='" + v.amount + "'></td><td colspan='3'>Giá:" + v.PriceProduct + "</td><td><button type='button'  class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
+					value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;' value='"+v.amount+"'></td><td colspan='3'>Giá:" + v.PriceProduct + "</td><td><button type='button'  class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
 					$("#loadcart").append(data + value);
 				});
-			});
+			});			
 		}
 	</script>
 </head>
@@ -62,32 +60,6 @@
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
 	<!-- phần header -->
-	<script>
-		function LoadCart() {
-			base_url = "<?php echo base_url()?>";
-			url = "<?php echo base_url().'apiajax/Cart';?>"
-			$.ajax( {
-				async: false,
-				method: 'POST',
-				dataType: 'json',
-				url: url,
-
-				success: function ( LoadCart ) {
-					$.each( LoadCart, function ( k, v ) {
-
-						data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image + "' width='80px' height='80px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
-
-						value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' max='50' type='number' style='width: 60px; height: 30px;'>" + v.amount + "</input></td><td colspan='3'>Giá:" + v.Price + "</td><td><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
-
-						$( "#loadcart" ).append( data + value );
-
-					} );
-				}
-			} ).done( function ( callback ) {
-				check = callback;
-			} );
-		};
-	</script>
 	<div class="fixed-top">
 		<header class="topbar">
 			<div class="container">
@@ -100,19 +72,21 @@
 
 								<div class="dropdown-menu" style="width: 420px">
 									<div>
-										<table class="table">
-											<thead>
-												<tr>
-													<th class="col-xs-4">Card</th>
-													<th colspan="5" style="text-align: right">Tổng: 20000</th>
-												</tr>
-											</thead>
-											<tbody id="loadcart">
-												<!-- <tr>
+										<a href="#">
+											<table class="table">
+												<thead>
+													<tr>
+														<th class="col-xs-4">Card</th>
+														<th colspan="5" style="text-align: right">Tổng: 20000</th>
+													</tr>
+												</thead>
+												<tbody id="loadcart">
+													<!-- <tr>
 														<td rowspan="2">
 															<img src="#" width="60px" height="60px">
 														</td>
 														<td class="col-xs-4" colspan="5">
+															
 														</td>
 													</tr>
 													<tr>
@@ -123,19 +97,21 @@
 
 														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
 														</td>
+
 													</tr> -->
-											</tbody>
-											<tfoot>
-												<tr>
-													<td style="text-align: center"><button type="button" class="btn btn-primary" style="width: 100%"><strong>Cart</strong></button>
-													</td>
+												</tbody>
+												<tfoot>
+													<tr>
+														<td style="text-align: center"><button type="button" class="btn btn-primary" style="width: 100%"><strong>Cart</strong></button>
+														</td>
 
-													<td class="col-xs-4" colspan="5" rowspan="2" style="text-align: center"><button type="button" class="btn btn-success" style="width: 100%"><strong>Check Out</strong></button>
-													</td>
-												</tr>
+														<td class="col-xs-4" colspan="5" rowspan="2" style="text-align: center"><button type="button" class="btn btn-success" style="width: 100%"><strong>Check Out</strong></button>
+														</td>
+													</tr>
 
-											</tfoot>
-										</table>
+												</tfoot>
+											</table>
+										</a>
 									</div>
 								</div>
 
@@ -266,7 +242,7 @@
 					<div>
 						<div class="card">
 							<div class="card-body">
-								<form action="<?php echo site_url('main/Login'); ?>" method="POST">
+								<form action="<?php echo site_url('main/Login'); ?>" method="POST" onSubmit="return Click2()">
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" name="username" id="username" placeholder="Username">
 									</div>
@@ -300,7 +276,7 @@
 						var check = '';
 						$.ajax({
 
-							url: "http://localhost:81/weblinhkien/ApiAjax/checkLogin",
+							url:"http://localhost:81/weblinhkien/ApiAjax/checkLogin",
 							method: "POST",
 							data: {
 								'username': username,
@@ -318,7 +294,6 @@
 						return false;
 					}
 				</script>
-				<!-- Modal footer -->
 			</div>
 		</div>
 	</div>
@@ -348,10 +323,10 @@
 									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" id="pass1" name="r_password" type="password" required placeholder="Password">
+									<input class="form-control form-control-lg"  name="password" type="password" id="pass1" required placeholder="Password">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="password" placeholder="Confirm" name="re_pass" id="pass2">
+									<input class="form-control form-control-lg" name="re_password" type="password"  id="pass2" placeholder="Confirm">
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
@@ -369,17 +344,18 @@
 						</div>
 					</form>
 				</div>
+				<!-- phần viết js -->
 				<script>
 					function Click() {
 						var username = $('#username').val();
 						var email = $('#email').val();
-						var r_password = $('#pass1').val();
-						var re_pass = $('#pass2').val();
+						var password = $('#pass1').val();
+						var re_password = $('#pass2').val();
 						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
 						var check = '';
 						$.ajax({
 
-							url: url,
+							url:"http://localhost:81/weblinhkien/ApiAjax/checkRegister",
 							method: "POST",
 							data: {
 								'username': username,
@@ -390,19 +366,22 @@
 						}).done(function(callback) {
 							check = callback;
 						});
-						if (check == "email") {
-							document.getElementById("K").innerHTML = "Email đã tồn tại";
+						if (check == "username") {
+							document.getElementById("K").innerHTML ="<p style ='color:red';> User đã tồn tại </p>";
 							return false;
-						} else if (check == "username") {
-							document.getElementById("K").innerHTML = "User đã tồn tại";
+						} else if (check == "email") {
+							document.getElementById("K").innerHTML ="<p style ='color:red';> Email đã tồn tại </p>";
 							return false;
-						} else if (r_password != re_pass) {
-							document.getElementById("K").innerHTML = "User đã tồn tại";
+						} else if(password != re_password){
+							document.getElementById("Q").innerHTML ="<p style ='color:red';> Nhập lại mật khẩu không đúng </p>";
+							return false;
+						} else if (check == "ok") {
+							return true;
 						}
+						alert("lỗi" + check);
 						return false;
 					}
 				</script>
-				<!-- phần viết js -->
 				<!-- end -->
 
 			</div>
