@@ -43,10 +43,25 @@
 			}).done(function(callback) {
 
 				$.each(callback, function(k, v) {					
-					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image +"' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='"+ v.amount +"' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button> </div> </div> </div> </div>";
+					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image +"' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='"+ v.amount +"' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart("+ v.id_cart +")'><strong>X</strong></button> </div> </div> </div> </div>";
 					$("#loadcart").append(data);
 				});
 			});
+		}
+		
+		function DelCart(del) {
+			url = "<?php echo base_url().'apiajax/removeOncart';?>"
+			$.ajax( {
+				url: url,
+				async: false,
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					'id_cart': del
+				}
+			} );
+
+
 		}
 	</script>
 </head>
@@ -59,8 +74,44 @@
 </style>
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
-
+<<<<<<< HEAD
+<<<<<<< HEAD
 	<!-- phần header -->
+	<script>
+		function LoadCart() {
+			base_url = "<?php echo base_url()?>";
+			url = "<?php echo base_url().'apiajax/Cart';?>"
+			$.ajax( {
+				async: false,
+				method: 'POST',
+				dataType: 'json',
+				url: url,
+
+				success: function ( LoadCart ) {
+					$.each( LoadCart, function ( k, v ) {
+
+						data = "<div class='row p-3'> <div class='col-2'><img src=" + base_url + "upload/" + v.Image " width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;'>" + v.amount + "</input> </div> <div class='col-7'>" + v.Price + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button> </div> </div> </div> </div>";
+						
+						$( "#loadcart" ).append(data);
+
+					} );
+				}
+			} ).done( function ( callback ) {
+				check = callback;
+			} );
+		};
+	</script>
+=======
+	<!-- phần header -->	
+>>>>>>> master
+=======
+
+<<<<<<< HEAD
+	<!-- phần header -->	
+>>>>>>> master
+=======
+	<!-- phần header -->
+>>>>>>> master
 	<div class="fixed-top">
 		<header class="topbar">
 			<div class="container">
