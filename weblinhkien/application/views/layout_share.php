@@ -242,10 +242,10 @@
 							<div class="card-body">
 								<form action="<?php echo site_url('main/Login'); ?>" method="POST">
 									<div class="form-group">
-										<input class="form-control form-control-lg" type="text" name="username" placeholder="Username">
+										<input class="form-control form-control-lg" type="text" name="username" id="username" placeholder="Username">
 									</div>
 									<div class="form-group">
-										<input class="form-control form-control-lg" type="password" name="password" placeholder="Password">
+										<input class="form-control form-control-lg" type="password" name="password" id="password" placeholder="Password">
 									</div>
 									<div class="form-group">
 										<label class="custom-control custom-checkbox">
