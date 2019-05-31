@@ -62,6 +62,7 @@
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
 <<<<<<< HEAD
+<<<<<<< HEAD
 	<!-- phần header -->
 	<script>
 		function LoadCart() {
@@ -88,6 +89,10 @@
 		};
 	</script>
 =======
+	<!-- phần header -->	
+>>>>>>> master
+=======
+
 	<!-- phần header -->	
 >>>>>>> master
 	<div class="fixed-top">
