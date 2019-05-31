@@ -307,7 +307,7 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg" type="text" id="username_r" name="username" required placeholder="Username" autocomplete="off">
 									<p id="K"></p>
 
 								</div>
