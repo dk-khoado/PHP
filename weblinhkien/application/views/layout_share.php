@@ -75,11 +75,9 @@
 				success: function ( LoadCart ) {
 					$.each( LoadCart, function ( k, v ) {
 
-						data = "<tr><td rowspan='2'><img src='" + base_url + "upload/" + v.Image + "' width='80px' height='80px'></td><td class='col-xs-4' colspan='5'>" + v.NameProduct + "</td></tr>";
-
-						value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' max='50' type='number' style='width: 60px; height: 30px;'>" + v.amount + "</input></td><td colspan='3'>Giá:" + v.Price + "</td><td><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
-
-						$( "#loadcart" ).append( data + value );
+						data = "<div class='row p-3'> <div class='col-2'><img src=" + base_url + "upload/" + v.Image " width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;'>" + v.amount + "</input> </div> <div class='col-7'>" + v.Price + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button> </div> </div> </div> </div>";
+						
+						$( "#loadcart" ).append(data);
 
 					} );
 				}
@@ -99,43 +97,36 @@
 								<button class="btn btn-secondary dropdown-toggle" onclick="LoadCart()" data-toggle="dropdown" id="btn_cart">Card</button>
 
 								<div class="dropdown-menu" style="width: 420px">
-									<div>
-										<table class="table">
-											<thead>
-												<tr>
-													<th class="col-xs-4">Card</th>
-													<th colspan="5" style="text-align: right">Tổng: 20000</th>
-												</tr>
-											</thead>
-											<tbody id="loadcart">
-												<!-- <tr>
-														<td rowspan="2">
-															<img src="#" width="60px" height="60px">
-														</td>
-														<td class="col-xs-4" colspan="5">
-														</td>
-													</tr>
-													<tr>
-														<td style="width: 50px"><input class="form-control text-center" min="1" max="50" type="number" style="width: 60px; height: 25px;" value="12">
-														</td>
+									<div class="row p-3">
+										<div class="col-12">
+											Totol:5555555
+										</div>
+									</div>
+									<div id="loadcart" style="overflow-y: scroll; overflow-x: hidden; max-height: 200px;">
+										<div class="row p-3">
+											<div class="col-2"><img src="#" width="85px" height="85px">
+											</div>
+											<div class="col-10">
+												<div class="row p-3">
+													<div class="col-12">Ten</div>
+												</div>
+												<div class="row p-3">
+													<div class="col-3"><input class="form-control text-center" min="1" max="50" type="number" style="width: 60px; height: 25px;"></input>
+													</div>
+													<div class="col-7">Gia</div>
+													<div class="col-2"><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
+													</div>
+												</div>
+											</div>
+										</div>
 
-														<td colspan="3">Giá:100000000000</td>
 
-														<td><button type="button" class="btn btn-danger btn-sm" style="width: 30px; height: 30px; text-align: center;"><strong>X</strong></button>
-														</td>
-													</tr> -->
-											</tbody>
-											<tfoot>
-												<tr>
-													<td style="text-align: center"><button type="button" class="btn btn-primary" style="width: 100%"><strong>Cart</strong></button>
-													</td>
-
-													<td class="col-xs-4" colspan="5" rowspan="2" style="text-align: center"><button type="button" class="btn btn-success" style="width: 100%"><strong>Check Out</strong></button>
-													</td>
-												</tr>
-
-											</tfoot>
-										</table>
+									</div>
+									<div class="row pb-2">
+										<div class="col-4"><button type="button" class="btn btn-primary" style="width: 100%; text-align: center;"><strong>Cart</strong></button>
+										</div>
+										<div class="col-8"><button type="button" class="btn btn-success" style="width: 100%; text-align: center;"><strong>Check Out</strong></button>
+										</div>
 									</div>
 								</div>
 
