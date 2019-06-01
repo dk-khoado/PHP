@@ -43,6 +43,11 @@
 			}).done(function(callback) {
 
 				$.each(callback, function(k, v) {
+				
+					var total = v.amount * v.PriceProduct;
+					sum += total.toString();
+					$('.loadtotal').text('sum');	
+				
 					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount + "' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
 					$("#loadcart").append(data);
 				});
@@ -91,8 +96,8 @@
 										});
 									</script>
 									<div class="row p-3">
-										<div class="col-12">
-											Totol:5555555
+										<div class="col-12" id="loadtotal">
+											
 										</div>
 									</div>
 									<div id="loadcart" style="overflow-y: scroll; overflow-x: hidden; max-height: 200px;">
