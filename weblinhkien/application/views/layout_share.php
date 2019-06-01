@@ -45,16 +45,10 @@
 				$.each(callback, function(k, v) {
 					var total = v.amount * v.PriceProduct;
 					sum += total.toString();
-					$('.loadtotal').text('sum');	
-				
+					$('.loadtotal').text('sum');
+
 					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount + "' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
 					$("#loadcart").append(data);
-				});
-			});
-		}
-
-					value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;' value='" + v.amount + "'></td><td colspan='3'>Giá:" + v.PriceProduct + "</td><td><button type='button'  class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
-					$("#loadcart").append(data + value);
 				});
 			});
 		}
@@ -69,7 +63,7 @@
 </style>
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
-	<!-- phần header -->	
+	<!-- phần header -->
 	<div class="fixed-top">
 		<header class="topbar">
 			<div class="container">
@@ -88,7 +82,7 @@
 									</script>
 									<div class="row p-3">
 										<div class="col-12" id="loadtotal">
-											
+
 										</div>
 									</div>
 									<div id="loadcart" style="overflow-y: scroll; overflow-x: hidden; max-height: 200px;">
@@ -271,11 +265,10 @@
 					</div>
 				</div>
 				<script>
-					function Click2() {						
+					function Click2() {
 						var username = $('#username').val();
 						var password = $('#password').val();
-						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
-						alert(url);
+						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";						
 						var check = '';
 						$.ajax({
 							url: url,
@@ -291,7 +284,7 @@
 						});
 						if (check == "ok") {
 							return true;
-						}						
+						}
 						return false;
 					}
 				</script>
@@ -312,7 +305,6 @@
 					</div>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-
 				<!-- Modal body -->
 				<div class="modal-body">
 					<form class="splash-container" action="<?php echo site_url('main/Register'); ?>" method="POST" onSubmit="return Click()">
@@ -357,7 +349,7 @@
 						var r_password = $('#pass1').val();
 						var re_pass = $('#pass2').val();
 						url = "<?php echo base_url() . 'apiajax/checkRegister' ?>";
-						var check = '';						
+						var check = '';
 						$.ajax({
 
 							url: url,
@@ -379,10 +371,9 @@
 							return false;
 						} else if (r_password != re_pass) {
 							document.getElementById("Q").innerHTML = "<p style ='color:red';> Pass khong dung</p>";
-							document.getElementById("R").innerHTML ="<p style ='color:red';> repass khong dung</p>";
+							document.getElementById("R").innerHTML = "<p style ='color:red';> repass khong dung</p>";
 							return false;
-						}
-						else if(check == "ok"){
+						} else if (check == "ok") {
 							return true;
 						}
 
