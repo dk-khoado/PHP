@@ -42,8 +42,12 @@
 				url: url
 			}).done(function(callback) {
 
-				$.each(callback, function(k, v) {					
-					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image +"' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='"+ v.amount +"' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button> </div> </div> </div> </div>";
+				$.each(callback, function(k, v) {
+					var total = v.amount * v.PriceProduct;
+					sum += total.toString();
+					$('.loadtotal').text('sum');
+
+					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount + "' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
 					$("#loadcart").append(data);
 				});
 			});
@@ -59,7 +63,6 @@
 </style>
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
-
 	<!-- phần header -->
 	<div class="fixed-top">
 		<header class="topbar">
@@ -72,13 +75,18 @@
 								<button class="btn btn-secondary dropdown-toggle" onclick="LoadCart()" data-toggle="dropdown" id="btn_cart">Card</button>
 
 								<div class="dropdown-menu" style="width: 420px">
+									<script>
+										$(document).on('click', '.dropdown-menu', function(e) {
+											e.stopPropagation();
+										});
+									</script>
 									<div class="row p-3">
-										<div class="col-12">
-											Totol:5555555
+										<div class="col-12" id="loadtotal">
+
 										</div>
 									</div>
 									<div id="loadcart" style="overflow-y: scroll; overflow-x: hidden; max-height: 200px;">
-										<div class="row p-3">
+										<!-- <div class="row p-3">
 											<div class="col-2"><img src="#" width="85px" height="85px">
 											</div>
 											<div class="col-10">
@@ -93,11 +101,9 @@
 													</div>
 												</div>
 											</div>
-										</div>
-
-
+										</div> -->
 									</div>
-									<div class="row pb-2">
+									<div class="row p-2">
 										<div class="col-4"><button type="button" class="btn btn-primary" style="width: 100%; text-align: center;"><strong>Cart</strong></button>
 										</div>
 										<div class="col-8"><button type="button" class="btn btn-success" style="width: 100%; text-align: center;"><strong>Check Out</strong></button>
@@ -299,14 +305,13 @@
 					</div>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
-
 				<!-- Modal body -->
 				<div class="modal-body">
 					<form class="splash-container" action="<?php echo site_url('main/Register'); ?>" method="POST" onSubmit="return Click()">
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" id="username_r" name="username" required placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
 									<p id="K"></p>
 
 								</div>

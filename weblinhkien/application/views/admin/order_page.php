@@ -34,7 +34,15 @@
                 <th>#</th>
             </thead>
             <tbody>
-
+            <?php
+            foreach($data as $key=> $value){
+                echo "<td>".$value->ID_order."</td>";
+                echo "<td>".$value->ID_User."</td>";
+                echo "<td>".$value->OnSellDate."</td>";
+                echo "<td>".$value->status."</td>";
+                echo "<td></td>";
+            }
+            ?>
             </tbody>
         </table>
         <!---->

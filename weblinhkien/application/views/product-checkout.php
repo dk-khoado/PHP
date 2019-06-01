@@ -41,14 +41,14 @@
                                         <div class="card-body">
                                             <form class="needs-validation" novalidate>
                                                 <div class="row">
-                                                    
                                                     <div class="col-md-12 mb-3">
-                                                        <label for="lastName">Họ và tên</label>
-                                                        <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                                                        <label for="firstName">Họ và tên</label>
+                                                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
                                                         <div class="invalid-feedback">
-                                                            Valid last name is required.
+                                                            Valid first name is required.
                                                         </div>
                                                     </div>
+                                                    
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="username">Tên đăng nhập</label>
