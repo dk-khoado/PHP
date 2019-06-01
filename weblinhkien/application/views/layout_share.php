@@ -47,9 +47,29 @@
 					sum += total.toString();
 					$('.loadtotal').text('sum');
 
-					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount + "' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
+					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount + "' min='1' type='number' style='width: 60px; height: 25px;' onchange='UpdateAmount("+ v.id_cart + "," + v.id_product +")' id='updateCart'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
 					$("#loadcart").append(data);
 				});
+			});
+		}
+		
+		
+		function UpdateAmount(id_cart, id_product)
+		{
+			var update = $('#updateCart').val();
+			url = "<?php echo base_url().'apiajax/updateCart';?>";
+			$.ajax({
+				url:url,
+				async: false,
+				method: 'POST',
+				dataType: 'json',
+				data:{
+					'id_cart':'',
+					'id_product':'',
+					'amount':update
+				}
+				
+				
 			});
 		}
 	</script>
