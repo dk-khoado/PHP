@@ -43,7 +43,6 @@
 			}).done(function(callback) {
 
 				$.each(callback, function(k, v) {
-				
 					var total = v.amount * v.PriceProduct;
 					sum += total.toString();
 					$('.loadtotal').text('sum');	
@@ -54,18 +53,10 @@
 			});
 		}
 
-		function DelCart(del) {
-			url = "<?php echo base_url() . 'apiajax/removeOncart'; ?>"
-			$.ajax({
-				url: url,
-				async: false,
-				method: 'POST',
-				dataType: 'json',
-				data: {
-					'id_cart': del
-				}
+					value = "<tr><td style='width: 50px'><input class='form-control text-center' min='1' type='number' style='width: 60px; height: 25px;' value='" + v.amount + "'></td><td colspan='3'>Giá:" + v.PriceProduct + "</td><td><button type='button'  class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;'><strong>X</strong></button></td></tr>";
+					$("#loadcart").append(data + value);
+				});
 			});
-
 		}
 	</script>
 </head>
@@ -78,7 +69,7 @@
 </style>
 
 <body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
-	<!-- phần header -->
+	<!-- phần header -->	
 	<div class="fixed-top">
 		<header class="topbar">
 			<div class="container">
@@ -280,10 +271,11 @@
 					</div>
 				</div>
 				<script>
-					function Click2() {
+					function Click2() {						
 						var username = $('#username').val();
 						var password = $('#password').val();
 						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
+						alert(url);
 						var check = '';
 						$.ajax({
 							url: url,
@@ -299,7 +291,7 @@
 						});
 						if (check == "ok") {
 							return true;
-						}
+						}						
 						return false;
 					}
 				</script>
@@ -327,7 +319,7 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" id="username_r" name="username" required placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
 									<p id="K"></p>
 
 								</div>
@@ -365,7 +357,7 @@
 						var r_password = $('#pass1').val();
 						var re_pass = $('#pass2').val();
 						url = "<?php echo base_url() . 'apiajax/checkRegister' ?>";
-						var check = '';
+						var check = '';						
 						$.ajax({
 
 							url: url,
@@ -387,9 +379,10 @@
 							return false;
 						} else if (r_password != re_pass) {
 							document.getElementById("Q").innerHTML = "<p style ='color:red';> Pass khong dung</p>";
-							document.getElementById("R").innerHTML = "<p style ='color:red';> repass khong dung</p>";
+							document.getElementById("R").innerHTML ="<p style ='color:red';> repass khong dung</p>";
 							return false;
-						} else if (check == "ok") {
+						}
+						else if(check == "ok"){
 							return true;
 						}
 

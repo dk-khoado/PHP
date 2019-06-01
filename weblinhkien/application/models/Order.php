@@ -28,12 +28,12 @@ class Order extends CI_Model
         $query = $this->db->get($a);
         return $query->row();
     }
-    // function getByIDProduct($id)
-    // {
-    //     $a = "order where ID_product = '$id'";
-    //     $query = $this->db->get($a);
-    //     return $query->result();
-    // }
+    function getByIDProduct($id)
+    {
+        $a = "order where ID_product = '$id'";
+        $query = $this->db->get($a);
+        return $query->result();
+    }
     function getAllByIDUser($id)
     {
         $a = "order where ID_User = '$id'";
