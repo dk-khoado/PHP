@@ -8,6 +8,6 @@ class Detail_order extends CI_Model{
     public function getByIDOrder($id){
         $query = "SELECT * from detail_order where ID_order = $id";
         $result = $this->db->query($query);
-        return  $result->result();     
+        return  $result->result();    
     }
 }

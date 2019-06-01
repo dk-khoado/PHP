@@ -29,8 +29,7 @@
 	<!-- <link rel="stylesheet" href="layoutside.css"> -->
 	<script>
 		function LoadCart() {
-			$("#loadcart").children().remove();
-			$("#loadtotal").children().remove();
+			$("#loadcart").children().remove();			
 			base_url = "<?php echo base_url(); ?>";
 			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
 			$.ajax({
@@ -42,7 +41,7 @@
 				},
 				url: url
 			}).done(function(callback) {
-				
+
 				var sum = 0;
 				$.each(callback, function(k, v) {
 					var total = v.amount * v.PriceProduct;
@@ -101,9 +100,11 @@
 										});
 									</script>
 									<div class="row p-3">
-										<div class="col-12" id="loadtotal">
+										<b>
+											<div class="col-12" id="loadtotal">
 
-										</div>
+											</div>
+										</b>
 									</div>
 									<div id="loadcart" style="overflow-y: scroll; overflow-x: hidden; max-height: 200px;">
 										<!-- <div class="row p-3">

@@ -82,12 +82,10 @@ class Main extends CI_Controller
     }
     public function AddOrder()
     {
-        $this->load->model('Order');
-        $ID_product = $this->input->post('ID_product');
-        $AmountProductSold = $this->input->post('AmountProductSold');
+        $this->load->model('Order');        
         $OnSellDate = $this->input->post('OnSellDate');
         $ID_User = $this->input->post('ID_User');
-        $this->Order->Insert($ID_product, $AmountProductSold, $OnSellDate, $ID_User);
+        $this->Order->Insert($OnSellDate, $ID_User);
     }
     public function Signout()
     {
