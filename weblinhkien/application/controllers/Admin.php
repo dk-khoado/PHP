@@ -141,8 +141,10 @@ class Admin extends CI_Controller
 	}
 	public function Order()
 	{		
+		$this->load->model("Order");	
 		$header = "Danh Sách Đặt Hàng";
-		$context = $this->load->view('admin/order_page', array('header'=>$header), true);
+		$data = $this->Order->getAll();
+		$context = $this->load->view('admin/order_page', array('header'=>$header,'data'=>$data), true);
 		$this->load->view('admin/share_layout', array('context' => $context));
 	}
 
