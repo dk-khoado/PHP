@@ -112,8 +112,6 @@
 												</div>
 											</div>
 										</div> -->
-
-
 									</div>
 									<div class="row pb-2">
 										<div class="col-4"><button type="button" class="btn btn-primary" style="width: 100%; text-align: center;"><strong>Cart</strong></button>
