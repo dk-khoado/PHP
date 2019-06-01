@@ -60,9 +60,6 @@
 					'id_cart': del
 				}
 			});
-			$(document).on('click', '.dropdown-menu', function(e) {
-				e.stopPropagation();
-			});
 
 		}
 	</script>
@@ -88,13 +85,18 @@
 								<button class="btn btn-secondary dropdown-toggle" onclick="LoadCart()" data-toggle="dropdown" id="btn_cart">Card</button>
 
 								<div class="dropdown-menu" style="width: 420px">
+									<script>
+										$(document).on('click', '.dropdown-menu', function(e) {
+											e.stopPropagation();
+										});
+									</script>
 									<div class="row p-3">
 										<div class="col-12">
 											Totol:5555555
 										</div>
 									</div>
 									<div id="loadcart" style="overflow-y: scroll; overflow-x: hidden; max-height: 200px;">
-										<div class="row p-3">
+										<!-- <div class="row p-3">
 											<div class="col-2"><img src="#" width="85px" height="85px">
 											</div>
 											<div class="col-10">
@@ -109,7 +111,7 @@
 													</div>
 												</div>
 											</div>
-										</div>
+										</div> -->
 
 
 									</div>
