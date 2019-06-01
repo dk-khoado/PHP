@@ -30,6 +30,7 @@
 	<script>
 		function LoadCart() {
 			$("#loadcart").children().remove();
+			$("#loadtotal").children().remove();
 			base_url = "<?php echo base_url(); ?>";
 			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
 			$.ajax({
@@ -41,16 +42,35 @@
 				},
 				url: url
 			}).done(function(callback) {
-
+				
+				var sum = 0;
 				$.each(callback, function(k, v) {
 					var total = v.amount * v.PriceProduct;
-					sum += total.toString();
-					$('.loadtotal').text('sum');
-
-					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount + "' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
+					sum += total;
+					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount +
+						"' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct +
+						"</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
 					$("#loadcart").append(data);
+					div = "Tổng: " + sum;
+					$("#loadtotal").text(div);
 				});
+
+
 			});
+		}
+
+		function DelCart(del) {
+			url = "<?php echo base_url() . 'apiajax/removeOncart'; ?>"
+			$.ajax({
+				url: url,
+				async: false,
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					'id_cart': del
+				}
+			});
+			LoadCart();
 		}
 	</script>
 </head>
@@ -352,7 +372,7 @@
 						var email = $('#email').val();
 						var password = $('#pass1').val();
 						var re_password = $('#pass2').val();
-						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";						
+						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
 						var check = '';
 						$.ajax({
 
@@ -374,12 +394,12 @@
 							document.getElementById("NoteEmail").innerHTML = "<p style ='color:red';> Email đã tồn tại </p>";
 							return false;
 						} else if (password != re_password) {
-							document.getElementById("K").innerHTML = "<p style ='color:red';> Nhập lại mật khẩu không đúng </p>";						
+							document.getElementById("K").innerHTML = "<p style ='color:red';> Nhập lại mật khẩu không đúng </p>";
 							// if (check == "ok") {
 							// 	return true;
 							// }
 							return false;
-						}else if (check == "ok"){
+						} else if (check == "ok") {
 							return true;
 						}
 						alert("lỗi" + check);
