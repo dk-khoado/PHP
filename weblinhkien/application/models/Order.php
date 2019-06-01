@@ -3,11 +3,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Order extends CI_Model
 {
     //thêm dữ liệu vào bảng order
-    function Insert($ID_product, $AmountProductSold, $OnSellDate, $ID_User)
+    function Insert($OnSellDate, $ID_User)
     {
         $data = array(           
-            "ID_product" => $ID_product,
-            "AmountProductSold" => $AmountProductSold,
             "OnSellDate" => $OnSellDate,
             "status" => 0,
             "ID_User" => $ID_User
