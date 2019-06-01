@@ -3,9 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Order extends CI_Model
 {
     //thêm dữ liệu vào bảng order
-    function Insert($OnSellDate, $ID_User)
+    function Insert($ID_product, $AmountProductSold, $OnSellDate, $ID_User)
     {
         $data = array(           
+            "ID_product" => $ID_product,
+            "AmountProductSold" => $AmountProductSold,
             "OnSellDate" => $OnSellDate,
             "status" => 0,
             "ID_User" => $ID_User
@@ -28,12 +30,12 @@ class Order extends CI_Model
         $query = $this->db->get($a);
         return $query->row();
     }
-    // function getByIDProduct($id)
-    // {
-    //     $a = "order where ID_product = '$id'";
-    //     $query = $this->db->get($a);
-    //     return $query->result();
-    // }
+    function getByIDProduct($id)
+    {
+        $a = "order where ID_product = '$id'";
+        $query = $this->db->get($a);
+        return $query->result();
+    }
     function getAllByIDUser($id)
     {
         $a = "order where ID_User = '$id'";
