@@ -363,7 +363,7 @@
 						var check = '';
 						$.ajax({
 
-							url:"http://localhost:81/weblinhkien/ApiAjax/checkRegister",
+							url:url,
 							method: "POST",
 							data: {
 								'username': username,
@@ -375,13 +375,13 @@
 							check = callback;
 						});
 						if (check == "username") {
-							document.getElementById("K").innerHTML ="<p style ='color:red';> User đã tồn tại </p>";
+							document.getElementById("NoteUser").innerHTML ="<p style ='color:red';> User đã tồn tại </p>";
 							return false;
 						} else if (check == "email") {
-							document.getElementById("K").innerHTML ="<p style ='color:red';> Email đã tồn tại </p>";
+							document.getElementById("NoteEmail").innerHTML ="<p style ='color:red';> Email đã tồn tại </p>";
 							return false;
 						} else if(password != re_password){
-							document.getElementById("Q").innerHTML ="<p style ='color:red';> Nhập lại mật khẩu không đúng </p>";
+							document.getElementById("k").innerHTML ="<p style ='color:red';> Nhập lại mật khẩu không đúng </p>";
 							return false;
 						} else if (check == "ok") {
 							return true;
