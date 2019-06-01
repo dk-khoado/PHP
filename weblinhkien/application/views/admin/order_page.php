@@ -34,21 +34,15 @@
                 <th>#</th>
             </thead>
             <tbody>
-				<?php
-			foreach ($data as $key => $value) 
-			{
-			?>
-			<table class="order">
-			<tr>
-			<td>Ma: <?php echo $value['ID_order'];?></td>
-			<th>Ten: <?php echo $value['ID_User'];?></th>
-			<th>Ngay dat hang: <?php echo $value['OnSellDate'];?></th>
-			<th> Status: <?php echo $value['status'];?> </th>
-			</tr>
-			</table>
-			<?php
-			}
-			?>
+            <?php
+            foreach($data as $key=> $value){
+                echo "<td>".$value->ID_order."</td>";
+                echo "<td>".$value->ID_User."</td>";
+                echo "<td>".$value->OnSellDate."</td>";
+                echo "<td>".$value->status."</td>";
+                echo "<td></td>";
+            }
+            ?>
             </tbody>
         </table>
         <!---->
