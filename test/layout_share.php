@@ -254,6 +254,7 @@
 
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+									
 								</form>
 							</div>
 							<div class="card-footer bg-white p-0">
@@ -286,7 +287,12 @@
 							check = callback;
 						});
 						if (check == "ok") {
+							alert("Đăng nhập thành công");							
 							return true;
+						}
+						else
+						{
+							alert("Tài khoản hoặc mật khẩu sai!!");
 						}						
 						return false;
 					}
@@ -315,12 +321,12 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg" type="text"  name="username" id="username_r" required placeholder="Username" autocomplete="off">
 									<p id="NoteUser"></p>
 
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
+									<input class="form-control form-control-lg" type="email"  name="email" id="email" required placeholder="E-mail" autocomplete="off">
 									<p id="NoteEmail"></p>
 								</div>
 								<div class="form-group">
