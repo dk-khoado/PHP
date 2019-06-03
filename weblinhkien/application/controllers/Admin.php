@@ -5,7 +5,7 @@ class Admin extends CI_Controller
 {
 	public function __construct()
 	{
-		parent::__construct();
+		parent::__construct();		
 	}
 	/**
 	 * Index Page for this controller.
@@ -27,12 +27,14 @@ class Admin extends CI_Controller
 		// $this->load->model('Type');
 		// $data = $this->Type->getAll();
 		//print_r($data);
+		$this->Login();
 		$header = "Dashboard";
 		$context = $this->load->view('admin/index', array('header'=>$header), true);
 		$this->load->view('admin/share_layout', array('context' => $context));
 	}
 	public function product()
 	{
+		$this->Login();
 		$this->load->model('Products');	
 		$this->load->model('Type');	
 		$data = $this->Products->getAll();
@@ -44,6 +46,7 @@ class Admin extends CI_Controller
 	}
 	public function addProduct()
 	{
+		$this->Login();
 		$this->load->model('Type');
 		$data = $this->Type->getAll();
 		//print_r($data);			
@@ -54,6 +57,7 @@ class Admin extends CI_Controller
 
 	public function insertProduct()
 	{
+		$this->Login();
 		$config['upload_path'] = 'upload/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']     = '10000';
@@ -85,6 +89,7 @@ class Admin extends CI_Controller
 
 	function deleteProduct($id)
 	{
+		$this->Login();
 		$this->load->model('Products');
 		$data = $this->Products->getByID($id);
 		$this->Products->Delete($id);
@@ -96,6 +101,7 @@ class Admin extends CI_Controller
 
 	function EditProduct($id)
 	{
+		$this->Login();
 		$this->load->model('Type');
 		$this->load->model('Products');
 		$data = $this->Type->getAll();		
@@ -108,7 +114,7 @@ class Admin extends CI_Controller
 	//update dữ liệu
 	function UpdateProduct($id)
 	{
-
+		$this->Login();
 		$config['upload_path'] = 'upload/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['max_size']     = '10000';
@@ -144,6 +150,7 @@ class Admin extends CI_Controller
 	}
 	public function Order()
 	{		
+		$this->Login();
 		$this->load->model("Order");	
 		$header = "Danh Sách Đặt Hàng";
 		$data = $this->Order->getAll();
@@ -154,5 +161,12 @@ class Admin extends CI_Controller
 	public function accout()
 	{
 		$this->load->view('admin/accout');
+	}
+	private function Login(){
+		//session_destroy();
+		if(!isset($_SESSION['login_admin'])){
+			redirect("admin_login/login");
+		}
+		
 	}
 }

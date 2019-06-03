@@ -74,8 +74,8 @@ class Main extends CI_Controller
     {
         $this->load->model('Customer');
         $user = $this->input->post('username');
-        $password = $this->input->post('r_password');
-        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $email = $this->input->post('email');        
         $this->Customer->Register($user, $password, $email);
         $this->onLogin($user,$password);
         //redirect("main/index");
