@@ -74,20 +74,18 @@ class Main extends CI_Controller
     {
         $this->load->model('Customer');
         $user = $this->input->post('username');
-        $password = $this->input->post('r_password');
-        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $email = $this->input->post('email');        
         $this->Customer->Register($user, $password, $email);
         $this->onLogin($user,$password);
         //redirect("main/index");
     }
     public function AddOrder()
     {
-        $this->load->model('Order');
-        $ID_product = $this->input->post('ID_product');
-        $AmountProductSold = $this->input->post('AmountProductSold');
+        $this->load->model('Order');        
         $OnSellDate = $this->input->post('OnSellDate');
         $ID_User = $this->input->post('ID_User');
-        $this->Order->Insert($ID_product, $AmountProductSold, $OnSellDate, $ID_User);
+        $this->Order->Insert($OnSellDate, $ID_User);
     }
     public function Signout()
     {

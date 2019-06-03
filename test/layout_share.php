@@ -256,6 +256,7 @@
 
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+									
 								</form>
 							</div>
 							<div class="card-footer bg-white p-0">
@@ -287,10 +288,14 @@
 						}).done(function(callback) {
 							check = callback;
 						});
-						if (check != "ok") {
+						if (check == "ok") {
+							alert("Đăng nhập thành công");							
 							return true;
 						}
-						alert("lỗi" + check);
+						else
+						{
+							alert("Tài khoản hoặc mật khẩu sai!!");
+						}						
 						return false;
 					}
 				</script>
@@ -317,10 +322,13 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
+									<input class="form-control form-control-lg" type="text"  name="username" id="username_r" required placeholder="Username" autocomplete="off">
+									<p id="NoteUser"></p>
+
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
+									<input class="form-control form-control-lg" type="email"  name="email" id="email" required placeholder="E-mail" autocomplete="off">
+									<p id="NoteEmail"></p>
 								</div>
 								<div class="form-group">
 									<input class="form-control form-control-lg"  name="password" type="password" id="pass1" required placeholder="Password">
@@ -355,7 +363,7 @@
 						var check = '';
 						$.ajax({
 
-							url:"http://localhost:81/weblinhkien/ApiAjax/checkRegister",
+							url:url,
 							method: "POST",
 							data: {
 								'username': username,
@@ -367,13 +375,13 @@
 							check = callback;
 						});
 						if (check == "username") {
-							document.getElementById("K").innerHTML ="<p style ='color:red';> User đã tồn tại </p>";
+							document.getElementById("NoteUser").innerHTML ="<p style ='color:red';> User đã tồn tại </p>";
 							return false;
 						} else if (check == "email") {
-							document.getElementById("K").innerHTML ="<p style ='color:red';> Email đã tồn tại </p>";
+							document.getElementById("NoteEmail").innerHTML ="<p style ='color:red';> Email đã tồn tại </p>";
 							return false;
 						} else if(password != re_password){
-							document.getElementById("Q").innerHTML ="<p style ='color:red';> Nhập lại mật khẩu không đúng </p>";
+							document.getElementById("k").innerHTML ="<p style ='color:red';> Nhập lại mật khẩu không đúng </p>";
 							return false;
 						} else if (check == "ok") {
 							return true;

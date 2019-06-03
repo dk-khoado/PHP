@@ -34,21 +34,53 @@
                 <th>#</th>
             </thead>
             <tbody>
-				<?php
-			foreach ($data as $key => $value) 
-			{
-			?>
-			<table class="order">
-			<tr>
-			<td>Ma: <?php echo $value['ID_order'];?></td>
-			<th>Ten: <?php echo $value['ID_User'];?></th>
-			<th>Ngay dat hang: <?php echo $value['OnSellDate'];?></th>
-			<th> Status: <?php echo $value['status'];?> </th>
-			</tr>
-			</table>
-			<?php
-			}
-			?>
+            <?php
+            foreach($data as $key=> $value){
+                echo "<td>".$value->ID_order."</td>";
+                echo "<td>".$value->ID_User."</td>";
+                echo "<td>".$value->OnSellDate."</td>";
+                echo "<td>".$value->status."</td>";
+                echo "<td>"<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Thongtin</button>."</td>";
+            }
+            ?>
+              <div class="modal" id="myModal">
+  			<div class="modal-dialog modal-lg">
+    	<div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Heading</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+        <div class="modal-body">
+         	<form role="form">
+          		<div class="input-group">
+          			<span class="input-group-text input-group-prepend">ID_detail:</span>
+					<input name="codeDetail" class="form-control" type="text" required>
+				</div></br>
+          	<div class="input-group">
+          			<span class="input-group-text input-group-prepend">ID_order:</span>
+          			<input name="codeOrder" class="form-control" type="text" required>
+			</div></br>
+          	<div class="input-group">
+          			<span class="input-group-text input-group-prepend">ID_Product</span>
+          			<input name="codeProduct" class="form-control" type="text" required>
+			</div></br>
+          	<div class="input-group">
+          			<span class="input-group-text input-group-prepend">Price</span>
+          			<input name="codePrice" class="form-control" type="text" required>
+				</div></br>
+          	<div class="input-group">
+          			<span class="input-group-text input-group-prepend">amount</span>
+          			<input name="codeAmount" class="form-control" type="text" required> 
+				  </div></br>
+          	</form>
+			</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+				</div>
+      </div>
+    </div>
             </tbody>
         </table>
         <!---->

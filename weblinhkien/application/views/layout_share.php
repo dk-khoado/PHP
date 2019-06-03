@@ -29,7 +29,7 @@
 	<!-- <link rel="stylesheet" href="layoutside.css"> -->
 	<script>
 		function LoadCart() {
-			$("#loadcart").children().remove();
+			$("#loadcart").children().remove();			
 			base_url = "<?php echo base_url(); ?>";
 			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
 			$.ajax({
@@ -42,14 +42,19 @@
 				url: url
 			}).done(function(callback) {
 
+				var sum = 0;
 				$.each(callback, function(k, v) {
 					var total = v.amount * v.PriceProduct;
-					sum += total.toString();
-					$('.loadtotal').text('sum');
-
-					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount + "' min='1' type='number' style='width: 60px; height: 25px;' onchange='UpdateAmount("+ v.id_cart + "," + v.id_product +")' id='updateCart'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
+					sum += total;
+					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount +
+						"' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct +
+						"</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
 					$("#loadcart").append(data);
+					div = "Tổng: " + sum;
+					$("#loadtotal").text(div);
 				});
+
+
 			});
 		}
 		
@@ -71,6 +76,19 @@
 				
 				
 			});
+
+		function DelCart(del) {
+			url = "<?php echo base_url() . 'apiajax/removeOncart'; ?>"
+			$.ajax({
+				url: url,
+				async: false,
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					'id_cart': del
+				}
+			});
+			LoadCart();
 		}
 	</script>
 </head>
@@ -101,9 +119,11 @@
 										});
 									</script>
 									<div class="row p-3">
-										<div class="col-12" id="loadtotal">
+										<b>
+											<div class="col-12" id="loadtotal">
 
-										</div>
+											</div>
+										</b>
 									</div>
 									<div id="loadcart" style="overflow-y: scroll; overflow-x: hidden; max-height: 200px;">
 										<!-- <div class="row p-3">
@@ -272,6 +292,7 @@
 
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+
 								</form>
 							</div>
 							<div class="card-footer bg-white p-0">
@@ -288,9 +309,11 @@
 					function Click2() {
 						var username = $('#username').val();
 						var password = $('#password').val();
-						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";						
+						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
 						var check = '';
+						// alert(username + password);
 						$.ajax({
+
 							url: url,
 							method: "POST",
 							data: {
@@ -303,7 +326,11 @@
 							check = callback;
 						});
 						if (check == "ok") {
+							alert("Đăng nhập thành công");
 							return true;
+						} else {
+							alert("Tài khoản hoặc mật khẩu sai!!");
+							// alert(check);
 						}
 						return false;
 					}
@@ -331,24 +358,23 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
-									<p id="K"></p>
+									<input class="form-control form-control-lg" type="text" name="username" id="username_r" required placeholder="Username" autocomplete="off">
+									<p id="NoteUser"></p>
 
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
-									<p id="L"></p>
+									<input class="form-control form-control-lg" type="email" name="email" id="email" required placeholder="E-mail" autocomplete="off">
+									<p id="NoteEmail"></p>
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" id="pass1" name="r_password" type="password" required placeholder="Password">
-									<p id="Q"> </p>
+									<input class="form-control form-control-lg" name="password" type="password" id="pass1" required placeholder="Password">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="password" placeholder="Confirm" name="re_pass" id="pass2">
-									<p id="R"></p>
+									<input class="form-control form-control-lg" name="re_password" type="password" id="pass2" placeholder="Confirm">
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
+									<p id="K"></p>
 								</div>
 								<!-- <div class="form-group">
 									<label class="custom-control custom-checkbox">
@@ -366,9 +392,9 @@
 					function Click() {
 						var username = $('#username_r').val();
 						var email = $('#email').val();
-						var r_password = $('#pass1').val();
-						var re_pass = $('#pass2').val();
-						url = "<?php echo base_url() . 'apiajax/checkRegister' ?>";
+						var password = $('#pass1').val();
+						var re_password = $('#pass2').val();
+						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
 						var check = '';
 						$.ajax({
 
@@ -383,20 +409,22 @@
 						}).done(function(callback) {
 							check = callback;
 						});
-						if (check == "email") {
-							document.getElementById("L").innerHTML = "<p style ='color:red';> Email da co</p>";
+						if (check == "username") {
+							document.getElementById("NoteUser").innerHTML = "<p style ='color:red';> User đã tồn tại </p>";
 							return false;
-						} else if (check == "username") {
-							document.getElementById("K").innerHTML = "<p style ='color:red';> User da co</p>";
+						} else if (check == "email") {
+							document.getElementById("NoteEmail").innerHTML = "<p style ='color:red';> Email đã tồn tại </p>";
 							return false;
-						} else if (r_password != re_pass) {
-							document.getElementById("Q").innerHTML = "<p style ='color:red';> Pass khong dung</p>";
-							document.getElementById("R").innerHTML = "<p style ='color:red';> repass khong dung</p>";
+						} else if (password != re_password) {
+							document.getElementById("K").innerHTML = "<p style ='color:red';> Nhập lại mật khẩu không đúng </p>";
+							// if (check == "ok") {
+							// 	return true;
+							// }
 							return false;
 						} else if (check == "ok") {
 							return true;
 						}
-
+						alert("lỗi" + check);
 						return false;
 					}
 				</script>

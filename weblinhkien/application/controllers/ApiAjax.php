@@ -12,12 +12,13 @@ class ApiAjax  extends CI_Controller
     }
     public function checkLogin()
     {
-        $username = $this->input->post("username");
-        $password = $this->input->post("password");
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
         if ($this->Customer->Login($username, $password)) {
             echo "ok";
         } else {
-            echo "loading......";
+            // echo "loading......";
+            echo $username;
         }
     }
     public function Search()
@@ -87,12 +88,29 @@ class ApiAjax  extends CI_Controller
         $id_user = $this->input->post("id_user");
         $id_product = $this->input->post("id_product");
         $amount = $this->input->post("amount");
-        $product = $this->Products->getByID($id_product);      
-        $this->Cart->Insert($id_product, $id_user, $amount, $product->NameProduct, $product->Image, $product->PriceProduct);
+        $data = $this->Cart->checkExist($id_product,$id_user);
+        print_r($data);
+        if($data['result'] == 'true'){
+            $addAmount = $data['data']->amount;
+            $product = $this->Products->getByID($id_product);  
+            $id_cart = $data['data']->id_cart;
+            $this->Cart->Update($id_cart, $amount+ $addAmount);
+        }else{
+            $product = $this->Products->getByID($id_product);      
+            $this->Cart->Insert($id_product, $id_user, $amount, $product->NameProduct, $product->Image, $product->PriceProduct);
+        }
 
     }
     public function removeOncart(){
         $id_cart = $this->input->post("id_cart");
         $this->Cart->deleteByID($id_cart);
+    }
+    public function updateCart(){
+        $id_user = $this->input->post("id_user");
+        $id_product = $this->input->post("id_product");
+        $amount = $this->input->post("amount");
+        $data = $this->Cart->checkExist($id_product,$id_user);
+        $id_cart = $data['data']->id_cart;
+        $this->Cart->Update($id_cart, $amount);
     }
 }
