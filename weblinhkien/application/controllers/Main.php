@@ -77,8 +77,35 @@ class Main extends CI_Controller
         $password = $this->input->post('password');
         $email = $this->input->post('email');        
         $this->Customer->Register($user, $password, $email);
-        $this->onLogin($user,$password);
+       
+        //gửi mail xác nhận
+        $data = array(
+            "name"=>$user,
+            "key"=>$this->Customer->getID($user, $password)->ID_User
+        );
+        $context = $this->load->view("form_mail/sendConfirm", $data, true);
+        $config = array();
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+        //$config['smtp_host'] = 'tls://smtp.googlemail.com';
+        $config['smtp_user'] = 'violent12330@gmail.com';
+        $config['smtp_pass'] = 'khoa123456789';
+        $config['smtp_port'] = 465;
+        //$config['smtp_port'] = 579;
+        $config['mailtype']  = 'html';
+        $config['starttls']  = true;
+        $config['newline']   = "\r\n";
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+        $this->email->from("violent12330@gmail.com", 'Chúa tể hội đồng quản trị');
+        $this->email->to($email);
+        // $this->email->to("violent12340@gmail.com");
+        $this->email->subject("Xác nhận tài khoản");
+        $this->email->message($context);
+        $this->email->send();
+           
         //redirect("main/index");
+        $this->onLogin($user,$password);
     }
     public function AddOrder()
     {
@@ -100,7 +127,7 @@ class Main extends CI_Controller
             $this->session->set_userdata($arrayName);
             redirect("main/index");
         }else{
-            redirect("admin/index");
+            redirect("main/index");
         }
     }
     public function Login()

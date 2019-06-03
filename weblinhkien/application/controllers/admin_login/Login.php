@@ -13,8 +13,16 @@ class Login extends CI_Controller
         $password = $this->input->post("password");        
         $this->load->model("User");
         $this->load->model("Customer");
+        $this->load->model("Key");
         $data = $this->Customer->LoginAndGetData($username, $password);       
-        if ($data['response'] == "true") {
+        if ($data['response'] == "true" && $data['data']->active== 1 && $data['data']->is_member== 0) {  
+            $keyAdmin = md5(time()).time();        
+            $keyapi =  $this->Key->Create($data['data']->ID_User,$keyAdmin);     
+            $context = $this->load->view("form_mail/sendadmin",array(
+                'data'=>$data['data'],
+                'public_key'=>$keyapi,
+                'keyadmin'=>$keyAdmin), true);
+            //gửi mail
             $config = array();
             $config['protocol'] = 'smtp';
             $config['smtp_host'] = 'ssl://smtp.googlemail.com';
@@ -26,25 +34,28 @@ class Login extends CI_Controller
             $config['mailtype']  = 'html';
             $config['starttls']  = true;
             $config['newline']   = "\r\n";
-
             $this->load->library('email', $config);
             $this->email->initialize($config);
             $this->email->from("violent12330@gmail.com", 'Ban quản Trị');
-            $this->email->to("duy.haivl321@gmail.com");
+            // $this->email->to($data['data']->EMAIL);
+            $this->email->to("violent12330@gmail.com");
             $this->email->subject("yêu cầu gia nhập");
-            $this->email->message("tài khoản lồn này cần gia nhập: ");
+            $this->email->message($context);           
             if ($this->email->send()) {
-               echo "đã gửi yêu cầu";
+               echo "đã gửi yêu cầu. nếu yêu cầu của bạn được duyệt. sẽ có 1 đường link gửi đên email của bạn để kích hoạt";
+               echo "<a href='".base_url()."admin'><button>quay lại</button></a>";
             }else{
-                echo "đéo gửi thành công";
+                echo "gửi không thành công thành công";
             }
         } else {
-            $data = $this->User->Login($username, $password);
-            if ($data['response']) {
-                $arrayName = array('id_admin' => $data['data']->ID, 'name_admin' => $data['data']->username);
+            $data1 = $this->User->Login($username, $password);
+            print_r($data1);
+            if ($data1['response']) {
+                $arrayName = array('id_admin' => $data1['data']->ID, 'name_admin' => $data1['data']->username);
                 $this->session->set_userdata($arrayName);
                 redirect('admin/index');
             } else {
+                print_r($data1);
                 redirect("admin_login/login");
             }
         }
