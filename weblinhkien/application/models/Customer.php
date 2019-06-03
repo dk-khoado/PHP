@@ -16,14 +16,25 @@ class Customer extends CI_Model
     {
         $password_d = md5($password);
         // $query = "custumers where 'USER' = '$username' and PASSWORD = $password";
-        $query = "custumers where  USER = '$username' and PASSWORD = '$password_d'";
-        $result = $this->db->get($query);
+        $query = "SELECT * from custumers where  USER = '$username' and PASSWORD = '$password_d'";
+        $result = $this->db->query($query);
         if ($result->num_rows() > 0) {
             return true;
         } else {
             return false;
         }
         //return $result->result();
+    }
+    public function LoginAndGetData($username, $password){
+        $password_d = md5($password);
+        // $query = "custumers where 'USER' = '$username' and PASSWORD = $password";
+        $query = "SELECT * from custumers where  USER = '$username' and PASSWORD = '$password_d'";
+        $result = $this->db->query($query);      
+        if ($result->num_rows() > 0) {
+            return  array("response"=>"true", "data"=>$result->row(),"pass"=>$password_d);
+        } else {
+            return  array("response"=>"false", "data"=>$result->row(),"pass"=>$password_d);
+        }
     }
     function getID($username, $password)
     {

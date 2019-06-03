@@ -292,6 +292,7 @@
 						var password = $('#password').val();
 						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
 						var check = '';
+						// alert(username + password);
 						$.ajax({
 
 							url: url,
@@ -310,6 +311,7 @@
 							return true;
 						} else {
 							alert("Tài khoản hoặc mật khẩu sai!!");
+							// alert(check);
 						}
 						return false;
 					}
