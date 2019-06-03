@@ -55,23 +55,23 @@
          	<form role="form">
           		<div class="input-group">
           			<span class="input-group-text input-group-prepend">ID_detail:</span>
-					<input name="codeDetail" class="form-control" type="text" required>
+					<input name="codeDetail" class="form-control" type="text" id="ID_de" required>
 				</div></br>
           	<div class="input-group">
           			<span class="input-group-text input-group-prepend">ID_order:</span>
-          			<input name="codeOrder" class="form-control" type="text" required>
+          			<input name="codeOrder" class="form-control" type="text" id="ID_order" required>
 			</div></br>
           	<div class="input-group">
           			<span class="input-group-text input-group-prepend">ID_Product</span>
-          			<input name="codeProduct" class="form-control" type="text" required>
+          			<input name="codeProduct" class="form-control" type="text" id="ID_product" required>
 			</div></br>
           	<div class="input-group">
           			<span class="input-group-text input-group-prepend">Price</span>
-          			<input name="codePrice" class="form-control" type="text" required>
+          			<input name="codePrice" class="form-control" type="text" required id="price">
 				</div></br>
           	<div class="input-group">
           			<span class="input-group-text input-group-prepend">amount</span>
-          			<input name="codeAmount" class="form-control" type="text" required> 
+          			<input name="codeAmount" class="form-control" type="text" id="amount" required> 
 				  </div></br>
           	</form>
 			</div>
@@ -82,6 +82,34 @@
       </div>
     </div>
             </tbody>
+            <script>
+				$(document).ready(function(){
+					loadData();
+				})
+				function loadData(){
+					$.ajax({
+						url:"",
+						type:"POST",
+						contentType:"aplication/json",
+						dataType:"json",
+						success:function(result){
+							var html ='';
+							$.each(result,function(key,item){
+								html+= '<td>'+item.ID_de+'<td>';
+								html+= '<td>'+item.ID_order+'<td>';
+								html+= '<td>'+item.ID_product+'<td>';
+								html+='<td>'+item.price+'<td>';
+								html+='<td>'+item.amount+'<td>';
+							});
+							$('.tbody').html(html);
+						},
+						error:function(errorMessage){
+							alert(errorMessage.responseText);
+						}
+						
+				});	
+				}
+			</script>
         </table>
         <!---->
     </div>
