@@ -11,6 +11,28 @@
     <link rel="stylesheet" href="assets/libs/css/style.css">
     <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
     <title>Concept - Bootstrap 4 Admin Dashboard Template</title>
+    <script>
+		$(document).ready(function(){
+			$('#province').change(function(){
+				id=$('#province').val();
+				$.ajax({
+					url:"<?php echo base_url() . 'apiajax/'; ?>",
+					method:'post',
+					data:'id_province='+id,
+					async: false,
+					dataType:'text',
+					success:function(kq)
+					{
+						$('#distrist').html(kq);
+					}
+					
+				});
+				return false;
+				
+			});
+			
+		});
+	</script>
 </head>
 
 <body>
@@ -39,11 +61,11 @@
                                             <h4 class="mb-0">Địa chỉ giao hàng</h4>
                                         </div>
                                         <div class="card-body">
-                                            <form class="needs-validation" novalidate>
+                                            <form class="needs-validation" novalidate method="post">
                                                 <div class="row">
                                                     <div class="col-md-12 mb-3">
                                                         <label for="firstName">Họ và tên</label>
-                                                        <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                                                        <input type="text" class="form-control" id="fullname" name="Fullname" placeholder="" value="" required="">
                                                         <div class="invalid-feedback">
                                                             Valid first name is required.
                                                         </div>
@@ -56,7 +78,7 @@
                                                         <div class="input-group-prepend">
                                                             <span class="input-group-text">@</span>
                                                         </div>
-                                                        <input type="text" class="form-control" id="username" placeholder="Username" required="">
+                                                        <input type="text" class="form-control" id="username" name="Username" placeholder="Username" required="">
                                                         <div class="invalid-feedback" style="width: 100%;">
                                                             Your username is required.
                                                         </div>
@@ -71,7 +93,7 @@
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="address">Địa chỉ</label>
-                                                    <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+                                                    <input type="text" class="form-control" id="address" name="Address" placeholder="1234 Main St" required="">
                                                     <div class="invalid-feedback">
                                                         Please enter your shipping address.
                                                     </div>
@@ -80,9 +102,11 @@
                                                 <div class="row">
                                                     <div class="col-md-5 mb-3">
                                                         <label for="country">Tỉnh/Thành Phố</label>
-                                                        <select class="custom-select d-block w-100" id="country" required>
+                                                        <select class="custom-select d-block w-100" id="province" required>
                                                             <option value="">Choose...</option>
-                                                            <option>United States</option>
+                                                            <?php
+																echo"<option value='$data->id_province'>$data->province_name</option>";
+															?>
                                                         </select>
                                                         <div class="invalid-feedback">
                                                             Please select a valid country.
@@ -90,9 +114,11 @@
                                                     </div>
                                                     <div class="col-md-4 mb-3">
                                                         <label for="state">Quận</label>
-                                                        <select class="custom-select d-block w-100" id="state" required>
+                                                        <select class="custom-select d-block w-100" id="distrist" required>
                                                             <option value="">Choose...</option>
-                                                            <option>California</option>
+                                                            <?php
+																echo"<option>$data->distrist_name</option>";
+															?>
                                                         </select>
                                                         <div class="invalid-feedback">
                                                             Please provide a valid state.
