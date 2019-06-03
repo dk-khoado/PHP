@@ -12,4 +12,13 @@ class User extends CI_Model
         $query = $this->db->get($a);
         return $query->result();
     }
+    function Login($username, $password){
+        $query = "admin where username = $username and password = $password";
+        $result = $this->db->get($query);
+        if($result->num_rows() > 0 ){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
