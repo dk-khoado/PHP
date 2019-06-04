@@ -27,9 +27,9 @@
       <input type="submit" class="	fadeIn fourth" value="Đăng nhập">
       
     </form>
-
+    <b><?php echo $this->session->flashdata('error_login') ?></b>
     <!-- Remind Passowrd -->
-    <div id="formFooter">
+    <div id="formFooter">     
       <a class="underlineHover" href="#">Forgot Password?</a>
     </div>
 

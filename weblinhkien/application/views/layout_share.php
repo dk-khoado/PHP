@@ -29,7 +29,7 @@
 	<!-- <link rel="stylesheet" href="layoutside.css"> -->
 	<script>
 		function LoadCart() {
-			$("#loadcart").children().remove();			
+			$("#loadcart").children().remove();
 			base_url = "<?php echo base_url(); ?>";
 			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
 			$.ajax({
@@ -53,8 +53,6 @@
 					div = "Tổng: " + sum;
 					$("#loadtotal").text(div);
 				});
-
-
 			});
 		}
 
@@ -81,7 +79,7 @@
 	}
 </style>
 
-<body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
+<body style="margin-top: 110px" class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
 	<!-- phần header -->
 	<div class="fixed-top">
 		<header class="topbar">
@@ -127,7 +125,7 @@
 									<div class="row p-2">
 										<div class="col-4"><button type="button" class="btn btn-primary" style="width: 100%; text-align: center;"><strong>Cart</strong></button>
 										</div>
-										<div class="col-8"><button type="button" class="btn btn-success" style="width: 100%; text-align: center;"><strong>Check Out</strong></button>
+										<div class="col-8"><a href="<?php echo base_url() . "main/checkout" ?>"><button type="button" class="btn btn-success" style="width: 100%; text-align: center;"><strong>Check Out</strong></button></a>
 										</div>
 									</div>
 								</div>
@@ -196,52 +194,22 @@
 			</div>
 		</nav>
 	</div>
-	<div class="row" style="margin-top: 110px">
-		<div class="col-3">
-			<!-- <h4 class="bg-light">Danh Mục Sản Phẩm</h4> -->
-			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
-				<ul class="nav flex-column">
-					<?php
-					foreach ($type as $key => $value) {
-						echo '<li class="nav-item">';
-						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
-						echo '</li>';
-					}
-					?>
-				</ul>
-			</div>
-		</div>
-		<div class="col-9">
-			<div id="demo" class="carousel slide" data-ride="carousel">
-				<!-- Indicators -->
-				<ul class="carousel-indicators">
-					<li data-target="#demo" data-slide-to="0" class="active"></li>
-					<li data-target="#demo" data-slide-to="1"></li>
-					<li data-target="#demo" data-slide-to="2"></li>
-				</ul>
-				<!-- The slideshow -->
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner1.jpg" height="300px" width="100%" alt="Los Angeles">
-					</div>
-					<div class="carousel-item">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner2.jpg" height="300px" width="100%" alt="Chicago">
-					</div>
-					<div class="carousel-item">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner3.jpg" height="300px" width="100%" alt="New York">
-					</div>
-				</div>
-				<!-- Left and right controls -->
-				<a class="carousel-control-prev" href="#demo" data-slide="prev">
-					<span class="carousel-control-prev-icon"></span>
-				</a>
-
-				<a class="carousel-control-next" href="#demo" data-slide="next">
-					<span class="carousel-control-next-icon"></span>
-				</a>
-			</div>
-		</div>
-	</div>
+	<?php
+	if (isset($cmd)) {
+		if ($cmd != 'hide_banner') {
+			$this->load->view('banner');
+		}
+	} else {
+		$this->load->view('banner');
+	}
+	?>
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
 	<!-- phần dialog của login -->
 	<div class="modal fade" id="login">
 		<div class="modal-dialog">
