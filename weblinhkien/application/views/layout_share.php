@@ -32,6 +32,8 @@
 			$("#loadcart").children().remove();
 			base_url = "<?php echo base_url(); ?>";
 			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
+			check = "";
+			var sum = 0;
 			$.ajax({
 				async: false,
 				method: 'POST',
@@ -41,8 +43,7 @@
 				},
 				url: url
 			}).done(function(callback) {
-
-				var sum = 0;
+				check = callback;
 				$.each(callback, function(k, v) {
 					var total = v.amount * v.PriceProduct;
 					sum += total;
@@ -50,10 +51,15 @@
 						"' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct +
 						"</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
 					$("#loadcart").append(data);
-					div = "Tổng: " + sum;
-					$("#loadtotal").text(div);
+
 				});
+				div = "Tổng: " + sum;
+				$("#loadtotal").text(div);
 			});
+			//alert(check);
+			if (check == "") {
+				$("#loadtotal").text("giỏ hàng trống !!");
+			}
 		}
 
 		function DelCart(del) {
@@ -100,7 +106,7 @@
 									<div class="row p-3">
 										<b>
 											<div class="col-12" id="loadtotal">
-
+												Vui lòng đăng nhập
 											</div>
 										</b>
 									</div>
