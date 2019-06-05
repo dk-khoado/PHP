@@ -48,4 +48,8 @@ class Cart extends CI_Model
             return array("result"=>'false',"data"=>$result->row());       
         }
     }
+    public function checkOutCart($id_user){
+        $query = "DELETE from cart where ID_User = $id_user";
+        $this->db->query($query);
+    }
 }

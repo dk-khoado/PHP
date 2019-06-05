@@ -25,7 +25,8 @@ class Order extends CI_Model
                 "amount"=>$value->amount
             );
             $this->db->insert("detail_order",$data_cart);
-        }        
+        }
+        return $time;          
     }
     function FinishOrderByID($id){
         $query = "UPDATE order set status = 1 where ID_order = $id";
@@ -64,8 +65,9 @@ class Order extends CI_Model
     //end getdata
     //detail order
     function getDetail($id_order){
-        $query = "detail_order where ID_order = '$id_order'";
-        $result = $this->db->get($query);
+        $query = "SELECT product.*, detail_order.* from product, detail_order where detail_order.ID_order = $id_order
+        and product.ID_PRODUCT = detail_order.ID_PRODUCT";
+        $result = $this->db->query($query);
         return $result->result();
     }
 }

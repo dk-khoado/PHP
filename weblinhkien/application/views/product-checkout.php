@@ -4,8 +4,8 @@
         $("#firstName").val('<?php echo $data->NAME ?>');
         $("#Email").val('<?php echo $data->EMAIL ?>');
         $("#address").val('<?php echo $data->ADDRESS ?>');
-        $("#city").val('<?php echo $data->id_city ?>');
-        $("#state").val('<?php echo $data->id_quan ?>');
+        // $("#city").val('<?php //echo $data->id_city ?>');
+        // $("#state").val('<?php //echo $data->id_quan ?>');
         $("#phonenumber").val('<?php echo $data->NBERPHONE ?>');
     });
 </script>
@@ -14,29 +14,28 @@
 <!-- ================================= -->
 <!-- ================================= -->
 <script>
-	function LoadDis(){
-	url = "<?php echo base_url() . 'apiajax/loadDistrist'; ?>"
-			id=$('#city').val();
-			$.ajax({
-				url:url,
-				method:'POST',
-				async: false,
-				data: {
-					'ID_city':id
-				},
-				dataType:'json'
-			}).done(function(kq){
-				$('#state').children().remove();
-				$.each(kq, function(k,v){
-						data = "<option value="+ v.ID_city +">"+ v.quan_huyen_name +"</option>";
-						$('#state').append(data);
-				
-				});
-				console.log(kq);
-			});
-	};
+    function LoadDis() {
+        url = "<?php echo base_url() . 'apiajax/loadDistrist'; ?>"
+        id = $('#city').val();      
+        console.log(id);
+        $.ajax({
+            url: url,
+            method: 'POST',
+            async: false,
+            data: {
+                'ID_city': id
+            },
+            dataType: 'json'
+        }).done(function(kq) {
+            $('#state').children().remove();
+            $.each(kq, function(k, v) {
+                data = "<option value='" + v.ID_city + "'>" + v.quan_huyen_name + "</option>";
+                $('#state').append(data);
 
-
+            });
+            console.log(kq);
+        });
+    };
 </script>
 
 <div class="row" style="margin-top: 110px">
@@ -48,7 +47,7 @@
                         <h4 class="mb-0">Địa chỉ giao hàng</h4>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="<?php echo base_url()."checkout/send/index"; ?>">
+                        <form method="post" action="<?php echo base_url() . "checkout/send/index"; ?>">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label for="firstName">Họ và tên</label>
@@ -77,13 +76,13 @@
                             <div class="row">
                                 <div class="col-md-5 mb-3">
                                     <label for="country">Tỉnh/Thành Phố</label>
-                                    <select class="custom-select d-block w-100" id="city" onChange="LoadDis()" required>
-                                        
+                                    <select class="custom-select d-block w-100" id="city" name="city" onChange="LoadDis()" required>
+                                        <option value="" selected>Chọn</option>
                                         <?php
-											foreach($city as $key => $value){
-											echo "<option value = '".$value->ID_city."'>".$value->city_name."</option>";
-											}
-										?>
+                                        foreach ($city as $key => $value) {
+                                            echo "<option value = '" . $value->ID_city . "'>" . $value->city_name . "</option>";
+                                        }
+                                        ?>
                                     </select>
                                     <div class="invalid-feedback">
                                         Please select a valid country.
@@ -91,10 +90,9 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="state">Quận/huyện</label>
-                                    <select class="custom-select d-block w-100" id="state" required>
-                                        
-                                        
-                                    </select>
+                                    <select class="custom-select d-block w-100" id="state" name="quan_huyen" required>
+                                        <option selected>Chọn</option>
+                                    </select>                                   
                                     <div class="invalid-feedback">
                                         Please provide a valid state.
                                     </div>
@@ -153,19 +151,19 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <ul class="list-group mb-3"> 
+                        <ul class="list-group mb-3">
                             <?php
                             $sum = 0;
-                            foreach ($cart as $key => $value) {                                
-                                $total = $value->amount*$value->PriceProduct;
-                                $sum +=$total;
+                            foreach ($cart as $key => $value) {
+                                $total = $value->amount * $value->PriceProduct;
+                                $sum += $total;
                                 echo '<li class="list-group-item d-flex justify-content-between">';
                                 echo '<div>';
-                                echo '<h6 class="my-0">'.$value->NameProduct.'</h6>';
-                                echo '<small class="text-muted">'.$value->amount.'</small>';
-                                echo '</div>';   
-                                echo '<span class="text-muted">'.number_format($total).'</span>'; 
-                                echo '</li>';                       
+                                echo '<h6 class="my-0">' . $value->NameProduct . '</h6>';
+                                echo '<small class="text-muted">' . $value->amount . '</small>';
+                                echo '</div>';
+                                echo '<span class="text-muted">' . number_format($total) . '</span>';
+                                echo '</li>';
                             }
                             ?>
                             <!-- <li class="list-group-item d-flex justify-content-between">

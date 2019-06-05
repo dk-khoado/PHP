@@ -122,6 +122,7 @@ class ApiAjax  extends CI_Controller
     }
 	public function loadDistrist()
 	{
+        $this->load->model("Country");
 		$distrist = $this->input->post("ID_city");
 		$data = $this->Country->Distrist($distrist);
 		echo json_encode($data);

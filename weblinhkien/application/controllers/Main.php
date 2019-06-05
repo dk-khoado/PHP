@@ -155,6 +155,7 @@ class Main extends CI_Controller
     {
         $this->load->model("Customer");
         $this->load->model('Cart');
+        $this->load->model('Country');
         $tittel = "Thanh Toán";
         $data = $this->Type->getAll();
         if (isset($_SESSION['id'])) {

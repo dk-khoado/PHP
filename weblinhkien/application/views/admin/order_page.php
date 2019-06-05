@@ -36,14 +36,16 @@
             <tbody>
                 <?php
                 foreach ($data as $key => $value) {
+                    
                     echo "<td>" . $value->ID_order . "</td>";
-                    echo "<td>" . $value->ID_User . "</td>";
+                    echo "<td>" . $value->name . "</td>";
                     echo "<td>" . $value->OnSellDate . "</td>";
                     echo "<td>" . $value->status . "</td>";
                     echo '<td><button type ="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Chi tiết</button></td>';
+                    echo "</tr>";
                 }
                 ?>
-                <div class="modal" id="myModal">
+                <div class="modal fade" id="myModal">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <!-- Modal Header -->

@@ -16,8 +16,8 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/nouislider.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/header.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/slick-theme.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/slick-theme.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 
 	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 	<!-- <script src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script> -->
