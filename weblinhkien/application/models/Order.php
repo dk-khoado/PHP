@@ -47,4 +47,10 @@ class Order extends CI_Model
         return $query->result();
     }
     //end getdata
+    //detail order
+    function getDetail($id_order){
+        $query = "detail_order where ID_order = $id_order";
+        $result = $this->db->get($query);
+        return $result->result();
+    }
 }
