@@ -160,8 +160,9 @@ class Main extends CI_Controller
         if (isset($_SESSION['id'])) {
             $data_customer = $this->Customer->getDataByID($_SESSION['id']);
             $cart = $this->Cart->getAllByIDUser($_SESSION['id']);
+			$city = $this->Country->Province();
             if($cart != null){
-                $context = $this->load->view('product-checkout', array("data" => $data_customer, 'cart' => $cart), true);               
+                $context = $this->load->view('product-checkout', array("data" => $data_customer, 'cart' => $cart, 'city' => $city), true);               
             }else{
                 $context = $this->load->view('notification/notif_nullCart',"", true);    
             }

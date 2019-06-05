@@ -13,6 +13,32 @@
 <!-- ================================= -->
 <!-- ================================= -->
 <!-- ================================= -->
+<script>
+	function LoadDis(){
+	url = "<?php echo base_url() . 'apiajax/loadDistrist'; ?>"
+			id=$('#city').val();
+			$.ajax({
+				url:url,
+				method:'POST',
+				async: false,
+				data: {
+					'ID_city':id
+				},
+				dataType:'json'
+			}).done(function(kq){
+				$('#state').children().remove();
+				$.each(kq, function(k,v){
+						data = "<option value="+ v.ID_city +">"+ v.quan_huyen_name +"</option>";
+						$('#state').append(data);
+				
+				});
+				console.log(kq);
+			});
+	};
+
+
+</script>
+
 <div class="row" style="margin-top: 110px">
     <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="row">
@@ -51,9 +77,13 @@
                             <div class="row">
                                 <div class="col-md-5 mb-3">
                                     <label for="country">Tỉnh/Thành Phố</label>
-                                    <select class="custom-select d-block w-100" id="city" name="city" required>
-                                        <option value="">Choose...</option>
-                                        <option>United States</option>
+                                    <select class="custom-select d-block w-100" id="city" onChange="LoadDis()" required>
+                                        
+                                        <?php
+											foreach($city as $key => $value){
+											echo "<option value = '".$value->ID_city."'>".$value->city_name."</option>";
+											}
+										?>
                                     </select>
                                     <div class="invalid-feedback">
                                         Please select a valid country.
@@ -61,9 +91,9 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="state">Quận/huyện</label>
-                                    <select class="custom-select d-block w-100" id="state" name="quan_huyen" required>
-                                        <option value="">Choose...</option>
-                                        <option>California</option>
+                                    <select class="custom-select d-block w-100" id="state" required>
+                                        
+                                        
                                     </select>
                                     <div class="invalid-feedback">
                                         Please provide a valid state.
