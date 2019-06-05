@@ -22,11 +22,11 @@
                         <h4 class="mb-0">Địa chỉ giao hàng</h4>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form method="post" action="<?php echo base_url()."checkout/send/index"; ?>">
                             <div class="row">
                                 <div class="col-md-12 mb-3">
                                     <label for="firstName">Họ và tên</label>
-                                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                                    <input type="text" class="form-control" name="name" id="firstName" placeholder="" value="" required>
                                     <div class="invalid-feedback">
                                         Valid first name is required.
                                     </div>
@@ -35,14 +35,14 @@
                             </div>
                             <div class="mb-3">
                                 <label for="email">Email <span class="text-muted">(Bắt buộc)</span></label>
-                                <input type="email" class="form-control" id="Email" placeholder="you@example.com" readonly>
+                                <input type="email" class="form-control" id="Email" name="email" placeholder="you@example.com" readonly>
                                 <div class="invalid-feedback">
                                     Please enter a valid email address for shipping updates.
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="address">Địa chỉ</label>
-                                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="1234 Main St" required>
                                 <div class="invalid-feedback">
                                     Please enter your shipping address.
                                 </div>
@@ -51,7 +51,7 @@
                             <div class="row">
                                 <div class="col-md-5 mb-3">
                                     <label for="country">Tỉnh/Thành Phố</label>
-                                    <select class="custom-select d-block w-100" id="city" required>
+                                    <select class="custom-select d-block w-100" id="city" name="city" required>
                                         <option value="">Choose...</option>
                                         <option>United States</option>
                                     </select>
@@ -61,7 +61,7 @@
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <label for="state">Quận/huyện</label>
-                                    <select class="custom-select d-block w-100" id="state" required>
+                                    <select class="custom-select d-block w-100" id="state" name="quan_huyen" required>
                                         <option value="">Choose...</option>
                                         <option>California</option>
                                     </select>
@@ -72,7 +72,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="address">Số điện thoại</label>
-                                <input type="text" class="form-control" id="phonenumber" placeholder="(+84) 123456789" required>
+                                <input type="text" class="form-control" id="phonenumber" name="numberphone" placeholder="(+84) 123456789" required>
                                 <div class="invalid-feedback">
                                     Please enter your shipping address.
                                 </div>

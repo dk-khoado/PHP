@@ -37,7 +37,7 @@ class Cart extends CI_Model
     }
     public function getAmountByID($id){
         $query = "SELECT amount from cart where id_cart = $id";
-        return $this->db->query($query)->row()->amount;        
+        return $this->db->query($query)->row()->amount;     
     }
     public function checkExist($id_product, $id_user){
         $query = "SELECT * from cart where ID_PRODUCT = $id_product and ID_User = $id_user";

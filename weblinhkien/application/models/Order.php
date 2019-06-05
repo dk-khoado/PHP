@@ -3,19 +3,34 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Order extends CI_Model
 {
     //thêm dữ liệu vào bảng order
-    function Insert($OnSellDate, $ID_User)
+    function Insert($ID_User, $name,$address,$city, $quanHuyen,$cart)
     {
-        $data = array(           
-            "OnSellDate" => $OnSellDate,
+        $time = time();
+        $data = array(   
+            "ID_order"=>$time,     
+            "OnSellDate" => date("Y-m-d",$time),
             "status" => 0,
-            "ID_User" => $ID_User
-        );
+            "ID_User" => $ID_User,
+            "name"=> $name,
+            "address"=>$address,
+            "city"=>$city,
+            "quanHuyen"=>$quanHuyen             
+        );  
         $this->db->insert("order", $data);
+        foreach ($cart as $key => $value) {
+            $data_cart =array(
+                "ID_order"=>$time,
+                "ID_PRODUCT"=>$value->ID_PRODUCT,
+                "Price"=>$value->PriceProduct,
+                "amount"=>$value->amount
+            );
+            $this->db->insert("detail_order",$data_cart);
+        }        
     }
     function FinishOrderByID($id){
         $query = "UPDATE order set status = 1 where ID_order = $id";
         $this->db->query($query);
-    }
+    }   
     //lấy dữ liệu của bảng order
     function getAll()
     {
@@ -49,7 +64,7 @@ class Order extends CI_Model
     //end getdata
     //detail order
     function getDetail($id_order){
-        $query = "detail_order where ID_order = $id_order";
+        $query = "detail_order where ID_order = '$id_order'";
         $result = $this->db->get($query);
         return $result->result();
     }

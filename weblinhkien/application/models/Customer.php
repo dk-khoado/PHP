@@ -80,4 +80,16 @@ class Customer extends CI_Model
         $query = "UPDATE custumers set is_member = 1 where ID_User = $ID";
         $this->db->query($query);
     }
+    function UpdateInformation($ID_User,$ADDRESS, $NBERPHONE, $EMAIL, $NAME, $id_city, $id_quan){
+        $data = array(
+            "ADDRESS"=>$ADDRESS,
+            "NBERPHONE"=>$NBERPHONE,
+            "EMAIL"=>$EMAIL,
+            "NAME"=>$NAME,
+            "id_city"=>$id_city,
+            "id_quan"=>$id_quan
+        );
+        $this->db->where("ID_User",$ID_User);
+        $this->db->update("custumers",$data);
+    }
 }
