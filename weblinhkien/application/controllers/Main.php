@@ -88,8 +88,8 @@ class Main extends CI_Controller
         $config['protocol'] = 'smtp';
         $config['smtp_host'] = 'ssl://smtp.googlemail.com';
         //$config['smtp_host'] = 'tls://smtp.googlemail.com';
-        $config['smtp_user'] = 'violent12330@gmail.com';
-        $config['smtp_pass'] = 'khoa123456789';
+        $config['smtp_user'] = 'khoado29k11@viendong.edu.vn';
+        $config['smtp_pass'] = 'khoa958632147';
         $config['smtp_port'] = 465;
         //$config['smtp_port'] = 579;
         $config['mailtype']  = 'html';
@@ -97,7 +97,7 @@ class Main extends CI_Controller
         $config['newline']   = "\r\n";
         $this->load->library('email', $config);
         $this->email->initialize($config);
-        $this->email->from("violent12330@gmail.com", 'Chúa tể hội đồng quản trị');
+        $this->email->from("khoado29k11@viendong.edu.vn", 'Chúa tể hội đồng quản trị');
         $this->email->to($email);
         // $this->email->to("violent12340@gmail.com");
         $this->email->subject("Xác nhận tài khoản");
@@ -116,7 +116,8 @@ class Main extends CI_Controller
     }
     public function Signout()
     {
-        session_destroy();
+        $this->session->unset_userdata('id');
+        $this->session->unset_userdata('name');
         // redirect("main/index");
         redirect($_SERVER['HTTP_REFERER']);
     }
@@ -170,7 +171,6 @@ class Main extends CI_Controller
         } else {
             $context = $this->load->view('notification/notif_chuaLogin', "", true);           
         }
-
         $this->load->view("layout_share", array('type' => $data, 'context' => $context, 'tittel' => $tittel, 'cmd' => 'hide_banner'));
     }
     public function about()

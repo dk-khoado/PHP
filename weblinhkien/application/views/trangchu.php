@@ -2,7 +2,7 @@
 <script>
  	function AddCart(id_pro)
 	{
-		url = "<?php echo base_url().'apiajax/addToCart';?>";
+		url = "<?php echo base_url().'ApiAjax/addToCart';?>";
 		alert("đã thêm vào giỏ hàng");
 		$.ajax({
 			url:url,
