@@ -66,6 +66,12 @@ $(document).ready(function(){
 		$(".add-new").removeAttr("disabled");
     });
 });
+$(document).ready(function() {
+				$('#table').DataTable({
+					"lengthChange": false,
+					"lengthMenu": 10
+				});
+			});
 </script>
 </head>
 <body>
@@ -81,7 +87,7 @@ $(document).ready(function(){
 -->
                 </div>
             </div>
-            <table class="table table-bordered">
+            <table class="table table-bordered" id="table">
                 <thead>
                     <tr>
                         <th>Username</th>
@@ -91,46 +97,26 @@ $(document).ready(function(){
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>Administration</td>
-                        <td>(171) 555-2222</td>
-                        <td>
-							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                    <?php
+                    if ($list != null)
+                    {
+                        foreach ($list as $key => $value)
+                        {
+                            echo "<td>" . $value->username . "</td>";
+						    echo "<td>" . $value->password . "</td>";
+                            echo "<td>" . $value->level . "</td>";
+                            echo "<td>" 
+                            <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Peter Parker</td>
-                        <td>Customer Service</td>
-                        <td>(313) 555-5735</td>
-                        <td>
-							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Fran Wilson</td>
-                        <td>Human Resources</td>
-                        <td>(503) 555-9931</td>
-                        <td>
-							<a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                        </td>
-                    </tr>      
+                            "</td>";
+                        }   
+                    }
+                      
+                    ?>   
                 </tbody>
             </table>
         </div>
     </div>     
 </body>
-<!--Xử lý dữ liệu -->
-<script type="text/javascript">
-	
-	
-	
-	
-</script>
 </html>                            
