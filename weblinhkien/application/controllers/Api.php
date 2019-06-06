@@ -3,25 +3,76 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Api extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+    }
     function user()
-    {   
+    {
         header("Content-Type: application/json; charset=UTF-8");
         $var =   $this->input->get_post("username", TRUE);
         //$var1 = $_POST['username'];
         echo  $var;
         // $data = array("londuy"=>array('status'=>'đụ đĩ me mày duy', 'response'=>'ok', 'result'=>1));
         // echo json_encode($data);
-        
+
     }
-    function userpass()
+    public function check($key)
     {
-        if(isset($_POST['username'])){
-            $data = array("quanly"=> array('user'=>'kakoi9586', 'pass'=>"khoathu148"));
-            echo json_encode($data);
-        }else
-        {
-            
-        }
-        
+        $this->load->model('Customer');
+        $this->load->model('Key');
+        $data_key = $this->Key->getData($key);
+        // print_r($data_key);
+        $data_user = $this->Customer->getDataByID($data_key->ID_user);
+        $data = array(
+            "hello_name" => $this->Customer->getNameByID($data_key->ID_user),
+            "key"=>$data_key->public_key,
+            "keyuser"=>$data_key->key_user
+        );
+        $context = $this->load->view("form_mail/senduser", $data, true);
+
+        $config = array();
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+        //$config['smtp_host'] = 'tls://smtp.googlemail.com';
+        $config['smtp_user'] = 'violent12330@gmail.com';
+        $config['smtp_pass'] = 'khoa123456789';
+        $config['smtp_port'] = 465;
+        //$config['smtp_port'] = 579;
+        $config['mailtype']  = 'html';
+        $config['starttls']  = true;
+        $config['newline']   = "\r\n";
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+        $this->email->from("violent12330@gmail.com", 'Chúa tể hội đồng quản trị');
+        $this->email->to($data_user->EMAIL);
+        // $this->email->to("violent12330@gmail.com");
+        $this->email->subject("Chấp nhận yêu cầu");
+        $this->email->message($context);
+        if ($this->email->send()) {
+            echo "đã yêu key xác nhận đến Thành Viên";            
+         }else{
+             echo "gửi không thành công";
+         }
+    }
+    public function delete($key)
+    {
+        $this->load->model('Key');
+        $this->Key->Delete($key);
+        echo "đã hủy yêu cầu";
+    }
+    public function confirm($ID){
+        $this->load->model('Customer');
+        $data = $this->Customer->setActive($ID);
+        echo "kích hoạt thành công";
+    }
+    public function finish($key){
+        $this->load->model('User');
+        $this->load->model("Key");
+        $this->load->model('Customer');
+        $data_key = $this->Key->getDataByKeyUser($key);
+        $this->Customer->setMenber($data_key->ID_user);
+        $data = $this->Customer->getDataByID($data_key->ID_user);
+        $this->User->Insert($data->USER, $data->PASSWORD,$key,$data->EMAIL);
     }
 }

@@ -164,7 +164,7 @@ class Admin extends CI_Controller
 	}
 	private function Login(){
 		//session_destroy();
-		if(!isset($_SESSION['login_admin'])){
+		if(!isset($_SESSION['id_admin'])){
 			redirect("admin_login/login");
 		}
 		

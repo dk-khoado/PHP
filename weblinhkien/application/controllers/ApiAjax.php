@@ -113,4 +113,18 @@ class ApiAjax  extends CI_Controller
         $id_cart = $data['data']->id_cart;
         $this->Cart->Update($id_cart, $amount);
     }
+    public function orderdetail(){
+        
+        $idorder = $this->input->post('id_order');
+        $this->load->model("Order");
+        $data = $this->Order->getDetail($idorder);
+        echo json_encode($data);
+    }
+	public function loadDistrist()
+	{
+        $this->load->model("Country");
+		$distrist = $this->input->post("ID_city");
+		$data = $this->Country->Distrist($distrist);
+		echo json_encode($data);
+	}
 }

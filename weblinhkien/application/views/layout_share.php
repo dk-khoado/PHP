@@ -16,8 +16,8 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/nouislider.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/header.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/slick-theme.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/slick-theme.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 
 	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 	<!-- <script src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script> -->
@@ -29,9 +29,11 @@
 	<!-- <link rel="stylesheet" href="layoutside.css"> -->
 	<script>
 		function LoadCart() {
-			$("#loadcart").children().remove();			
+			$("#loadcart").children().remove();
 			base_url = "<?php echo base_url(); ?>";
 			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
+			check = "";
+			var sum = 0;
 			$.ajax({
 				async: false,
 				method: 'POST',
@@ -41,8 +43,7 @@
 				},
 				url: url
 			}).done(function(callback) {
-
-				var sum = 0;
+				check = callback;
 				$.each(callback, function(k, v) {
 					var total = v.amount * v.PriceProduct;
 					sum += total;
@@ -50,12 +51,15 @@
 						"' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct +
 						"</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
 					$("#loadcart").append(data);
-					div = "Tổng: " + sum;
-					$("#loadtotal").text(div);
+
 				});
-
-
+				div = "Tổng: " + sum;
+				$("#loadtotal").text(div);
 			});
+			//alert(check);
+			if (check == "") {
+				$("#loadtotal").text("giỏ hàng trống !!");
+			}
 		}
 
 		function DelCart(del) {
@@ -81,7 +85,7 @@
 	}
 </style>
 
-<body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
+<body style="margin-top: 110px" class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
 	<!-- phần header -->
 	<div class="fixed-top">
 		<header class="topbar">
@@ -102,7 +106,7 @@
 									<div class="row p-3">
 										<b>
 											<div class="col-12" id="loadtotal">
-
+												Vui lòng đăng nhập
 											</div>
 										</b>
 									</div>
@@ -127,7 +131,7 @@
 									<div class="row p-2">
 										<div class="col-4"><button type="button" class="btn btn-primary" style="width: 100%; text-align: center;"><strong>Cart</strong></button>
 										</div>
-										<div class="col-8"><button type="button" class="btn btn-success" style="width: 100%; text-align: center;"><strong>Check Out</strong></button>
+										<div class="col-8"><a href="<?php echo base_url() . "main/checkout" ?>"><button type="button" class="btn btn-success" style="width: 100%; text-align: center;"><strong>Check Out</strong></button></a>
 										</div>
 									</div>
 								</div>
@@ -196,52 +200,22 @@
 			</div>
 		</nav>
 	</div>
-	<div class="row" style="margin-top: 110px">
-		<div class="col-3">
-			<!-- <h4 class="bg-light">Danh Mục Sản Phẩm</h4> -->
-			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
-				<ul class="nav flex-column">
-					<?php
-					foreach ($type as $key => $value) {
-						echo '<li class="nav-item">';
-						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
-						echo '</li>';
-					}
-					?>
-				</ul>
-			</div>
-		</div>
-		<div class="col-9">
-			<div id="demo" class="carousel slide" data-ride="carousel">
-				<!-- Indicators -->
-				<ul class="carousel-indicators">
-					<li data-target="#demo" data-slide-to="0" class="active"></li>
-					<li data-target="#demo" data-slide-to="1"></li>
-					<li data-target="#demo" data-slide-to="2"></li>
-				</ul>
-				<!-- The slideshow -->
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner1.jpg" height="300px" width="100%" alt="Los Angeles">
-					</div>
-					<div class="carousel-item">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner2.jpg" height="300px" width="100%" alt="Chicago">
-					</div>
-					<div class="carousel-item">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner3.jpg" height="300px" width="100%" alt="New York">
-					</div>
-				</div>
-				<!-- Left and right controls -->
-				<a class="carousel-control-prev" href="#demo" data-slide="prev">
-					<span class="carousel-control-prev-icon"></span>
-				</a>
-
-				<a class="carousel-control-next" href="#demo" data-slide="next">
-					<span class="carousel-control-next-icon"></span>
-				</a>
-			</div>
-		</div>
-	</div>
+	<?php
+	if (isset($cmd)) {
+		if ($cmd != 'hide_banner') {
+			$this->load->view('banner');
+		}
+	} else {
+		$this->load->view('banner');
+	}
+	?>
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
 	<!-- phần dialog của login -->
 	<div class="modal fade" id="login">
 		<div class="modal-dialog">
