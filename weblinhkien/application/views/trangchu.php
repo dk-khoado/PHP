@@ -3,7 +3,7 @@
  	function AddCart(id_pro)
 	{
 		url = "<?php echo base_url().'apiajax/addToCart';?>";
-		alert(id_pro);
+		alert("đã thêm vào giỏ hàng");
 		$.ajax({
 			url:url,
 			method:'POST',		

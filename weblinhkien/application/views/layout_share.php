@@ -16,8 +16,8 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/nouislider.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/header.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/css/slick-theme.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/slick-theme.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
 
 	<script src="<?php echo base_url(); ?>assets/js/jquery.min.js"></script>
 	<!-- <script src="<?php echo base_url(); ?>assets/js/datatables.min.js"></script> -->
@@ -32,6 +32,8 @@
 			$("#loadcart").children().remove();
 			base_url = "<?php echo base_url(); ?>";
 			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
+			check = "";
+			var sum = 0;
 			$.ajax({
 				async: false,
 				method: 'POST',
@@ -41,16 +43,37 @@
 				},
 				url: url
 			}).done(function(callback) {
-
+				check = callback;
 				$.each(callback, function(k, v) {
 					var total = v.amount * v.PriceProduct;
-					sum += total.toString();
-					$('.loadtotal').text('sum');
-
-					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount + "' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct + "</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
+					sum += total;
+					data = "<div class='row p-3'> <div class='col-2'><img src='" + base_url + "upload/" + v.Image + "' width='85px' height='85px'> </div> <div class='col-10'> <div class='row p-3'> <div class='col-12'>" + v.NameProduct + "</div> </div> <div class='row p-3'> <div class='col-3'><input class='form-control text-center' value='" + v.amount +
+						"' min='1' type='number' style='width: 60px; height: 25px;'></div> <div class='col-7'>" + v.PriceProduct +
+						"</div> <div class='col-2'><button type='button' class='btn btn-danger btn-sm' style='width: 30px; height: 30px; text-align: center;' onclick='DelCart(" + v.id_cart + ")'><strong>X</strong></button> </div> </div> </div> </div>";
 					$("#loadcart").append(data);
+
 				});
+				div = "Tổng: " + sum;
+				$("#loadtotal").text(div);
 			});
+			//alert(check);
+			if (check == "") {
+				$("#loadtotal").text("giỏ hàng trống !!");
+			}
+		}
+
+		function DelCart(del) {
+			url = "<?php echo base_url() . 'apiajax/removeOncart'; ?>"
+			$.ajax({
+				url: url,
+				async: false,
+				method: 'POST',
+				dataType: 'json',
+				data: {
+					'id_cart': del
+				}
+			});
+			LoadCart();
 		}
 	</script>
 </head>
@@ -62,7 +85,7 @@
 	}
 </style>
 
-<body class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
+<body style="margin-top: 110px" class="container bg_web" background="<?php echo base_url(); ?>assets/image/default_bg.png">
 	<!-- phần header -->
 	<div class="fixed-top">
 		<header class="topbar">
@@ -81,9 +104,11 @@
 										});
 									</script>
 									<div class="row p-3">
-										<div class="col-12" id="loadtotal">
-
-										</div>
+										<b>
+											<div class="col-12" id="loadtotal">
+												Vui lòng đăng nhập
+											</div>
+										</b>
 									</div>
 									<div id="loadcart" style="overflow-y: scroll; overflow-x: hidden; max-height: 200px;">
 										<!-- <div class="row p-3">
@@ -106,7 +131,7 @@
 									<div class="row p-2">
 										<div class="col-4"><button type="button" class="btn btn-primary" style="width: 100%; text-align: center;"><strong>Cart</strong></button>
 										</div>
-										<div class="col-8"><button type="button" class="btn btn-success" style="width: 100%; text-align: center;"><strong>Check Out</strong></button>
+										<div class="col-8"><a href="<?php echo base_url() . "main/checkout" ?>"><button type="button" class="btn btn-success" style="width: 100%; text-align: center;"><strong>Check Out</strong></button></a>
 										</div>
 									</div>
 								</div>
@@ -175,52 +200,22 @@
 			</div>
 		</nav>
 	</div>
-	<div class="row" style="margin-top: 110px">
-		<div class="col-3">
-			<!-- <h4 class="bg-light">Danh Mục Sản Phẩm</h4> -->
-			<div class="bg-light mt-1" style="height: 300px; overflow: auto;">
-				<ul class="nav flex-column">
-					<?php
-					foreach ($type as $key => $value) {
-						echo '<li class="nav-item">';
-						echo '<a class="nav-link" href="' . site_url("main/product_list/$value->ID_type/1") . '">' . $value->name_type . '</a>';
-						echo '</li>';
-					}
-					?>
-				</ul>
-			</div>
-		</div>
-		<div class="col-9">
-			<div id="demo" class="carousel slide" data-ride="carousel">
-				<!-- Indicators -->
-				<ul class="carousel-indicators">
-					<li data-target="#demo" data-slide-to="0" class="active"></li>
-					<li data-target="#demo" data-slide-to="1"></li>
-					<li data-target="#demo" data-slide-to="2"></li>
-				</ul>
-				<!-- The slideshow -->
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner1.jpg" height="300px" width="100%" alt="Los Angeles">
-					</div>
-					<div class="carousel-item">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner2.jpg" height="300px" width="100%" alt="Chicago">
-					</div>
-					<div class="carousel-item">
-						<img src="<?php echo base_url(); ?>assets/image/default_banner3.jpg" height="300px" width="100%" alt="New York">
-					</div>
-				</div>
-				<!-- Left and right controls -->
-				<a class="carousel-control-prev" href="#demo" data-slide="prev">
-					<span class="carousel-control-prev-icon"></span>
-				</a>
-
-				<a class="carousel-control-next" href="#demo" data-slide="next">
-					<span class="carousel-control-next-icon"></span>
-				</a>
-			</div>
-		</div>
-	</div>
+	<?php
+	if (isset($cmd)) {
+		if ($cmd != 'hide_banner') {
+			$this->load->view('banner');
+		}
+	} else {
+		$this->load->view('banner');
+	}
+	?>
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
+	<!-- =========================================================== -->
 	<!-- phần dialog của login -->
 	<div class="modal fade" id="login">
 		<div class="modal-dialog">
@@ -252,6 +247,7 @@
 
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+
 								</form>
 							</div>
 							<div class="card-footer bg-white p-0">
@@ -268,9 +264,11 @@
 					function Click2() {
 						var username = $('#username').val();
 						var password = $('#password').val();
-						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";						
+						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
 						var check = '';
+						// alert(username + password);
 						$.ajax({
+
 							url: url,
 							method: "POST",
 							data: {
@@ -283,7 +281,11 @@
 							check = callback;
 						});
 						if (check == "ok") {
+							alert("Đăng nhập thành công");
 							return true;
+						} else {
+							alert("Tài khoản hoặc mật khẩu sai!!");
+							// alert(check);
 						}
 						return false;
 					}
@@ -311,24 +313,23 @@
 						<div class="card">
 							<div class="card-body">
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="text" id="username" name="username" required placeholder="Username" autocomplete="off">
-									<p id="K"></p>
+									<input class="form-control form-control-lg" type="text" name="username" id="username_r" required placeholder="Username" autocomplete="off">
+									<p id="NoteUser"></p>
 
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="email" id="email" name="email" required placeholder="E-mail" autocomplete="off">
-									<p id="L"></p>
+									<input class="form-control form-control-lg" type="email" name="email" id="email" required placeholder="E-mail" autocomplete="off">
+									<p id="NoteEmail"></p>
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" id="pass1" name="r_password" type="password" required placeholder="Password">
-									<p id="Q"> </p>
+									<input class="form-control form-control-lg" name="password" type="password" id="pass1" required placeholder="Password">
 								</div>
 								<div class="form-group">
-									<input class="form-control form-control-lg" type="password" placeholder="Confirm" name="re_pass" id="pass2">
-									<p id="R"></p>
+									<input class="form-control form-control-lg" name="re_password" type="password" id="pass2" placeholder="Confirm">
 								</div>
 								<div class="form-group pt-2">
 									<button class="btn btn-block btn-primary" type="submit">Register My Account</button>
+									<p id="K"></p>
 								</div>
 								<!-- <div class="form-group">
 									<label class="custom-control custom-checkbox">
@@ -346,9 +347,9 @@
 					function Click() {
 						var username = $('#username_r').val();
 						var email = $('#email').val();
-						var r_password = $('#pass1').val();
-						var re_pass = $('#pass2').val();
-						url = "<?php echo base_url() . 'apiajax/checkRegister' ?>";
+						var password = $('#pass1').val();
+						var re_password = $('#pass2').val();
+						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
 						var check = '';
 						$.ajax({
 
@@ -363,20 +364,22 @@
 						}).done(function(callback) {
 							check = callback;
 						});
-						if (check == "email") {
-							document.getElementById("L").innerHTML = "<p style ='color:red';> Email da co</p>";
+						if (check == "username") {
+							document.getElementById("NoteUser").innerHTML = "<p style ='color:red';> User đã tồn tại </p>";
 							return false;
-						} else if (check == "username") {
-							document.getElementById("K").innerHTML = "<p style ='color:red';> User da co</p>";
+						} else if (check == "email") {
+							document.getElementById("NoteEmail").innerHTML = "<p style ='color:red';> Email đã tồn tại </p>";
 							return false;
-						} else if (r_password != re_pass) {
-							document.getElementById("Q").innerHTML = "<p style ='color:red';> Pass khong dung</p>";
-							document.getElementById("R").innerHTML = "<p style ='color:red';> repass khong dung</p>";
+						} else if (password != re_password) {
+							document.getElementById("K").innerHTML = "<p style ='color:red';> Nhập lại mật khẩu không đúng </p>";
+							// if (check == "ok") {
+							// 	return true;
+							// }
 							return false;
 						} else if (check == "ok") {
 							return true;
 						}
-
+						alert("lỗi" + check);
 						return false;
 					}
 				</script>

@@ -173,10 +173,26 @@
                                         </li>
                                     </ul>
                                 </div>
-                            </li>                           
-
+                            </li>      
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-clipboard-list"></i>Manager <span class="badge badge-success">6</span></a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo site_url('admin/index') ?>">Nhân Viên</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo site_url('admin/product') ?>">Khách hàng</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo site_url('admin/Order') ?>">Chức vụ</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>                        
                         </ul>
                     </div>
+                    
                 </nav>
             </div>
         </div>
