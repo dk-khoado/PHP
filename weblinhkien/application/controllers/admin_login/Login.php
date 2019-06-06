@@ -29,30 +29,31 @@ class Login extends CI_Controller
                     'keyadmin' => $keyAdmin
                 ), true);
                 //gửi mail
-                $config = array();
-                $config['protocol'] = 'smtp';
-                $config['smtp_host'] = 'ssl://smtp.googlemail.com';
-                //$config['smtp_host'] = 'tls://smtp.googlemail.com';
-                $config['smtp_user'] = 'violent12330@gmail.com';
-                $config['smtp_pass'] = 'khoa123456789';
-                $config['smtp_port'] = 465;
-                //$config['smtp_port'] = 579;
-                $config['mailtype']  = 'html';
-                $config['starttls']  = true;
-                $config['newline']   = "\r\n";
-                $this->load->library('email', $config);
-                $this->email->initialize($config);
-                $this->email->from("violent12330@gmail.com", 'Ban quản Trị');
-                // $this->email->to($data['data']->EMAIL);
-                $this->email->to("violent12330@gmail.com");
-                $this->email->subject("yêu cầu gia nhập");
-                $this->email->message($context);
-                if ($this->email->send()) {
+                // $config = array();
+                // $config['protocol'] = 'smtp';
+                // $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+                // //$config['smtp_host'] = 'tls://smtp.googlemail.com';
+                // $config['smtp_user'] = 'khoado29k11@viendong.edu.vn';
+                // $config['smtp_pass'] = 'khoa958632147';
+                // $config['smtp_port'] = 465;
+                // //$config['smtp_port'] = 579;
+                // $config['mailtype']  = 'html';
+                // $config['starttls']  = true;
+                // $config['newline']   = "\r\n";
+                // $this->load->library('email', $config);
+                // $this->email->initialize($config);
+                // $this->email->from("khoado29k11@viendong.edu.vn", 'Ban quản Trị');
+                // // $this->email->to($data['data']->EMAIL);
+                // $this->email->to("khoado29k11@viendong.edu.vn");
+                // $this->email->subject("yêu cầu gia nhập");
+                // $this->email->message($context);
+                $this->load->model("SendMail");
+                if ($this->SendMail->sendAdmin($data['data']->EMAIL, $context)) {
                     echo "đã gửi yêu cầu. nếu yêu cầu của bạn được duyệt. sẽ có 1 đường link gửi đên email của bạn để kích hoạt";
-                    echo "<a href='" . base_url() . "admin'><button>quay lại</button></a>";
+                    echo "<a href='" . base_url() . "Admin'><button>quay lại</button></a>";
                 } else {
                     echo "gửi không thành công thành công";
-                    echo "<a href='" . base_url() . "admin'><button>quay lại</button></a>";
+                    echo "<a href='" . base_url() . "Admin'><button>quay lại</button></a>";
                 }
             }
         } else {

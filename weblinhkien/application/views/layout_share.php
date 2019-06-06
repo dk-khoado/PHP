@@ -31,7 +31,7 @@
 		function LoadCart() {
 			$("#loadcart").children().remove();
 			base_url = "<?php echo base_url(); ?>";
-			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
+			url = "<?php echo base_url() . 'ApiAjax/Cart'; ?>"
 			check = "";
 			var sum = 0;
 			$.ajax({
@@ -63,7 +63,7 @@
 		}
 
 		function DelCart(del) {
-			url = "<?php echo base_url() . 'apiajax/removeOncart'; ?>"
+			url = "<?php echo base_url() . 'ApiAjax/removeOncart'; ?>"
 			$.ajax({
 				url: url,
 				async: false,
@@ -233,7 +233,7 @@
 					<div>
 						<div class="card">
 							<div class="card-body">
-								<form action="<?php echo site_url('main/Login'); ?>" method="POST" onSubmit="return Click2()">
+								<form action="<?php echo site_url('Main/Login'); ?>" method="POST" onSubmit="return Click2()">
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" name="username" id="username" placeholder="Username">
 									</div>
@@ -264,7 +264,7 @@
 					function Click2() {
 						var username = $('#username').val();
 						var password = $('#password').val();
-						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
+						url = "<?php echo base_url() . 'ApiAjax/checkLogin' ?>";
 						var check = '';
 						// alert(username + password);
 						$.ajax({
@@ -349,7 +349,7 @@
 						var email = $('#email').val();
 						var password = $('#pass1').val();
 						var re_password = $('#pass2').val();
-						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
+						url = "<?php echo base_url() . 'ApiAjax/checkRegister' ?>";
 						var check = '';
 						$.ajax({
 
