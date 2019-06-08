@@ -162,14 +162,14 @@ class Main extends CI_Controller
         if (isset($_SESSION['id'])) {
             $data_customer = $this->Customer->getDataByID($_SESSION['id']);
             $cart = $this->Cart->getAllByIDUser($_SESSION['id']);
-			$city = $this->Country->Province();
-            if($cart != null){
-                $context = $this->load->view('product-checkout', array("data" => $data_customer, 'cart' => $cart, 'city' => $city), true);               
-            }else{
-                $context = $this->load->view('notification/notif_nullCart',"", true);    
+            $city = $this->Country->Province();
+            if ($cart != null) {
+                $context = $this->load->view('product-checkout', array("data" => $data_customer, 'cart' => $cart, 'city' => $city), true);
+            } else {
+                $context = $this->load->view('notification/notif_nullCart', "", true);
             }
         } else {
-            $context = $this->load->view('notification/notif_chuaLogin', "", true);           
+            $context = $this->load->view('notification/notif_chuaLogin', "", true);
         }
         $this->load->view("layout_share", array('type' => $data, 'context' => $context, 'tittel' => $tittel, 'cmd' => 'hide_banner'));
     }
@@ -179,5 +179,12 @@ class Main extends CI_Controller
         $context = $this->load->view('about', '', true);
         $tittel = "Thông Tin";
         $this->load->view("layout_share", array('type' => $data, 'context' => $context, 'tittel' => $tittel));
+    }
+    public function resetPassword()
+    {
+        $tittel = "Quên mật khẩu";
+        $data = $this->Type->getAll();
+        $context = $this->load->view("notification/notif_resetPassword",'', true);
+        $this->load->view("layout_share", array('type' => $data, 'context' => $context, 'tittel' => $tittel, 'cmd' => 'hide_banner'));
     }
 }
