@@ -8,7 +8,7 @@ class Customer extends CI_Model
         $data = array(
             "USER" => $username,
             "PASSWORD" => $password_d,
-            "EMAIL"=>$email
+            "EMAIL" => $email
         );
         $this->db->insert("custumers", $data);
     }
@@ -25,15 +25,16 @@ class Customer extends CI_Model
         }
         //return $result->result();
     }
-    public function LoginAndGetData($username, $password){
+    public function LoginAndGetData($username, $password)
+    {
         $password_d = md5($password);
         // $query = "custumers where 'USER' = '$username' and PASSWORD = $password";
         $query = "SELECT * from custumers where  USER = '$username' and PASSWORD = '$password_d'";
-        $result = $this->db->query($query);      
+        $result = $this->db->query($query);
         if ($result->num_rows() > 0) {
-            return  array("response"=>"true", "data"=>$result->row(),"pass"=>$password_d);
+            return  array("response" => "true", "data" => $result->row(), "pass" => $password_d);
         } else {
-            return  array("response"=>"false", "data"=>$result->row(),"pass"=>$password_d);
+            return  array("response" => "false", "data" => $result->row(), "pass" => $password_d);
         }
     }
     function getID($username, $password)
@@ -44,65 +45,108 @@ class Customer extends CI_Model
         $result = $this->db->get($query);
         return $result->row();
     }
-    function checkEmail($email){
-        $query="custumers WHERE EMAIL = '$email'";
+    function checkEmail($email)
+    {
+        $query = "custumers WHERE EMAIL = '$email'";
         $result = $this->db->get($query);
-        if($result->num_rows() > 0){
+        if ($result->num_rows() > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    function checkName($username){
-        $query="custumers WHERE USER = '$username'";
+    function checkName($username)
+    {
+        $query = "custumers WHERE USER = '$username'";
         $result = $this->db->get($query);
-        if($result->num_rows() > 0){
+        if ($result->num_rows() > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    function getNameByID($ID){
-        $query="custumers WHERE ID_User = '$ID'";
+    function getNameByID($ID)
+    {
+        $query = "custumers WHERE ID_User = '$ID'";
         $result = $this->db->get($query);
         return $result->row()->USER;
     }
-    function getDataByID($ID){
-        $query="custumers WHERE ID_User = '$ID'";
+    function getDataByID($ID)
+    {
+        $query = "custumers WHERE ID_User = '$ID'";
         $result = $this->db->get($query);
         return $result->row();
     }
-    function setActive($ID){
+    function setActive($ID)
+    {
         $query = "UPDATE custumers set active = 1 where ID_User = $ID";
         $this->db->query($query);
     }
-    function setMenber($ID){
+    function setMenber($ID)
+    {
         $query = "UPDATE custumers set is_member = 1 where ID_User = $ID";
         $this->db->query($query);
     }
-    function UpdateInformation($ID_User,$ADDRESS, $NBERPHONE, $EMAIL, $NAME, $id_city, $id_quan){
+    function UpdateInformation($ID_User, $ADDRESS, $NBERPHONE, $EMAIL, $NAME, $id_city, $id_quan)
+    {
         $data = array(
-            "ADDRESS"=>$ADDRESS,
-            "NBERPHONE"=>$NBERPHONE,
-            "EMAIL"=>$EMAIL,
-            "NAME"=>$NAME,
-            "id_city"=>$id_city,
-            "id_quan"=>$id_quan
+            "ADDRESS" => $ADDRESS,
+            "NBERPHONE" => $NBERPHONE,
+            "EMAIL" => $EMAIL,
+            "NAME" => $NAME,
+            "id_city" => $id_city,
+            "id_quan" => $id_quan
         );
-        $this->db->where("ID_User",$ID_User);
-        $this->db->update("custumers",$data);
+        $this->db->where("ID_User", $ID_User);
+        $this->db->update("custumers", $data);
     }
-    function ResetPassword($email){
+    function ResetPassword($email)
+    {
         $query = "UPDATE custumers set is_resetPass = 1 where EMAIL = '$email'";
-        $this->db->query($query);   
+        $this->db->query($query);
     }
-    function is_reset($email){
+    function is_reset($email)
+    {
         $query = "custumers where EMAIL ='$email' and is_resetPass = 1";
         $result  = $this->db->get($query);
+        if ($result->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //phần đăng nhập bên thứ 3.(google)
+    function gg_register($username, $password,$email, $name)
+    {
+        $password_d = md5($password);
+        if(!$this->checkEmail($email)){
+            
+            $data = array(
+                "USER" => $username,
+                "PASSWORD" => md5($password_d),
+                "EMAIL" => $email,
+                "NAME" => $name
+            );
+            $this->db->insert("custumers", $data);
+        }else{
+            //liên kết tài khoản nếu email đã được đăng ký trước đó
+            $data = array(                
+                "PASSWORD" => $password_d,
+                "EMAIL" => $email,
+                "NAME" => $name
+            );
+            $this->db->where("EMAIL", $email);
+            $this->db->update("custumers", $data);
+        }       
+    }
+    function gg_checkLogin($email){
+        $query = "custumers where EMAIL = '$email'";
+        $result = $this->db->get($query);
         if($result->num_rows() > 0){
             return true;
         }else{
             return false;
         }
-    } 
+    }
 }

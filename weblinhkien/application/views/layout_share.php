@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
 	<meta charset="utf-8">
@@ -150,7 +150,7 @@
 										</div> -->
 									</div>
 									<div class="row p-2">
-										<div class="col-4"><button type="button" class="btn btn-primary" style="width: 100%; text-align: center;"><strong>Cart</strong></button>
+										<div class="col-4"><a href="<?php echo base_url() . "main/ViewCart" ?>"><button type="button" class="btn btn-primary" style="width: 100%; text-align: center;"><strong>Cart</strong></button></a>
 										</div>
 										<div class="col-8"><a href="<?php echo base_url() . "main/checkout" ?>"><button type="button" class="btn btn-success" style="width: 100%; text-align: center;"><strong>Check Out</strong></button></a>
 										</div>

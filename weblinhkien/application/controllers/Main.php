@@ -3,7 +3,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Main extends CI_Controller
 {
-
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Cart');
+    }
     public function index()
     {
         $data = $this->Type->getAll();
@@ -155,7 +159,7 @@ class Main extends CI_Controller
     public function CheckOut()
     {
         $this->load->model("Customer");
-        $this->load->model('Cart');
+
         $this->load->model('Country');
         $tittel = "Thanh Toán";
         $data = $this->Type->getAll();
@@ -184,7 +188,17 @@ class Main extends CI_Controller
     {
         $tittel = "Quên mật khẩu";
         $data = $this->Type->getAll();
-        $context = $this->load->view("notification/notif_resetPassword",'', true);
+        $context = $this->load->view("notification/notif_resetPassword", '', true);
         $this->load->view("layout_share", array('type' => $data, 'context' => $context, 'tittel' => $tittel, 'cmd' => 'hide_banner'));
     }
+    public function ViewCart()
+    {
+        if (isset($_SESSION['id'])) {
+            $data = $this->Type->getAll();
+            $cart = $this->Cart->getAllByIDUser($_SESSION['id']);
+            $context = $this->load->view('cart', array("data" => $cart), true);
+            $tittel = "Chi tiết giỏ hàng";
+            $this->load->view("layout_share", array('type' => $data, 'context' => $context, 'tittel' => $tittel, 'cmd' => 'hide_banner'));
+        }
+    }    
 }
