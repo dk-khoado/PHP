@@ -1,22 +1,19 @@
 <!-- end header -->
 <script>
- 	function AddCart(id_pro)
-	{
-		url = "<?php echo base_url().'ApiAjax/addToCart';?>";
+	function AddCart(id_pro) {
+		url = "<?php echo base_url() . 'ApiAjax/addToCart'; ?>";
 		alert("đã thêm vào giỏ hàng");
 		$.ajax({
-			url:url,
-			method:'POST',		
-			async:false,
-			data:{
+			url: url,
+			method: 'POST',
+			async: false,
+			data: {
 				"id_user": <?php echo $_SESSION['id'] ?>,
 				"id_product": id_pro,
 				"amount": 1
 			}
 		});
 	}
-
-
 </script>
 
 <!-- phần body -->
@@ -55,7 +52,7 @@
 					echo '<h3 class="product-name"><a href="' . site_url("main/chitiet") . '?id=' . $value->ID_PRODUCT . '">' . $value->NameProduct . '</a></h3>';
 					echo '<h4 class="product-price">' . number_format($value->PriceProduct) . ' <del class="product-old-price">$990.00</del></h4>';
 					echo '<a href="' . site_url("main/chitiet") . '?id=' . $value->ID_PRODUCT . '" class="btn btn-primary">Chi tiết</a>';
-					echo '<button onclick="AddCart('.$value->ID_PRODUCT.')" type="button" class="btn btn-outline-danger"><i class="fa fa-shopping-cart"></i> add to cart</button>';
+					echo '<button onclick="AddCart(' . $value->ID_PRODUCT . ')" type="button" class="btn btn-outline-danger"><i class="fa fa-shopping-cart"></i> add to cart</button>';
 					echo '</div>';
 					//end			
 					echo '</div>';
@@ -65,11 +62,22 @@
 			</div>
 		</div>
 		<script>
+			// $('.slick').slick({
+			// 	slidesToShow: 3,
+			// 	slidesToScroll: 1,
+			// 	autoplay: true,
+			// 	autoplaySpeed: 2000,
+			// });
+		</script>
+		<script>
 			$('.slick').slick({
-				slidesToShow: 3,
-				slidesToScroll: 1,
-				autoplay: true,
-				autoplaySpeed: 2000,
+				dots: true,
+				infinite: false,
+				speed: 300,
+				slidesToShow: 4,
+				slidesToScroll: 4,
+				mobileFirst: false,
+				respondTo:"smaller "
 			});
 		</script>
 	</div>
