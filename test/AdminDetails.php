@@ -10,9 +10,24 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-<link rel="stylesheet" href="css/ManagerAd.css">
+<link rel="stylesheet" href="css/AdminDetails.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="row">
+	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+		<div class="page-header">
+			<h2 class="pageheader-title"><?php echo $header ?> </h2>
+			<div class="page-breadcrumb">
+				<nav aria-label="breadcrumb">
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+						<li class="breadcrumb-item active" aria-current="page">E-Commerce Dashboard Template</li>
+					</ol>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
 $(document).ready(function(){
 	$('[data-toggle="tooltip"]').tooltip();
@@ -97,22 +112,20 @@ $(document).ready(function() {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    if ($list != null)
-                    {
-                        foreach ($list as $key => $value)
+                    <?php                       
+                        foreach ($data as $key => $value)
                         {
+                            echo "<tr>";
                             echo "<td>" . $value->username . "</td>";
 						    echo "<td>" . $value->password . "</td>";
                             echo "<td>" . $value->level . "</td>";
-                            echo "<td>" 
+                            echo '<td>
                             <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                             <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
-                            "</td>";
-                        }   
-                    }
-                      
+                            </td>';
+                            echo "<tr>";
+                        }     
                     ?>   
                 </tbody>
             </table>
