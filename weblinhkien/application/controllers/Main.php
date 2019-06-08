@@ -196,7 +196,12 @@ class Main extends CI_Controller
         if (isset($_SESSION['id'])) {
             $data = $this->Type->getAll();
             $cart = $this->Cart->getAllByIDUser($_SESSION['id']);
-            $context = $this->load->view('cart', array("data" => $cart), true);
+            if($cart !=null){
+                $context = $this->load->view('cart', array("data" => $cart), true);
+            }else{
+                $context = $this->load->view('notification/notif_nullCart', array("data" => $cart), true);
+            }
+           
             $tittel = "Chi tiết giỏ hàng";
             $this->load->view("layout_share", array('type' => $data, 'context' => $context, 'tittel' => $tittel, 'cmd' => 'hide_banner'));
         }else{
