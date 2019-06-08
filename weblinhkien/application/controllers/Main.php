@@ -199,6 +199,8 @@ class Main extends CI_Controller
             $context = $this->load->view('cart', array("data" => $cart), true);
             $tittel = "Chi tiết giỏ hàng";
             $this->load->view("layout_share", array('type' => $data, 'context' => $context, 'tittel' => $tittel, 'cmd' => 'hide_banner'));
+        }else{
+            redirect("main/index");
         }
     }    
 }
