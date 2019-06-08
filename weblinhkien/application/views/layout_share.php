@@ -77,7 +77,7 @@
 				$("#loadtotal").text(div);
 			});
 			//alert(check);
-			if (check == "") {
+			if (check == "") {			
 				$("#loadtotal").text("giỏ hàng trống !!");
 			}
 		}
@@ -278,7 +278,7 @@
 								<div class="card-footer-item card-footer-item-bordered">
 									<a href="#" class="footer-link">Forgot Password</a>
 								</div> -->
-								<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+								<div class="g-signin2 w-100" data-onsuccess="onSignIn" data-theme="dark"></div>
 							</div>
 						</div>
 					</div>
