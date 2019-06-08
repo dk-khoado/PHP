@@ -92,4 +92,17 @@ class Customer extends CI_Model
         $this->db->where("ID_User",$ID_User);
         $this->db->update("custumers",$data);
     }
+    function ResetPassword($email){
+        $query = "UPDATE custumers set is_resetPass = 1 where EMAIL = '$email'";
+        $this->db->query($query);   
+    }
+    function is_reset($email){
+        $query = "custumers where EMAIL ='$email' and is_resetPass = 1";
+        $result  = $this->db->get($query);
+        if($result->num_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    } 
 }

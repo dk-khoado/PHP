@@ -45,4 +45,25 @@ class SendMail extends CI_Model
         $this->email->message($context);
         $this->email->send();
     }
+    public function sendResetPassword($email,$context){
+        $config = array();
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+        //$config['smtp_host'] = 'tls://smtp.googlemail.com';
+        $config['smtp_user'] = 'khoado29k11@viendong.edu.vn';
+        $config['smtp_pass'] = 'khoa958632147';
+        $config['smtp_port'] = 465;
+        //$config['smtp_port'] = 579;
+        $config['mailtype']  = 'html';
+        $config['starttls']  = true;
+        $config['newline']   = "\r\n";
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+        $this->email->from("khoado29k11@viendong.edu.vn", 'LinhKien9586');
+        $this->email->to($email);
+        // $this->email->to("khoado29k11@viendong.edu.vn");
+        $this->email->subject("Quên mật khẩu");
+        $this->email->message($context);
+        $this->email->send();
+    }
 }

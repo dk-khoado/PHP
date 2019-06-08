@@ -39,7 +39,7 @@
 				method: 'POST',
 				dataType: 'json',
 				data: {
-					"id_user": <?php echo $_SESSION['id'] ?>
+					"id_user": <?php if (isset($_SESSION['id'])) echo $_SESSION['id']; else echo 'null' ;?>
 				},
 				url: url
 			}).done(function(callback) {
@@ -240,12 +240,13 @@
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="password" name="password" id="password" placeholder="Password">
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label class="custom-control custom-checkbox">
-											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
+											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Forgot password</span>
 										</label>
 
-									</div>
+									</div>									 -->
+									<div class="mb-3"><a href="<?php echo base_url( ) ."main/resetPassword" ?>">Forgot password ?</a></div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 
 								</form>
