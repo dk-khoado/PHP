@@ -34,8 +34,8 @@ class Send extends CI_Controller
         $config['protocol'] = 'smtp';
         $config['smtp_host'] = 'ssl://smtp.googlemail.com';
         //$config['smtp_host'] = 'tls://smtp.googlemail.com';
-        $config['smtp_user'] = 'violent12330@gmail.com';
-        $config['smtp_pass'] = 'khoa123456789';
+        $config['smtp_user'] = 'khoado29k11@viendong.edu.vn';
+        $config['smtp_pass'] = 'khoa958632147';
         $config['smtp_port'] = 465;
         //$config['smtp_port'] = 579;
         $config['mailtype']  = 'html';
@@ -43,9 +43,9 @@ class Send extends CI_Controller
         $config['newline']   = "\r\n";
         $this->load->library('email', $config);
         $this->email->initialize($config);
-        $this->email->from("violent12330@gmail.com", 'Ban quản Trị');
-        // $this->email->to($data['data']->EMAIL);
-        $this->email->to("violent12330@gmail.com");
+        $this->email->from("khoado29k11@viendong.edu.vn", 'Ban quản Trị');
+        $this->email->to($email);
+        // $this->email->to("khoado29k11@viendong.edu.vn");
         $this->email->subject("Đơn Hàng ". $id_order);
         $this->email->message($context);
         $this->email->send();

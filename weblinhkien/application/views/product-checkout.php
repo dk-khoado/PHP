@@ -15,7 +15,7 @@
 <!-- ================================= -->
 <script>
     function LoadDis() {
-        url = "<?php echo base_url() . 'apiajax/loadDistrist'; ?>"
+        url = "<?php echo base_url() . 'ApiAjax/loadDistrist'; ?>"
         id = $('#city').val();      
         console.log(id);
         $.ajax({

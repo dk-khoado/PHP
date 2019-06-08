@@ -36,16 +36,16 @@
             <tbody>
                 <?php
                 foreach ($data as $key => $value) {
-                    
                     echo "<td>" . $value->ID_order . "</td>";
                     echo "<td>" . $value->name . "</td>";
                     echo "<td>" . $value->OnSellDate . "</td>";
                     echo "<td>" . $value->status . "</td>";
-                    echo '<td><button type ="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Chi tiết</button></td>';
-                    echo "</tr>";
+                     echo '<td><button type ="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"  onClick="Click('.$value->ID_order.')">Chi tiết</button></td>';
                 }
                 ?>
-                <div class="modal fade" id="myModal">
+            </tbody>
+        </table>
+        <div class="modal" id="myModal">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <!-- Modal Header -->
@@ -53,29 +53,29 @@
                                 <h4 class="modal-title">Modal Heading</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
-                            <div class="modal-body">
-                                <form role="form">
-                                    <div class="input-group">
-                                        <span class="input-group-text input-group-prepend">ID_detail:</span>
-                                        <input name="codeDetail" class="form-control" type="text" required>
-                                    </div><br>
-                                    <div class="input-group">
-                                        <span class="input-group-text input-group-prepend">ID_order:</span>
-                                        <input name="codeOrder" class="form-control" type="text" required>
-                                    </div><br>
-                                    <div class="input-group">
-                                        <span class="input-group-text input-group-prepend">ID_Product</span>
-                                        <input name="codeProduct" class="form-control" type="text" required>
-                                    </div><br>
-                                    <div class="input-group">
-                                        <span class="input-group-text input-group-prepend">Price</span>
-                                        <input name="codePrice" class="form-control" type="text" required>
-                                    </div><br>
-                                    <div class="input-group">
-                                        <span class="input-group-text input-group-prepend">amount</span>
-                                        <input name="codeAmount" class="form-control" type="text" required>
-                                    </div><br>
-                                </form>
+                            <div class="modal-body" style="font-size: 24px">
+                            <table>
+           					<tr>
+           						<td> Thong tin:</td>
+           						<th colspan="4" id="CodeDetail"></th>
+           					</tr>
+                           <tr>
+                           		<td>Ma don hang:</td>
+                           		<th colspan="4" id="CodeOrder"></th>
+                           </tr>
+                           <tr>
+                           		<td>San pham:</td>
+                           		<th colspan="4" id="CodeProduct"></th>
+                           </tr>
+                           <tr>
+                           		<td>Gia:</td>
+                           		<th colspan="4" id="CodePrice"></th>
+                           </tr>
+                           <tr>
+                           		<td>So luong:</td>
+                           		<th colspan="4" id="Codeamount"></th>
+                           </tr>
+                           </table>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -83,8 +83,26 @@
                         </div>
                     </div>
                 </div>
-            </tbody>
-        </table>
+                 <script>
+       				function Click(ID_order){
+						url = "<?php echo base_url() . 'ApiAjax/orderdetail'; ?>"
+						$.ajax({
+						url:url,
+						method:'POST',
+						async:false,
+						data:{
+							"id_order":ID_order
+						},
+						dataType:'json'
+						}).done(function(callback){
+							$.each(callback,function(k,v){
+								$('#myModal').children().remove();
+							data = "  <div class='modal-dialog modal-lg'> <div class='modal-content'> <div class='modal-header'> <h4 class='modal-title'>Modal Heading</h4> <button type='button' class='close' data-dismiss='modal'>&times;</button> </div> <div class='modal-body' style='font-size: 24px'> <table> <tr> <td> Thong tin:</td> <th colspan='4' id='CodeDetail'>"+v.ID_detail+"</th> </tr> <tr> <td>Ma don hang:</td> <th colspan='4' id='CodeOrder'>"+v.ID_order+"</th> </tr> <tr> <td>San pham:</td> <th colspan='4' id='CodeProduct'>"+v.ID_PRODUCT+"</th> </tr> <tr> <td>Gia:</td> <th colspan='4' id='CodePrice'>"+v.Price+"</th> </tr> <tr> <td>So luong:</td> <th colspan='4' id='Codeamount'>"+v.amount+"</th> </tr> </table> </div> <div class='modal-footer'> <button type='button' class='btn btn-danger' data-dismiss='modal'>Close</button> </div> </div> </div>";
+							$('#myModal').append(data);
+							 });
+						});
+					}
+			</script>
         <!---->
     </div>
 </div>

@@ -6,6 +6,9 @@
 	<title>
 		<?php echo $tittel ?>
 	</title>
+	<meta name="google-signin-scope" content="profile email">
+	<meta name="google-signin-client_id" content="903145238396-sgo9aodfrv70to2mdvi1slp7qid4bhat.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap-4.3.1-dist/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/datatables.min.css"> -->
@@ -28,10 +31,26 @@
 	<script src="<?php echo base_url(); ?>assets/js/nouislider.min.js"></script>
 	<!-- <link rel="stylesheet" href="layoutside.css"> -->
 	<script>
+		function onSignIn(googleUser) {
+			// Useful data for your client-side scripts:
+			var profile = googleUser.getBasicProfile();
+			console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+			console.log('Full Name: ' + profile.getName());
+			console.log('Given Name: ' + profile.getGivenName());
+			console.log('Family Name: ' + profile.getFamilyName());
+			console.log("Image URL: " + profile.getImageUrl());
+			console.log("Email: " + profile.getEmail());
+
+			// The ID token you need to pass to your backend:
+			var id_token = googleUser.getAuthResponse().id_token;
+			console.log("ID Token: " + id_token);
+		}
+	</script>
+	<script>
 		function LoadCart() {
 			$("#loadcart").children().remove();
 			base_url = "<?php echo base_url(); ?>";
-			url = "<?php echo base_url() . 'apiajax/Cart'; ?>"
+			url = "<?php echo base_url() . 'ApiAjax/Cart'; ?>"
 			check = "";
 			var sum = 0;
 			$.ajax({
@@ -39,7 +58,8 @@
 				method: 'POST',
 				dataType: 'json',
 				data: {
-					"id_user": <?php echo $_SESSION['id'] ?>
+					"id_user": <?php if (isset($_SESSION['id'])) echo $_SESSION['id'];
+								else echo 'null'; ?>
 				},
 				url: url
 			}).done(function(callback) {
@@ -57,13 +77,13 @@
 				$("#loadtotal").text(div);
 			});
 			//alert(check);
-			if (check == "") {
+			if (check == "") {			
 				$("#loadtotal").text("giỏ hàng trống !!");
 			}
 		}
 
 		function DelCart(del) {
-			url = "<?php echo base_url() . 'apiajax/removeOncart'; ?>"
+			url = "<?php echo base_url() . 'ApiAjax/removeOncart'; ?>"
 			$.ajax({
 				url: url,
 				async: false,
@@ -110,6 +130,7 @@
 											</div>
 										</b>
 									</div>
+
 									<div id="loadcart" style="overflow-y: scroll; overflow-x: hidden; max-height: 200px;">
 										<!-- <div class="row p-3">
 											<div class="col-2"><img src="#" width="85px" height="85px">
@@ -129,7 +150,7 @@
 										</div> -->
 									</div>
 									<div class="row p-2">
-										<div class="col-4"><button type="button" class="btn btn-primary" style="width: 100%; text-align: center;"><strong>Cart</strong></button>
+										<div class="col-4"><a href="<?php echo base_url() . "main/ViewCart" ?>"><button type="button" class="btn btn-primary" style="width: 100%; text-align: center;"><strong>Cart</strong></button></a>
 										</div>
 										<div class="col-8"><a href="<?php echo base_url() . "main/checkout" ?>"><button type="button" class="btn btn-success" style="width: 100%; text-align: center;"><strong>Check Out</strong></button></a>
 										</div>
@@ -232,23 +253,24 @@
 				<div class="modal-body">
 					<div>
 						<div class="card">
-							<div class="card-body">
-								<form action="<?php echo site_url('main/Login'); ?>" method="POST" onSubmit="return Click2()">
+							<div class="card-body">								
+								<form action="<?php echo site_url('Main/Login'); ?>" method="POST" onSubmit="return Click2()">
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="text" name="username" id="username" placeholder="Username">
 									</div>
 									<div class="form-group">
 										<input class="form-control form-control-lg" type="password" name="password" id="password" placeholder="Password">
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label class="custom-control custom-checkbox">
-											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Remember Me</span>
+											<input class="custom-control-input" type="checkbox"><span class="custom-control-label">Forgot password</span>
 										</label>
 
-									</div>
+									</div>									 -->
+									<div class="mb-3"><a href="<?php echo base_url() . "main/resetPassword" ?>">Forgot password ?</a></div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 
-								</form>
+								</form>								
 							</div>
 							<div class="card-footer bg-white p-0">
 								<!-- <div class="card-footer-item card-footer-item-bordered">
@@ -256,6 +278,7 @@
 								<div class="card-footer-item card-footer-item-bordered">
 									<a href="#" class="footer-link">Forgot Password</a>
 								</div> -->
+								<div class="g-signin2 w-100" data-onsuccess="onSignIn" data-theme="dark"></div>
 							</div>
 						</div>
 					</div>
@@ -264,7 +287,7 @@
 					function Click2() {
 						var username = $('#username').val();
 						var password = $('#password').val();
-						url = "<?php echo base_url() . 'apiajax/checkLogin' ?>";
+						url = "<?php echo base_url() . 'ApiAjax/checkLogin' ?>";
 						var check = '';
 						// alert(username + password);
 						$.ajax({
@@ -349,7 +372,7 @@
 						var email = $('#email').val();
 						var password = $('#pass1').val();
 						var re_password = $('#pass2').val();
-						url = "<?php echo base_url() . 'apiajax/checkregister' ?>";
+						url = "<?php echo base_url() . 'ApiAjax/checkRegister' ?>";
 						var check = '';
 						$.ajax({
 

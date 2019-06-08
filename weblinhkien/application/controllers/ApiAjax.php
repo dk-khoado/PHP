@@ -8,7 +8,7 @@ class ApiAjax  extends CI_Controller
         parent::__construct();
         $this->load->model('Customer');
         $this->load->model('Products');
-        $this->load->model('Cart');
+        $this->load->model('Cart');       
     }
     public function checkLogin()
     {
@@ -126,5 +126,12 @@ class ApiAjax  extends CI_Controller
 		$distrist = $this->input->post("ID_city");
 		$data = $this->Country->Distrist($distrist);
 		echo json_encode($data);
-	}
+    }
+    public function resetPass(){
+        $email= $this->input->post("email");       
+        $this->load->model("SendMail");
+        $this->Customer->ResetPassword($email);
+        $context =$this->load->view("form_mail/sendResetPass",array("email"=>$email), true);;
+        $this->SendMail->sendResetPassword($email, $context);    
+    }
 }
