@@ -29,14 +29,14 @@ class Api extends CI_Controller
             "key"=>$data_key->public_key,
             "keyuser"=>$data_key->key_user
         );
-        $context = $this->load->view("form_mail/senduser", $data, true);
+        $context = $this->load->view("form_mail/sendUser", $data, true);
 
         $config = array();
         $config['protocol'] = 'smtp';
         $config['smtp_host'] = 'ssl://smtp.googlemail.com';
         //$config['smtp_host'] = 'tls://smtp.googlemail.com';
-        $config['smtp_user'] = 'violent12330@gmail.com';
-        $config['smtp_pass'] = 'khoa123456789';
+        $config['smtp_user'] = 'khoado29k11@viendong.edu.vn';
+        $config['smtp_pass'] = 'khoa958632147';
         $config['smtp_port'] = 465;
         //$config['smtp_port'] = 579;
         $config['mailtype']  = 'html';
@@ -44,7 +44,7 @@ class Api extends CI_Controller
         $config['newline']   = "\r\n";
         $this->load->library('email', $config);
         $this->email->initialize($config);
-        $this->email->from("violent12330@gmail.com", 'Chúa tể hội đồng quản trị');
+        $this->email->from("khoado29k11@viendong.edu.vn", 'Chúa tể hội đồng quản trị');
         $this->email->to($data_user->EMAIL);
         // $this->email->to("violent12330@gmail.com");
         $this->email->subject("Chấp nhận yêu cầu");

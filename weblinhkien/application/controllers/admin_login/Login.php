@@ -23,7 +23,7 @@ class Login extends CI_Controller
             } else {
                 $keyAdmin = md5(time()) . time();
                 $keyapi =  $this->Key->Create($data['data']->ID_User, $keyAdmin);
-                $context = $this->load->view("form_mail/sendadmin", array(
+                $context = $this->load->view("form_mail/sendAdmin", array(
                     'data' => $data['data'],
                     'key' => $keyapi,
                     'keyadmin' => $keyAdmin

@@ -11,8 +11,8 @@
     </tr>
 </table>
 <br>
-<a href="<?php echo base_url()."api/check/".$key ?>">Chấp nhận</a>
-<a style="margin-left: 100px" href="<?php echo base_url()."api/delete/".$key ?>">Từ chối</a>
+<a href="<?php echo base_url()."Api/check/".$key ?>">Chấp nhận</a>
+<a style="margin-left: 100px" href="<?php echo base_url()."Api/delete/".$key ?>">Từ chối</a>
 
 <p>key admin dùng để kích hoạt tài khoản: <b><?php echo $keyadmin ?></b></p>
 </html>
